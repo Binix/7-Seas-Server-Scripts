@@ -1,0 +1,17 @@
+icy cave*scriptdata/channeldata/14114466934309347393305506557.json
+mafia*scriptdata/channeldata/141144669343815763345803134143.json
+indigo plateau*scriptdata/channeldata/14114466934459047936324495822.json
+victory road*scriptdata/channeldata/14114466934516987893395125866.json
+tournaments*scriptdata/channeldata/14114466934567002336166333407.json
+watch*scriptdata/channeldata/141144669346205261264112778008.json
+trivia*scriptdata/channeldata/14114466934686169646680355072.json
+trivreview*scriptdata/channeldata/14114466934746083733721170574.json
+mafia review*scriptdata/channeldata/1411446693481177577301627025.json
+hangman*scriptdata/channeldata/14114466934877038723949808627.json
+blackjack*scriptdata/channeldata/14114466934956829908576328307.json
+developer's den*scriptdata/channeldata/1411446696782873549756128341.json
+bf review*scriptdata/channeldata/141144669681021507422160357237.json
+cinnabar island*scriptdata/channeldata/14114476767943985816929489374.json
+pallet town*scriptdata/channeldata/14114479274575558731365017593.json
+whitetree hollow*scriptdata/channeldata/14114500077677677676128223538.json
+white treehollow*scriptdata/channeldata/141145073176711017089011147618.json
