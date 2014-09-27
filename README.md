@@ -1,4 +1,4 @@
-<font size='10' color ='Red' face='chiller'><b>7 Seas</b.</font>
+<font size='10'><b>7 Seas</b.</font>
 =====================
 
 Pokemon Online Server Scripts For 7 Seas
