@@ -9,7 +9,6 @@ var Config = {
     bot: "Dratini",
     kickbot: "Blaziken",
     capsbot: "Exploud",
-    casinobot: "Chansey",
     channelbot: "Chatot",
     checkbot: "Snorlax",
     coinbot: "Meowth",
@@ -22,7 +21,7 @@ var Config = {
     hangbot: "Unown",
     rpgbot: "Xatu",
     bfbot: "Goomy",
-    Plugins: ["mafia.js", "tournaments.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js", "beasts.js", "cards.js", "poker.js", "rand-utils.js", "rpg.js", "casino.js"],
+    Plugins: ["mafia.js", "tournaments.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js", "rpg.js"],
     Mafia: {
         bot: "Murkrow",
         norepeat: 5,
@@ -99,7 +98,7 @@ var updateModule = function updateModule(module_name, callback) {
    }
 };
 
-var channel, contributors, mutes, mbans, smutes, detained, hmutes, mafiaSuperAdmins, hangmanAdmins, hangmanSuperAdmins, staffchannel, channelbot, normalbot, bot, mafiabot, kickbot, capsbot, checkbot, coinbot, countbot, tourneybot, battlebot, commandbot, querybot, rankingbot, hangbot, rpgbot, bfbot, scriptChecks, lastMemUpdate, bannedUrls, mafiachan, mafiarev, sachannel, tourchannel, dwpokemons, hapokemons, lcpokemons, bannedGSCSleep, bannedGSCTrap, breedingpokemons, rangebans, proxy_ips, mafiaAdmins, rules, authStats, nameBans, chanNameBans, isSuperAdmin, cmp, key, battlesStopped, lineCount, pokeNatures, pokeAbilities, maxPlayersOnline, pastebin_api_key, pastebin_user_key, getSeconds, getTimeString, sendChanMessage, sendChanAll, sendMainTour, VarsCreated, authChangingTeam, usingBannedWords, repeatingOneself, capsName, CAPSLOCKDAYALLOW, nameWarns, poScript, revchan, triviachan, watchchannel, lcmoves, hangmanchan, ipbans, battlesFought, casinobot, casinochan,lastCleared, blackjackchan, namesToWatch, allowedRangeNames, reverseTohjo;
+var channel, contributors, mutes, mbans, smutes, detained, hmutes, mafiaSuperAdmins, hangmanAdmins, hangmanSuperAdmins, staffchannel, channelbot, normalbot, bot, mafiabot, kickbot, capsbot, checkbot, coinbot, countbot, tourneybot, battlebot, commandbot, querybot, rankingbot, hangbot, rpgbot, bfbot, scriptChecks, lastMemUpdate, bannedUrls, mafiachan, mafiarev, sachannel, tourchannel, dwpokemons, hapokemons, lcpokemons, bannedGSCSleep, bannedGSCTrap, breedingpokemons, rangebans, proxy_ips, mafiaAdmins, rules, authStats, nameBans, chanNameBans, isSuperAdmin, cmp, key, battlesStopped, lineCount, pokeNatures, pokeAbilities, maxPlayersOnline, pastebin_api_key, pastebin_user_key, getSeconds, getTimeString, sendChanMessage, sendChanAll, sendMainTour, VarsCreated, authChangingTeam, usingBannedWords, repeatingOneself, capsName, CAPSLOCKDAYALLOW, nameWarns, poScript, revchan, triviachan, watchchannel, lcmoves, hangmanchan, ipbans, battlesFought, lastCleared, blackjackchan, namesToWatch, allowedRangeNames, reverseTohjo;
 
 var pokeDir = "db/pokes/";
 var moveDir = "db/moves/6G/";
@@ -259,7 +258,7 @@ function getplugins() {
     return SESSION.global().getplugins.apply(SESSION.global(), arguments);
 }
 
-SESSION.identifyScriptAs("PO Scripts v0.991");
+SESSION.identifyScriptAs("7 Seas Scripts v1.0");
 SESSION.registerChannelFactory(POChannel);
 SESSION.registerUserFactory(POUser);
 SESSION.registerGlobalFactory(POGlobal);
@@ -307,7 +306,6 @@ normalbot = bot = new Bot(Config.bot);
 mafiabot = new Bot(Config.Mafia.bot);
 channelbot = new Bot(Config.channelbot);
 kickbot = new Bot(Config.kickbot);
-casinobot = new Bot(Config.casinobot);
 capsbot = new Bot(Config.capsbot);
 checkbot = new Bot(Config.checkbot);
 coinbot = new Bot(Config.coinbot);
@@ -384,8 +382,7 @@ init : function() {
     battlesFought = +sys.getVal("Stats/BattlesFought");
     lastCleared = +sys.getVal("Stats/LastCleared");
 
-    mafiachan = SESSION.global().channelManager.createPermChannel("Mafia", "Use /help to get started!");
-    casinochan = SESSION.global().channelManager.createPermChannel("Casino", "Use /casinocommands to get started.");    
+    mafiachan = SESSION.global().channelManager.createPermChannel("Mafia", "Use /help to get started!");   
     staffchannel = SESSION.global().channelManager.createPermChannel("Indigo Plateau", "Welcome to the Staff Channel! Discuss of all what users shouldn't hear here! Or more serious stuff...");
     tourchannel = SESSION.global().channelManager.createPermChannel("Tournaments", 'Play To Win');
     watchchannel = SESSION.global().channelManager.createPermChannel("Watch", "Alerts displayed here");
@@ -971,7 +968,7 @@ canJoinStaffChannel : function(src) {
 },
 
 isOfficialChan : function (chanid) {
-    var officialchans = [0, tourchannel, mafiachan, triviachan, hangmanchan, casinochan];
+    var officialchans = [0, tourchannel, mafiachan, triviachan, hangmanchan];
     if (officialchans.indexOf(chanid) > -1)
         return true;
     else
