@@ -1,5 +1,5 @@
 // This is the official Pokemon Online Scripts
-//Edited By Kase for 7 Seas
+// Edited By Kase for 7 Seas 2014
 // These scripts will only work on 2.0.00 or newer.
 /*jshint "laxbreak":true,"shadow":true,"undef":true,"evil":true,"trailing":true,"proto":true,"withstmt":true*/
 // You may change these variables as long as you keep the same type
