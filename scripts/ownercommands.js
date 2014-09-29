@@ -51,7 +51,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         return;
     }
     if (command == "changerating") {
-        var data =  commandData.split(' -- ');
+        var data =  commandData.split(':');
         if (data.length != 3) {
             normalbot.sendMessage(src, "You need to give 3 parameters.", channel);
             return;
@@ -271,7 +271,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         return;
     }
     if(command == "sendmessage"){
-        var para = commandData.split(':::');
+        var para = commandData.split(':');
         if(para.length < 3){
             return;
         }
@@ -282,7 +282,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         return;
     }
     if(command == "sendhtmlmessage"){
-        var para = commandData.split(':::');
+        var para = commandData.split(':');
         if(para.length < 3){
             return;
         }
@@ -757,17 +757,23 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         normalbot.sendAll(commandData.toCorrectCase() + "'s temp auth was removed", staffchannel);
         return;
     }
+    if (command == "setannouncement") {
+        normalbot.sendMessage(src, "Accouncement set!", channel);
+        sys.changeAnnouncement(commandData);
+        return;
+    }
     return "no command";
 };
 exports.help = 
     [
-        "/changerating: Changes the rating of a rating abuser. Format is /changerating user -- tier -- rating.",
+        "/changerating: Changes the rating of a rating abuser. Format is /changerating user:tier:rating.",
+        "/setannouncement [code]: Change the server announcement data, also updates the data for all players.",
         "/stopbattles: Stops all new battles to allow for server restart with less problems for users.",
         "/hiddenauth: Displays all users with more higher auth than 3.",
         "/imp: Lets you speak as someone",
         "/impoff: Stops your impersonating.",
-        "/sendmessage: Sends a chat message to a user. Format is /sendmessage user:::message:::channel.",
-        "/sendhtmlmessage: Sends an HTML chat message to a user. Format is /sendmessage user:::message:::channel.",
+        "/sendmessage: Sends a chat message to a user. Format is /sendmessage user:message:channel.",
+        "/sendhtmlmessage: Sends an HTML chat message to a user. Format is /sendmessage user:message:channel.",
         "/contributor: Adds contributor status (for indigo access) to a user, with reason. Format is /contributor user:reason.",
         "/contributoroff: Removes contributor status from a user.",
         "/clearpass: Clears a user's password.",
