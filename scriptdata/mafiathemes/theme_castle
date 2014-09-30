@@ -1,0 +1,490 @@
+{
+    "name": "Castle",
+    "author": "Narshen",
+    "threadlink": "http://pokemon-online.eu/forums/showthread.php?15906",
+    "summary": "The battle commences anew! The paladins are besieged in their holy bastion by the forces of the Dragon Alliance, each of them fighting for what they believe to be just. Unbeknownst to them, however, greater forces are at work. The Mystic Dark Angel and Gale-Blade Samurai each lurk around every corner, both possessing god-like strength. Defeat everyone not allied with you to win! [Edit: v6: Check /changelog] ",
+    "sides": [
+        {
+            "side": "mafia1",
+            "translation": "Paladin Crusade"
+        },
+        {
+            "side": "drags",
+            "translation": "Draconic Alliance"
+        },
+        {
+            "side": "Cloud Warrior",
+            "translation": "Cloud Warrior"
+        },
+        {
+            "side": "godfather",
+            "translation": "Dark Angel"
+        }
+    ],
+    "roles": [
+        {
+            "role": "rune",
+            "translation": "Rune Dragon",
+            "side": "drags",
+            "help": "Invoking ancient magics, you find out the true nature of your target. Type /inspect [name] during the night! You are able to perform this action twice per night. Additionally, you're good friends with the Rocket Drake - you know who he is.",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 30,
+                        "limit": 2
+                    }
+                },
+                "startup": {
+                    "revealRole": [
+                        "rocket"
+                    ]
+                }
+            }
+        },
+        {
+            "role": "rocket",
+            "translation": "Rocket Drake",
+            "side": "drags",
+            "help": "This look dangerous to you, bro?' You're the Rocket Drake, a fresh recruit to the Draconic Alliance. You're all fired up and ready to go, thanks to the new magic provided to you by the Rune Dragon! If anyone attacks you during the day, they will definitely regret it- they'll be blown up! You know who the Rune Dragon is since he has to do constant maintenence on your explosive runes, of course.",
+            "actions": {
+                "daykill": "bomb",
+                "daykillrevengemsg": "~Target~ managed to defeat the Rocket Drake but not before ~Self~'s explosive runes detonated and destroyed ~Target~!",
+                "kill": {
+                    "mode": "killattacker"
+                },
+                "startup": {
+                    "revealRole": [
+                        "rune"
+                    ]
+                }
+            }
+        },
+        {
+            "role": "enchantress",
+            "translation": "Dragon Enchantress",
+            "side": "drags",
+            "help": "You're the mystic Dragon Enchantress. Using your mystic powers you can, every night,  type /enchant [role] to send a player back in time. This converts Dragons to Hatchlings and Paladins to Squires. This change lasts until the end of the next night. Due to their sheer strength, you are unable to enchant the Mystic Dark Angel or the Gale-Blade Samurai. You and the Templar Priestess use the same source of magic: you can't /enchant her, either.",
+            "actions": {
+                "night": {
+                    "enchant": {
+                        "command": [
+                            "curse",
+                            "convert"
+                        ],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 59,
+                        "newRole": {
+                            "squire": [
+                                "mage",
+                                "dyna",
+                                "rpk",
+                                "holy"
+                            ],
+                            "hatchling": [
+                                "rune",
+                                "rocket",
+                                "bdm",
+                                "flame"
+                            ]
+                        },
+                        "canConvert": [
+                            "mage",
+                            "dyna",
+                            "rpk",
+                            "holy",
+                            "rune",
+                            "rocket",
+                            "bdm",
+                            "flame"
+                        ],
+                        "convertmsg": "Dazzle! A helpless ~Old~ had a spell on by the Dragon Enchantress turning them into a ~New~!",
+                        "usermsg": "You've been sent back in time!",
+                        "cursedRole": {
+                            "mage": [
+                                "mage"
+                            ],
+                            "dyna": [
+                                "dyna"
+                            ],
+                            "rpk": [
+                                "rpk"
+                            ],
+                            "holy": [
+                                "holy"
+                            ],
+                            "rune": [
+                                "rune"
+                            ],
+                            "rocket": [
+                                "rocket"
+                            ],
+                            "bdm": [
+                                "bdm"
+                            ],
+                            "flame": [
+                                "flame"
+                            ]
+                        },
+                        "curseConvertMessage": "Time reverts to normal. The ~New~ is back!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "priestess",
+            "translation": "Templar Priestess",
+            "side": "mafia1",
+            "help": " Using your mystic powers you can, every night,  type /enchant [role] to send a player back in time. This converts Dragons to Hatchlings and Paladins to Squires. This change lasts until the end of the next night. Due to their sheer strength, you are unable to enchant the Mystic Dark Angel or the Gale-Blade Samurai. You and the Dragon Enchantress use the same source of magic: you can't /enchant her, either.",
+            "actions": {
+                "night": {
+                    "enchant": {
+                        "command": [
+                            "curse",
+                            "convert"
+                        ],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 60,
+                        "newRole": {
+                            "squire": [
+                                "mage",
+                                "dyna",
+                                "rpk",
+                                "holy",
+                                "phantom"
+                            ],
+                            "hatchling": [
+                                "rune",
+                                "rocket",
+                                "bdm",
+                                "flame",
+                                "mist"
+                            ]
+                        },
+                        "canConvert": [
+                            "mage",
+                            "dyna",
+                            "rpk",
+                            "holy",
+                            "rune",
+                            "rocket",
+                            "bdm",
+                            "flame",
+                            "phantom",
+                            "mist"
+                        ],
+                        "convertmsg": "Shine! A helpless ~Old~ had a spell on by the Templar Priestess turning them into a ~New~!",
+                        "usermsg": "You've been sent back in time!",
+                        "cursedRole": {
+                            "mage": [
+                                "mage"
+                            ],
+                            "dyna": [
+                                "dyna"
+                            ],
+                            "rpk": [
+                                "rpk"
+                            ],
+                            "holy": [
+                                "holy"
+                            ],
+                            "rune": [
+                                "rune"
+                            ],
+                            "rocket": [
+                                "rocket"
+                            ],
+                            "bdm": [
+                                "bdm"
+                            ],
+                            "flame": [
+                                "flame"
+                            ]
+                        },
+                        "curseConvertMessage": "Time reverts to normal. The ~New~ is back!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "mda",
+            "translation": "Mystic Dark Angel",
+            "side": "godfather",
+            "help": "Cruel and merciless, you are intent on eliminating every opposing player. Pitch black darkness will consume their very cores. Kill up to 2 people per night with /kill [name]. You are immune to death at night. Your dark shadows boost your vote to a powerful +3. Death awaits...",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 20,
+                        "limit": 2
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "hookermsg": "You encountered the Dark Angel on a secluded road. You've perished into nothingness...",
+                    "msg": "The ~Distracter~ came to you last night! She has perished into nothingness..."
+                },
+                "vote": 3,
+                "avoidHax": [
+                    "kill"
+                ]
+            }
+        },
+        {
+            "role": "holy",
+            "translation": "Holy Paladin",
+            "side": "mafia1",
+            "help": "A steadfast Paladin with a strong sense of justice, it is your goal to eliminate the unjust. Type /kill [name] during the standby phase. Beware of those who might counter your attack!",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "A javelin flies out of nowhere and pierces ~Target~'s chest, an instant death."
+                    }
+                }
+            }
+        },
+        {
+            "role": "dyna",
+            "translation": "Dynamite Knight",
+            "side": "mafia1",
+            "help": "To the vanguard! You're the Dynamite Knight, self-proclaimed 'most explosive paladin' (this title is not contested by anyone). You're a new recruit and have been suitably outfit with special, ancient magics given to you by the Mage Knight! Your amazing armor won't render you invincible but it will kill anyone who defeats you! You know who the Mage Knight is due to his constant assistance.",
+            "actions": {
+                "daykill": "bomb",
+                "daykillrevengemsg": "~Target~ managed to defeat the Dynamite Knight but not before ~Self~'s explosive armor plating detonated and destroyed ~Target~!",
+                "kill": {
+                    "mode": "killattacker"
+                },
+                "startup": {
+                    "revealRole": [
+                        "mage"
+                    ]
+                }
+            }
+        },
+        {
+            "role": "mage",
+            "translation": "Mage Knight",
+            "side": "mafia1",
+            "help": "Well versed in the magic arts, you can pierce the night darkness and identify anyone with /inspect [name] up to twice per night. You've been helping the Dynamite Knight with a few minor problems with his armor so you know his identity.",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 29,
+                        "limit": 2
+                    }
+                },
+                "startup": {
+                    "revealRole": [
+                        "dyna"
+                    ]
+                }
+            }
+        },
+        {
+            "role": "bdm",
+            "translation": "Blazing Dragon Monarch",
+            "side": "drags",
+            "help": "As the leader of the Dragons, your flames sear the night sky, providing a glorious sight. Unleash your fury up to two times during the night with /kill [name].",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 15,
+                        "limit": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "rpk",
+            "translation": "Radiant Paladin Knight",
+            "side": "mafia1",
+            "help": "The strongest Paladin alive, you are a force to be reckoned with. Swing your mighty blade two times at night to dispatch of enemies with /kill [name].",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 16,
+                        "limit": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "elf",
+            "translation": "Wood Elf",
+            "side": "drags",
+            "winningSides": [
+                "mafia1"
+            ],
+            "help": "You're just a simple Elf! You have no commands whatsoever and, quite honestly, you want nothing to do with this war at all. That's not up to you to decide, sadly. Either way, neither the Draconic Alliance nor the Paladin Crusade has anything to gain from killing you - you'll win with both of those groups. The Mystic Dark Angel and Gale-Blade Samurai are not your allies, however - they'll kill you on sight. Be careful, you just want to get back to your forest! If there are any other elves in the game, you will know who they are.",
+            "actions": {
+                "startup": "role-reveal"
+            }
+        },
+        {
+            "role": "gbs",
+            "translation": "Gale-Blade Samurai",
+            "side": "Cloud Warrior",
+            "help": "You are a fabled warrior from the heavenly cloud tribe, the last of your kind. You've descended to the battlefield to put an end to the wickedness of the Mystic Dark Angel, the force responsible for the destruction of your race. Her tyranny will be stopped! Your wind-infused blade allows you to parry any daytime kill and destroy the attacker (no command). Additionally, you also have the ability to invoke the power of the storm to kill one person every day. In addition, your wind illusions bolster your vote to +3. Let the great purge commence! ",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "The wind...is blowing. During any standby-phase you may kill one foe with /kill. :",
+                        "killmsg": "A floating leaf. A serene breeze. This is all that is left of the fury of the storm, the Gale-Blade Samurai has dispatched another unworthy opponent."
+                    }
+                },
+                "vote": 3,
+                "daykill": "revenge",
+                "daykillrevengemsg": "Whoosh! ~Target~'s attack was stopped mid-air by a rising air current. He was then struck down in the blink of an eye by the Gale-Blade Samurai!"
+            }
+        },
+        {
+            "role": "hatchling",
+            "translation": "Hatchling",
+            "side": "drags",
+            "help": "Oh no! You've been teleported back in time. You're now a mere hatchling. You are unable to do anything but wait. You will revert into your previous form at the end of the next night.",
+            "actions": {}
+        },
+        {
+            "role": "squire",
+            "translation": "Squire",
+            "side": "mafia1",
+            "help": "Oh no! You've been teleported back in time. You're now a mere squire. You are unable to do anything but wait. You will revert into your previous form at the end of the next night.",
+            "actions": {}
+        },
+        {
+            "role": "mist",
+            "translation": "Invulnerable Mist Dragon",
+            "side": "drags",
+            "help": "Shielded by a barrier of fog, you are the Mist Dragon! You are not killable at night or day! You have a vote of 1.5 and a voteshield of -1, you hold much sway during the voting phase. That said, your fog will fade in 3 turns time, removing your invulnerability!",
+            "actions": {
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "bmist",
+                        "curseCount": 3,
+                        "curseConvertMessage": "The Mist Dragon's fog cover has faded, leaving him exposed to death!"
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "daykill": "evade",
+                "vote": 1.5,
+                "voteshield": -1
+            }
+        },
+        {
+            "role": "phantom",
+            "translation": "Invulnerable Phantom Knight",
+            "side": "mafia1",
+            "help": "Shielded by dark shadows, you are the Phantom Knight! You are not killable at night or day! You have a vote of 1.5 and a voteshield of -1, you hold much sway during the voting phase. That said, your shadows will decay in 3 turns time, removing your invulnerability!",
+            "actions": {
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "bphantom",
+                        "curseCount": 3,
+                        "curseConvertMessage": "The Phantom Knight's shadows have decayed, leaving him exposed to death!"
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "daykill": "evade",
+                "vote": 1.5,
+                "voteshield": -1
+            }
+        },
+        {
+            "role": "bmist",
+            "translation": "Exposed Mist Dragon",
+            "side": "drags",
+            "help": "Your fog has faded...you are now able to die.",
+            "actions": {
+                "vote": 1.5,
+                "voteshield": -1
+            }
+        },
+        {
+            "role": "bphantom",
+            "translation": "Exposed Phantom Knight",
+            "side": "mafia1",
+            "help": "Your shadows have decayed...you are now able to die.",
+            "actions": {
+                "vote": 1.5,
+                "voteshield": -1
+            }
+        },
+        {
+            "role": "flame",
+            "translation": "Flame Dragon",
+            "side": "drags",
+            "help": "The pinnacle of dragon evolution, you are a true warrior. You may type /kill [name] during the day to envelop a target in flames. Beware of those who might counter your attack!",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "A molten fireball swiftly strikes ~Target~ and only ashes remain..."
+                    }
+                }
+            }
+        }
+    ],
+    "roles1": [
+        "flame",
+        "holy",
+        "rune",
+        "mage",
+        "flame",
+        "holy",
+        "priestess",
+        "enchantress",
+        "bdm",
+        "rpk",
+        "dyna",
+        "rocket",
+        "mda",
+        "gbs",
+        "flame",
+        "holy",
+        "phantom",
+        "mist",
+        "dyna",
+        "rocket",
+        "flame",
+        "holy",
+        "flame",
+        "holy",
+        "flame",
+        "holy",
+        "flame",
+        "holy",
+        "dyna",
+        "rocket"
+    ],
+    "silentVote": true,
+    "votesniping": true,
+    "lynchmsg": "±Game: ~Player~ (~Role~) was cast off the highest tower after receiving ~Count~ votes!",
+    "ticks": {
+        "standby": 35,
+        "night": 30
+    },
+    "changelog": {
+        "May 20": "MDA only has 2 night kills now. GBS gets 1 daykill per phase. Bombs now bomb nightkills too. GBS vote fixed to match help message. Votesniping enabled."
+    }
+}

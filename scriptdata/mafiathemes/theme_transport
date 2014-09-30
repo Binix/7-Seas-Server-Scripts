@@ -1,0 +1,2237 @@
+{
+    "name": "Transport",
+    "author": ["Fuzzy", "Not L", "Kaeldiar", "EarlS", "Hopkirk", "Human Destroyer"],
+    "threadlink": "http://pokemon-online.eu/forums/showthread.php?18976",
+    "summary": "Like any vehicle, the more you use it, the less reliable it becomes. This theme is no different! The more you use your action, the less you can depend on it being there when you really need it. Thankfully, there is a group of Mechanics that will help restore your vehicle to tip-top shape! But be warned: the dreaded Maglev Train can discharge your vehicle with powerful magnetic forces, leaving you in a state of disrepair and your action will be highly unreliable.",
+    "sides": [
+        {
+            "side": "village",
+            "translation": "Automobiles",
+			"winmsg": "~Players~ have saved the world from the evil vehicles, now the only reason they'll crash is bad driving! And squirrels!"
+        },
+        {
+            "side": "train",
+            "translation": "Train Mafia",
+			"winmsg": "Choo choo! The WIN Train is leaving the station, nothing can stop ~Players~!"
+        },
+		{
+            "side": "ship",
+            "translation": "Ship Mafia",
+			"winmsg": "Yo ho! Yo ho! The Ship Mafia, ~Players~, has sailed the Seven Seas and conquered the world!"
+        },
+		{
+            "side": "plane",
+            "translation": "Plane Mafia",
+			"winmsg": "ZOOM! ~Players~ made everyone realize that air travel is truly the most effective transportation method ever!"
+        },
+		{
+            "side": "hijack",
+            "translation": "Hijacker Mafia",
+			"winmsg": "~Players~: All your vehicles are belong to us. You are on the way to destruction. You have no chance to survive make your time."
+        },
+		{
+            "side": "teleport",
+            "translation": "Teleporter Mafia",
+			"winmsg": "The primitive vehicles were no match for the might of the future! The Teleporter, ~Players~, has zapped all other modes of transportation away!"
+        }
+	],
+	"roles": [
+	    {
+			"role": "comm",
+            "translation": "Commuter",
+            "side": "village",
+            "help": "You're just an Average Joe, with an average car, and statistically speaking, you probably hate Mondays. You don't do anything special, like arresting criminals or fighting fires, because you spend most of your time being stuck in traffic.",
+            "info": "Identifies distractors. Sided with the Automobiles.",
+			"actions": {
+				"distract": {
+                    "mode": "identify",
+                    "msg": "What's that unbearable stench??? Oh! It's ~Target~, the Garbage Truck!"
+                }
+			}
+        },
+		{
+			"role": "ambu1",
+			"translation": "Ambulance",
+			"side": "village",
+			"help": "Your medical background allows you to /protect someone from various accidents. You can attempt to /protect2 another target but every subsequent use will increase the response time so you might not make it in time. Every call you receive, the Fire Truck tags along, so you know their identity from the start.",
+			"info": "Can protect one person during the night. Can use protect2 to protect one person during the night but the success rate declines after each successful use (100%, 70%, 35%, 1%). Knows the Fire Truck. Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 3
+					},
+					"protect2": {
+						"command": ["protect", "copy"],
+						"copyAs": "ambu2",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 3
+					}
+				},
+				"startup": {
+					"revealRole": ["fire1", "fire2", "fire3", "fire4"]
+				}
+			}
+		},
+		{
+			"role": "ambu2",
+			"translation": "Ambulance [2]",
+                "side": "village",
+                "hide": true,
+			"help": "Your medical background allows you to /protect someone from various accidents. You can attempt to /protect2 another target but every subsequent use will increase the response time so you might not make it in time. Every call you receive, the Fire Truck tags along, so you know their identity from the start.",
+			"info": "Can protect one person during the night. Can use protect2 to protect one person during the night but converts to Ambulance [3] if successfully used (30% fail chance). Knows the Fire Truck. Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 3,
+						"hide": true
+					},
+					"protect2": {
+						"command": ["protect", "copy"],
+						"copyAs": "ambu3",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 3,
+						"failChance": 0.3,
+						"hide": true
+					}
+				},
+				"onlist": "ambu1",
+				"startup": {
+					"revealRole": ["fire1", "fire2", "fire3", "fire4"]
+				},
+				"lynch": {
+					"revealAs": "ambu1"
+				},
+				"inspect": {
+					"revealAs": "ambu1"
+				}
+			}
+		},	
+		{
+			"role": "ambu3",
+			"translation": "Ambulance [3]",
+                "side": "village",
+                "hide": true,
+			"help": "Your medical background allows you to /protect someone from various accidents. You can attempt to /protect2 another target but every subsequent use will increase the response time so you might not make it in time. Every call you receive, the Fire Truck tags along, so you know their identity from the start.",
+			"info": "Can protect one person during the night. Can use protect2 to protect one person during the night but converts to Ambulance [4] if successfully used (65% fail chance). Knows the Fire Truck. Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 3,
+						"hide": true
+					},
+					"protect2": {
+						"command": ["protect", "copy"],
+						"copyAs": "ambu4",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 3,
+						"failChance": 0.65,
+						"hide": true
+					}
+				},
+				"onlist": "ambu1",
+				"startup": {
+					"revealRole": ["fire1", "fire2", "fire3", "fire4"]
+				},
+				"lynch": {
+					"revealAs": "ambu1"
+				},
+				"inspect": {
+					"revealAs": "ambu1"
+				}			
+			}
+		},		
+		{
+			"role": "ambu4",
+			"translation": "Ambulance [4]",
+                "side": "village",
+                "hide": true,
+			"help": "Your medical background allows you to /protect someone from various accidents. You can attempt to /protect2 another target but by this point, the response time is so high that is it pretty much useless to attempt a second rescue. Every call you receive, the Fire Truck tags along, so you know their identity from the start.",
+			"info": "Can protect one person during the night. Can use protect2 to protect one person during the night (99% fail chance). Knows the Fire Truck. Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 3,
+						"hide": true
+					},
+					"protect2": {
+						"command": ["protect"],
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 3,
+						"failChance": 0.99,
+						"hide": true
+					}
+				},
+				"onlist": "ambu1",
+				"startup": {
+					"revealRole": ["fire1", "fire2", "fire3", "fire4"]
+				},
+				"lynch": {
+					"revealAs": "ambu1"
+				},
+				"inspect": {
+					"revealAs": "ambu1"
+				}
+			}
+		},
+		{
+			"role": "fire1",
+			"translation": "Fire Truck",
+			"side": "village",
+			"help": "Your expertise allows you to /safeguard someone from smoke and other poisonous fumes. You can attempt to /safeguard2 another target but every subsequent use will tire you out making it less reliable every night. You are dispatched to every call the Ambulance gets, so you know their identity.",
+			"info": "Can safeguard one person during the night. Can use safeguard2 to safeguard one person during the night but the success rate declines after each successful use (100%, 70%, 35%, 1%). Knows the Ambulance. Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"safeguard": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 12
+					},
+					"safeguard2": {
+						"command": ["safeguard", "copy"],
+						"copyAs": "fire2",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 12
+					}
+				},
+				"startup": {
+					"revealRole": ["ambu1", "ambu2", "ambu3", "ambu4"]
+				}
+			}
+		},
+		{
+			"role": "fire2",
+			"translation": "Fire Truck [2]",
+                "side": "village",
+                "hide": true,
+			"help": "Your expertise allows you to /safeguard someone from smoke and other poisonous fumes. You can attempt to /safeguard2 another target but every subsequent use will tire you out making it less reliable every night. You are dispatched to every call the Ambulance gets, so you know their identity.",
+			"info": "Can safeguard one person during the night. Can use safeguard2 to safeguard one person during the night but converts to Fire Truck [3] if successfully used (30% fail chance). Knows the Ambulance. Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"safeguard": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 12,
+						"hide": true
+					},
+					"safeguard2": {
+						"command": ["safeguard", "copy"],
+						"copyAs": "fire3",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 12,
+						"failChance": 0.3,
+						"hide": true
+					}
+				},
+				"onlist": "fire1",
+				"startup": {
+					"revealRole": ["ambu1", "ambu2", "ambu3", "ambu4"]
+				},
+				"lynch": {
+					"revealAs": "fire1"
+				},
+				"inspect": {
+					"revealAs": "fire1"
+				}
+			}
+		},	
+		{
+			"role": "fire3",
+			"translation": "Fire Truck [3]",
+                "side": "village",
+                "hide": true,
+			"help": "Your expertise allows you to /safeguard someone from smoke and other poisonous fumes. You can attempt to /safeguard2 another target but every subsequent use will tire you out making it less reliable every night. You are dispatched to every call the Ambulance gets, so you know their identity.",
+			"info": "Can safeguard one person during the night. Can use safeguard2 to safeguard one person during the night but converts to Fire Truck [4] if successfully used (65% fail chance). Knows the Ambulance. Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"safeguard": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 12,
+						"hide": true
+					},
+					"safeguard2": {
+						"command": ["safeguard", "copy"],
+						"copyAs": "fire4",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 12,
+						"failChance": 0.65,
+						"hide": true
+					}
+				},
+				"onlist": "fire1",
+				"startup": {
+					"revealRole": ["ambu1", "ambu2", "ambu3", "ambu4"]
+				},
+				"lynch": {
+					"revealAs": "fire1"
+				},
+				"inspect": {
+					"revealAs": "fire1"
+				}
+			}
+		},		
+		{
+			"role": "fire4",
+			"translation": "Fire Truck [4]",
+                "side": "village",
+                "hide": true,
+			"help": "Your expertise allows you to /safeguard someone from smoke and other poisonous fumes. You can attempt to /safeguard2 another target but at this point, your success rate is next to nothing due to all the smoke. You are dispatched to every call the Ambulance gets, so you know their identity.",
+			"info": "Can safeguard one person during the night. Can use safeguard2 to safeguard one person during the night (99% fail chance). Knows the Ambulance. Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"safeguard": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 12,
+						"hide": true
+					},
+					"safeguard2": {
+						"command": ["safeguard"],
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 12,
+						"failChance": 0.99,
+						"hide": true
+					}
+				},
+				"onlist": "fire1",
+				"startup": {
+					"revealRole": ["ambu1", "ambu2", "ambu3", "ambu4"]
+				},
+				"lynch": {
+					"revealAs": "fire1"
+				},
+				"inspect": {
+					"revealAs": "fire1"
+				}
+			}
+		},
+		{
+			"role": "mail1",
+			"translation": "Mail Truck",
+			"side": "village",
+			"help": "Since you know everyone's address, you can /inspect to find out what sort of vehicle someone owns. Due to recent downsizing, though, you become less and less reliable everytime you inspect!",
+			"info": "Can inspect one person during the night but the success rate declines after each successful use (100%, 90%, 75%, 50%). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"inspect": {
+						"command": ["inspect", "copy"],
+						"copyAs": "mail2",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 15
+					}
+				}
+			}
+		},	
+		{
+			"role": "mail2",
+			"translation": "Mail Truck [2]",
+                "side": "village",
+                "hide": true,
+			"help": "Since you know everyone's address, you can /inspect to find out what sort of vehicle someone owns. Due to recent downsizing, though, you become less and less reliable everytime you inspect!",
+			"info": "Can inspect one person during the night but converts to Mail Truck [3] if successfully used (10% fail chance). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"inspect": {
+						"command": ["inspect", "copy"],
+						"copyAs": "mail3",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 15,
+						"failChance": 0.1,
+						"hide": true
+					}
+				},
+				"onlist": "mail1",
+				"lynch": {
+					"revealAs": "mail1"
+				},
+				"inspect": {
+					"revealAs": "mail1"
+				}
+			}
+		},
+		{
+			"role": "mail3",
+			"translation": "Mail Truck [3]",
+                "side": "village",
+                "hide": true,
+			"help": "Since you know everyone's address, you can /inspect to find out what sort of vehicle someone owns. Due to recent downsizing, though, you become less and less reliable everytime you inspect!",
+			"info": "Can inspect one person during the night but converts to Mail Truck [4] if successfully used (25% fail chance). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"inspect": {
+						"command": ["inspect", "copy"],
+						"copyAs": "mail4",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 15,
+						"failChance": 0.25,
+						"hide": true
+					}
+				},
+				"onlist": "mail1",
+				"lynch": {
+					"revealAs": "mail1"
+				},
+				"inspect": {
+					"revealAs": "mail1"
+				}
+			}
+		},
+		{
+			"role": "mail4",
+			"translation": "Mail Truck [4]",
+				"side": "village",
+                "hide": true,
+			"help": "Since you know everyone's address, you can /inspect to find out what sort of vehicle someone owns. Wait, what? No post on Sundays is fine, but no post on Saturdays??? The effectiveness of your inspect is as bad as it gets!",
+			"info": "Can inspect one person during the night (50% fail chance). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 15,
+						"failChance": 0.5,
+						"hide": true
+					}
+				},
+				"onlist": "mail1",
+				"lynch": {
+					"revealAs": "mail1"
+				},
+				"inspect": {
+					"revealAs": "mail1"
+				}
+			}
+		},
+		{
+			"role": "garb1",
+			"translation": "Garbage Truck",
+			"side": "village",
+			"help": "Your horrid stench is enough to /distract someone during the night, but over time, everyone will get used to your odiferousness and they will not be distracted as easily.",
+			"info": "Can distract one person during the night but the success rate declines after each successful use (100%, 85%, 65%, 45%). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"distract": {
+						"command": ["distract", "copy"],
+						"copyAs": "garb2",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 1,
+						"distractmsg": "BEEP BEEP BEEP! The Garbage Truck dumped a load of trash on you making you unable to act last night.",
+						"teammsg": "The stench of trash on your partner made you nauseous and you were unable to act last night."
+					}
+				}
+			}
+		},	
+		{
+			"role": "garb2",
+			"translation": "Garbage Truck [2]",
+                "side": "village",
+                "hide": true,
+			"help": "Your horrid stench is enough to /distract someone during the night, but over time, everyone will get used to your odiferousness and they will not be distracted as easily.",
+			"info": "Can distract one person during the night but converts to Garbage Truck [3] if successfully used (15% fail chance). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"distract": {
+						"command": ["distract", "copy"],
+						"copyAs": "garb3",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 1,
+						"failChance": 0.15,
+						"distractmsg": "BEEP BEEP BEEP! The Garbage Truck dumped a load of trash on you making you unable to act last night.",
+						"teammsg": "The stench of trash on your partner made you nauseous and you were unable to act last night.",
+						"hide": true
+					}
+				},
+				"onlist": "garb1",
+				"lynch": {
+					"revealAs": "garb1"
+				},
+				"inspect": {
+					"revealAs": "garb1"
+				}
+			}
+		},
+		{
+			"role": "garb3",
+			"translation": "Garbage Truck [3]",
+                "side": "village",
+                "hide": true,
+			"help": "Your horrid stench is enough to /distract someone during the night, but over time, everyone will get used to your odiferousness and they will not be distracted as easily.",
+			"info": "Can distract one person during the night but converts to Garbage Truck [4] if successfully used (35% fail chance). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"distract": {
+						"command": ["distract", "copy"],
+						"copyAs": "garb4",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 1,
+						"failChance": 0.35,
+						"distractmsg": "BEEP BEEP BEEP! The Garbage Truck dumped a load of trash on you making you unable to act last night.",
+						"teammsg": "The stench of trash on your partner made you nauseous and you were unable to act last night.",
+						"hide": true
+					}
+				},
+				"onlist": "garb1",
+				"lynch": {
+					"revealAs": "garb1"
+				},
+				"inspect": {
+					"revealAs": "garb1"
+				}
+			}	
+		},
+		{
+			"role": "garb4",
+			"translation": "Garbage Truck [4]",
+                "side": "village",
+                "hide": true,
+			"help": "Your horrid stench is enough to /distract someone during the night. Although you're pretty smelly, people have gotten used to your trashy stench. However, there is only so much they can handle, so it will still be effective to some degree.",
+			"info": "Can distract one person during the night (55% fail chance). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"distract": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 1,
+						"failChance": 0.55,
+						"distractmsg": "BEEP BEEP BEEP! The Garbage Truck dumped a load of trash on you making you unable to act last night.",
+						"teammsg": "The stench of trash on your partner made you nauseous and you were unable to act last night.",
+						"hide": true
+					}
+				},
+				"onlist": "garb1",
+				"lynch": {
+					"revealAs": "garb1"
+				},
+				"inspect": {
+					"revealAs": "garb1"
+				}
+			}
+		},		
+		{
+			"role": "squad1",
+			"translation": "Squad Car",
+			"side": "village",
+			"help": "No criminal shall escape from you! Track them down in the day when they can't hide from you and /alert the public of their identity! Your identity will not be revealed. If desk work isn't your cup of tea, you can become a field agent by typing /field [your name], granting you the ability to arrest (kill) other players at the cost of them learning you are a cop. Due to the flexibility of your line of work, you can change back and forth at will.",
+			"info": "Can expose one person during the day (non-revealing). Can convert itself into Squad Car [2] during the night (revealing day killer). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"field": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"newRole": {
+							"squad2": ["squad1"]
+						},
+						"silent": true,
+						"priority": 2
+					}
+				},
+				"standby": {
+					"alert": {
+						"command": "expose",
+						"target": "AnyButSelf",
+						"msg": "Use /alert to expose someone. You will not be revealed.",
+						"exposemsg": "A press release from POPD revealed that ~Target~ is the ~Role~."
+					}
+				}
+			}
+		},	
+		{
+			"role": "squad2",
+			"translation": "Squad Car [2]",
+                "side": "village",
+                "hide": "side",
+			"help": "No criminal shall escape from you! Incarcerate the criminals during the day with /arrest. You will take them out of the game, but due to legal restrictions, you are required to identify yourself. If field work isn't working out, you can go back to desk work by typing /desk [your name].",
+			"info": "Can kill one person during the day (revealing). Can convert itself into Squad Car during the night (exposer). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"desk": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"newRole": {
+							"squad1": ["squad2"]
+						},
+						"silent": true,
+						"priority": 2
+					}
+				},
+				"standby": {
+					"arrest": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"msg": "Use /arrest to kill someone. You will be revealed.",
+						"killmsg": "~Self~: ~Target~! You are under arrest! Everything you say and do will not matter because the game is in progress. You have the right to type /join to join the next game.",
+						"revealmsg": "Upon being arrested, the subject broke free from the Squad Car and attempted to flee, only to wind up striking a nearby rock.",
+						"revealChance": 1
+					}
+				},
+				"onlist": "squad1",
+				"lynch": {
+					"revealAs": "squad1"
+				},
+				"inspect": {
+					"revealAs": "squad1"
+				}
+			}
+		},
+		{
+			"role": "racecar",
+			"translation": "Racecar",
+			"side": "village",
+			"help": "You are the Racecar! The palindromic speedster, you might get a glimpse of what is going on in the night and maybe even during the day! ZOOM ZOOM!",
+			"info": "Gets hax on night kills (30% Team, 15% Player). Gets perfect hax on Squad Car's expose. Sided with Automobiles.",
+			"actions": {
+				"hax": {
+					"kill": {
+						"revealTeam": 0.3,
+                        "revealPlayer": 0.15
+                    }
+				},
+				"standbyHax": {
+					"alert": {
+						"revealPlayer": 1
+					}
+				}
+			}
+		},	
+		{
+			"role": "semi1",
+			"translation": "Semi Truck",
+			"side": "village",
+			"help": "You are NOT Optimus Prime, so don't get full of yourself. You're an average, ordinary, everyday NOT superhero. You're a truck that can /kill someone during the night. Sustained collision damage will make following kills less and less likely to work, but you don't really care! You're a truck!",
+			"info": "Can kill one person during the night but the success rate declines after each successful use (100%, 90%, 80%, 70%). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"kill": {
+						"command": ["copy", "kill"],
+						"copyAs": "semi2",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 9
+					}
+				}
+			}
+		},	
+		{
+			"role": "semi2",
+			"translation": "Semi Truck [2]",
+                "side": "village",
+                "hide": true,
+			"help": "You are NOT Optimus Prime, so don't get full of yourself. You're an average, ordinary, everyday NOT superhero. You're a truck that can /kill someone during the night. Sustained collision damage will make following kills less and less likely to work, but you don't really care! You're a truck!",
+			"info": "Can kill one person during the night but converts to Semi Truck [3] if successfully used (10% fail chance). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"kill": {
+						"command": ["copy", "kill"],
+						"copyAs": "semi3",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 9,
+						"failChance": 0.1,
+						"hide": true
+					}
+				},
+				"onlist": "semi1",
+				"lynch": {
+					"revealAs": "semi1"
+				},
+				"inspect": {
+					"revealAs": "semi1"
+				}
+			}
+		},
+		{
+			"role": "semi3",
+			"translation": "Semi Truck [3]",
+                "side": "village",
+                "hide": true,
+			"help": "You are NOT Optimus Prime, so don't get full of yourself. You're an average, ordinary, everyday NOT superhero. You're a truck that can /kill someone during the night. Sustained collision damage will make following kills less and less likely to work, but you don't really care! You're a truck!",
+			"info": "Can kill one person during the night but converts to Semi Truck [4] if successfully used (20% fail chance). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"kill": {
+						"command": ["copy", "kill"],
+						"copyAs": "semi4",
+						"silent": true,
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 9,
+						"failChance": 0.2,
+						"hide": true
+					}
+				},
+				"onlist": "semi1",
+				"lynch": {
+					"revealAs": "semi1"
+				},
+				"inspect": {
+					"revealAs": "semi1"
+				}
+			}	
+		},
+		{
+			"role": "semi4",
+			"translation": "Semi Truck [4]",
+                "side": "village",
+                "hide": true,
+			"help": "You are NOT Optimus Prime, so don't get full of yourself. You're an average, ordinary, everyday NOT superhero. You're a truck that can /kill someone during the night. Your truck is as beat up as it can possibly get, but it is still pretty effective at ramming things.",
+			"info": "Can kill one person during the night (30% fail chance). Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 9,
+						"failChance": 0.3,
+						"hide": true
+					}
+				},
+				"onlist": "semi1",
+				"lynch": {
+					"revealAs": "semi1"
+				},
+				"inspect": {
+					"revealAs": "semi1"
+				}
+			}	
+		},
+		{
+			"role": "mechanic",
+			"translation": "Mechanic",
+			"side": "village",
+			"help": "Can we fix it? YES, WE CAN! You can /repair a vehicle every night to restore command efficiency. Also, due to the fact that you frequently overcharge common Commuters for services, you have a vote of 2-4!",
+			"info": "Can repair (convert) one person during the night to a more beneficial state. Vote between 2 and 4. Knows other Mechanics. Sided with the Automobiles.",
+			"actions": {
+				"night": {
+					"repair": {
+						"command": "convert",
+						"target": "AnyButRole",
+						"common": "Self",
+						"broadcast": "Role",
+						"newRole": {
+							"mail1": ["mail2", "mail3", "mail4"],
+							"fire1": ["fire2", "fire3", "fire4"],
+							"ambu1": ["ambu2", "ambu3", "ambu4"],
+							"garb1": ["garb2", "garb3", "garb4"],
+							"semi1": ["semi2", "semi3", "semi4"],
+							"subway1": ["subway2", "subway3", "subway4"],
+							"submar1": ["submar2", "submar3", "submar4"],
+							"stealthh1": ["stealthh2"],
+							"jet1": ["jet2", "jet3", "jet4", "jet5"],
+							"cs1": ["cs14"]
+						},
+						"silent": true,
+						"priority": 2
+					}
+				},
+				"vote": [2, 3, 4],
+				"startup":{
+					"revealRole": "mechanic"
+				}
+			}
+		},			
+		{
+			"role": "freight1",
+			"translation": "Freight Train",
+			"side": "train",
+			"help": "You are the Freight Train! Eliminate other forms of transportation so that the railways reign supreme once more! You and the Subway share a /kill during the night to crush the others. You can also /kill2 which becomes more and more reliable as you gain momentum like...well...a Freight Train!",
+			"info": "Can kill one person during the night. Can use kill2 to kill one person during the night but the success rate increases after each successful use (15%, 35%, 55%). Sided with the Train Mafia.",
+			"actions": {
+				"night": {
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 8
+					},
+					"kill2": {
+						"command": ["copy", "kill"],
+						"copyAs": "freight2",
+						"silent": true,
+						"target": "AnyButTeam",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 8,
+						"failChance": 0.85
+					}
+				},
+                "startup": "team-reveal-with-roles"
+			}
+		},
+		{
+			"role": "freight2",
+			"translation": "Freight Train [2]",
+                "side": "train",
+                "hide": true,
+			"help": "You are the Freight Train! Eliminate other forms of transportation so that the railways reign supreme once more! You and the Subway share a /kill during the night to crush the others. You can also /kill2 which becomes more and more reliable as you gain momentum like...well...a Freight Train!",
+			"info": "Can kill one person during the night. Can use kill2 to kill one person during the night but converts to Freight Train [3] if successfully used (65% fail chance). Sided with the Train Mafia.",
+			"actions": {
+				"night": {
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 8,
+						"hide": true
+					},
+					"kill2": {
+						"command": ["copy", "kill"],
+						"copyAs": "freight3",
+						"silent": true,
+						"target": "AnyButTeam",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 8,
+						"failChance": 0.65,
+						"hide": true
+					}
+				},
+				"onlist": "freight1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "freight1"
+				},
+				"inspect": {
+					"revealAs": "freight1"
+				}
+			}
+		},
+		{
+			"role": "freight3",
+			"translation": "Freight Train [3]",
+                "side": "train",
+                "hide": true,
+			"help": "You are the Freight Train! Eliminate other forms of transportation so that the railways reign supreme once more! You and the Subway share a /kill during the night to crush the others. You can also /kill2 which has as much momentum as it is ever going to get.",
+			"info": "Can kill one person during the night. Can use kill2 one person during the night (45% fail chance). Sided with the Train Mafia.",
+			"actions": {
+				"night": {
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Team",
+						"broadcast": "Team",
+						"priority": 8,
+						"hide": true
+					},
+					"kill2": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 8,
+						"failChance": 0.45,
+						"hide": true
+					}
+				},
+				"onlist": "freight1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "freight1"
+				},
+				"inspect": {
+					"revealAs": "freight1"
+				}
+			}
+		},
+		{
+			"role": "maglev",
+			"translation": "Maglev",
+			"side": "train",
+			"help": "Show the others that your advanced magnetic technology far exceeds their old-school axles by using /discharge to cripple them, making their actions incredibly unreliable and unusable for a night. Your magnetic prowess warps your voting power to 1.1.",
+			"info": "Can discharge one person during the night. Discharge distracts and converts to a more detrimental state. Vote of 1.1. Sided with the Train Mafia.",
+			"actions": {
+				"night": {
+					"discharge":{
+						"command": ["convert", "distract"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"newRole": {
+							"mail4": ["mail2", "mail3", "mail1"],
+							"fire4": ["fire2", "fire3", "fire1"],
+							"ambu4": ["ambu2", "ambu3", "ambu1"],
+							"garb4": ["garb2", "garb3", "garb1"],
+							"semi4": ["semi2", "semi3", "semi1"],
+							"subway4": ["subway2", "subway3", "subway1"],
+							"submar4": ["submar2", "submar3", "submar1"],
+							"stealthh2": ["stealthh1"],
+							"jet4": ["jet2", "jet3", "jet1"],
+							"cs1": ["cs2", "cs3", "cs5", "cs7"],
+							"cs14": ["cs4", "cs6", "cs8", "cs9", "cs10", "cs11", "cs12", "cs13"]
+						},
+						"priority": 13,
+						"silent": true,
+						"distractmsg": "A strong magnetic force immobilized you last night.",
+						"teammsg": "You and your partner(s) were immobilized by a strong magnetic force last night."
+					}
+				},
+                "startup": "team-reveal-with-roles",
+				"vote": 1.1
+			}
+		},	
+		{
+			"role": "subway1",
+			"translation": "Subway",
+			"side": "train",
+			"help": "You share a /kill during the night with the Freight Train. You can also duck underground and /protect yourself, but soon enough, your enemies will catch on and it will be harder for you to hide successfully.",
+			"info": "Can kill one person during the night. Can use protect to protect itself during the night but the success rate declines after each successful use (100%, 67%, 33%, 1%). Sided with the Train Mafia.",
+			"actions": {
+				"night": {
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Team",
+						"broadcast": "Team",
+						"priority": 8
+					},
+					"protect": {
+						"command": ["protect", "convert"],
+						"target": "OnlySelf",
+						"common": "Role",
+						"newRole": {
+							"subway2": ["subway1"]
+						},
+						"silent": true,
+						"priority": 3
+					}
+				},
+                "startup": "team-reveal-with-roles"
+			}
+		},	
+		{
+			"role": "subway2",
+			"translation": "Subway [2]",
+                "side": "train",
+                "hide": true,
+			"help": "You share a /kill during the night with the Freight Train. You can also duck underground and /protect yourself, but soon enough, your enemies will catch on and it will be harder for you to hide successfully.",
+			"info": "Can kill one person during the night. Can use protect to protect itself during the night but converts to Subway [3] if successfully used (33% fail chance). Sided with the Train Mafia.",
+			"actions": {
+				"night": {
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Team",
+						"broadcast": "Team",
+						"priority": 8,
+						"hide": true
+					},
+					"protect": {
+						"command": ["protect", "convert"],
+						"target": "OnlySelf",
+						"common": "Role",
+						"newRole": {
+							"subway3": ["subway2"]
+						},
+						"silent": true,
+						"priority": 3,
+						"failChance": 0.33,
+						"hide": true
+					}
+				},
+				"onlist": "subway1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "subway1"
+				},
+				"inspect": {
+					"revealAs": "subway1"
+				}
+			}
+		},		
+		{
+			"role": "subway3",
+			"translation": "Subway [3]",
+                "side": "train",
+                "hide": true,
+			"help": "You share a /kill during the night with the Freight Train. You can also duck underground and /protect yourself, but soon enough, your enemies will catch on and it will be harder for you to hide successfully.",
+			"info": "Can kill one person during the night. Can use protect to protect itself during the night but converts to Subway [4] if successfully used (67% fail chance). Sided with the Train Mafia.",
+			"actions": {
+				"night": {
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Team",
+						"broadcast": "Team",
+						"priority": 8,
+						"hide": true
+					},
+					"protect": {
+						"command": ["protect", "convert"],
+						"target": "OnlySelf",
+						"common": "Role",
+						"newRole": {
+							"subway4": ["subway3"]
+						},
+						"silent": true,
+						"priority": 3,
+						"failChance": 0.67,
+						"hide": true
+					}
+				},
+				"onlist": "subway1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "subway1"
+				},
+				"inspect": {
+					"revealAs": "subway1"
+				}
+			}
+		},		
+		{
+			"role": "subway4",
+			"translation": "Subway [4]",
+                "side": "train",
+                "hide": true,
+			"help": "You share a /kill during the night with the Freight Train. You can also duck underground and /protect yourself, but by now, everyone knows your schedule so you will have a very low chance of tricking anybody.",
+			"info": "Can kill one person during the night. Can use protect to protect itself during the night (99% fail chance). Sided with the Train Mafia.",
+			"actions": {
+				"night": {
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Team",
+						"broadcast": "Team",
+						"priority": 8,
+						"hide": true
+					},
+					"protect": {
+						"target": "OnlySelf",
+						"common": "Role",
+						"priority": 3,
+						"failChance": 0.99,
+						"hide": true
+					}
+				},
+				"onlist": "subway1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "subway1"
+				},
+				"inspect": {
+					"revealAs": "subway1"
+				}
+			}
+		},
+		{
+			"role": "battle",
+			"translation": "Battleship",
+			"side": "ship",
+			"help": "C7...Hit! You can /kill someone during the night. This will typically kill them, but if not, it will at least damage them and they will die in 3 nights!",
+			"info": "Can kill (kill + poison) one person during the night. Poison kills after 3 nights. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"kill": {
+						"command": ["kill", "poison"],
+						"target": "AnyButTeam",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 7,
+						"poisonDeadMessage": "The extensive fire damage caused by the Battleship's blast has destroyed your vehicle.",
+						"count": 4
+					}
+				},
+                "startup": "team-reveal-with-roles"						
+			}
+		},	
+		{
+			"role": "submar1",
+			"translation": "Submarine",
+			"side": "ship",
+			"help": "Much more devastating than a sandwich, your SONAR allows you to pick up on actions with /stalk. As time goes by you have trouble differentiating vehicles from animals making your SONAR less effective. You can also warn your comrades of incoming kills by using /protect!",
+			"info": "Can protect one person during the night. Can stalk one person during the night but the success rate declines after each successful use (100%, 85%, 65%, 1%). Voteshield of -2. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"stalk": {
+						"command": ["stalk", "copy"],
+						"target": "AnyButSelf",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 15,
+						"copyAs": "submar2",
+						"silent": true
+					},
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 3
+					}					
+				},
+                "startup": "team-reveal-with-roles",
+				"voteshield": -2
+			}
+		},
+		{
+			"role": "submar2",
+			"translation": "Submarine [2]",
+                "side": "ship",
+                "hide": true,
+			"help": "Much more devastating than a sandwich, your SONAR allows you to pick up on actions with /stalk. As time goes by you have trouble differentiating vehicles from animals making your SONAR less effective. You can also warn your comrades of incoming kills by using /protect and help save yourself from danger with a -2 voteshield.",
+			"info": "Can protect one person during the night. Can stalk one person during the night but converts to Submarine [3] if successfully used (15% fail chance). Voteshield of -2. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"stalk": {
+						"command": ["stalk", "copy"],
+						"target": "AnyButSelf",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 15,
+						"copyAs": "submar3",
+						"silent": true,
+						"failChance": 0.15,
+						"hide": true
+					},
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 3,
+						"hide": true
+					}					
+				},
+				"onlist": "submar1",
+                "startup": "team-reveal-with-roles",
+				"voteshield": -2,
+				"lynch": {
+					"revealAs": "submar1"
+				},
+				"inspect": {
+					"revealAs": "submar1"
+				}
+			}
+		},
+		{
+			"role": "submar3",
+			"translation": "Submarine [3]",
+                "side": "ship",
+                "hide": true,
+			"help": "Much more devastating than a sandwich, your SONAR allows you to pick up on actions with /stalk. As time goes by you have trouble differentiating vehicles from animals making your SONAR less effective. You can also warn your comrades of incoming kills by using /protect and help save yourself from danger with a -2 voteshield.",
+			"info": "Can protect one person during the night. Can stalk one person during the night but converts to Submarine [4] if successfully used (35% fail chance). Voteshield of -2. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"stalk": {
+						"command": ["stalk", "copy"],
+						"target": "AnyButSelf",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 15,
+						"copyAs": "submar4",
+						"silent": true,
+						"failChance": 0.35,
+						"hide": true
+					},
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 3,
+						"hide": true
+					}					
+				},
+				"onlist": "submar1",
+                "startup": "team-reveal-with-roles",
+				"voteshield": -2,
+				"lynch": {
+					"revealAs": "submar1"
+				},
+				"inspect": {
+					"revealAs": "submar1"
+				}
+			}
+		},
+		{
+			"role": "submar4",
+			"translation": "Submarine [4]",
+                "side": "ship",
+                "hide": true,
+			"help": "Much more devastating than a sandwich, your SONAR allows you to pick up on actions with /stalk. By now, you're unsure of what is a vehicle and what is an animal so you're better off not even trying anymore. You can also warn your comrades of incoming kills by using /protect and help save yourself from danger with a -2 voteshield.",
+			"info": "Can protect one person during the night. Can stalk one person during the night (99% fail chance). Voteshield of -2. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"stalk": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 15,
+						"failChance": 0.99,
+						"hide": true
+					},
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 3,
+						"hide": true
+					}					
+				},
+				"onlist": "submar1",
+                "startup": "team-reveal-with-roles",
+				"voteshield": -2,
+				"lynch": {
+					"revealAs": "submar1"
+				},
+				"inspect": {
+					"revealAs": "submar1"
+				}
+			}
+		},
+		{
+			"role": "cs1",
+			"translation": "Cargo Ship",
+			"side": "ship",
+			"help": "You are able to load cargo onto your deck with /load [your name]. Since all the cargo is in metal containers, you will not know what you are loading until it is already loaded. Don't worry though! The Port Authority has already selected 3 containers safe for transport and they will be loaded in a random order.",
+			"info": "Can convert self to gain either +1 vote, +2 votes, or a night kill. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"load":{
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Role",
+						"priority": 2,
+						"silent": true,
+						"newRole": {
+							"random": {
+								"cs2": 0.33,
+								"cs3": 0.33,
+								"cs4": 0.33
+							}
+						},
+						"canConvert": ["cs1"]
+					}
+				},
+                "startup": "team-reveal-with-roles"
+			}
+		},	
+		{
+			"role": "cs2",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"help": "You loaded: a 'Crate of Dry Cereal'! As a result, your vote is now 2. Use /load [your name] to load one of the two remaining containers. Due to safety regulations, there is a small chance you will be unable to load during the night in order to allow routine inspections to occur.",
+			"info": "Can convert self to gain either +2 votes or a night kill. Vote of 2. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"load":{
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Role",
+						"priority": 2,
+						"silent": true,
+						"newRole": {
+							"random": {
+								"cs5": 0.5,
+								"cs6": 0.5
+							}
+						},
+						"canConvert": ["cs2"],
+						"hide": true,
+						"failChance": 0.15
+					}
+				},
+				"vote": 2,
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "cs1"
+				},
+				"inspect": {
+					"revealAs": "cs1"
+				}
+			}
+		},	
+		{
+			"role": "cs3",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"help": "You loaded: a 'Crate of Pokemon Toys'! As a result, your vote is now 3. Use /load [your name] to load one of the two remaining containers. Due to safety regulations, there is a small chance you will be unable to load during the night in order to allow routine inspections to occur.",
+			"info": "Can convert self to gain either +1 vote or a night kill. Vote of 3. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"load":{
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Role",
+						"priority": 2,
+						"silent": true,
+						"newRole": {
+							"random": {
+								"cs7": 0.5,
+								"cs8": 0.5
+							}
+						},
+						"canConvert": ["cs3"],
+						"hide": true,
+						"failChance": 0.15
+					}
+				},
+				"vote": 3,
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "cs1"
+				},
+				"inspect": {
+					"revealAs": "cs1"
+				}
+			}
+		},	
+		{
+			"role": "cs4",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"help": "You loaded: an 'Anti-Aircraft Turret'! As a result, you are able to /kill one person at night. Use /load [your name] to load one of the two remaining containers. Due to safety regulations, there is a small chance you will be unable to load during the night in order to allow routine inspections to occur.",
+			"info": "Can convert self to gain either +1 vote or +2 votes. Can kill one person during the night. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"load":{
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Role",
+						"priority": 2,
+						"silent": true,
+						"newRole": {
+							"random": {
+								"cs9": 0.5,
+								"cs10": 0.5
+							}
+						},
+						"canConvert": ["cs4"],
+						"hide": true,
+						"failChance": 0.15
+					},
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 10,
+						"hide": true
+					}
+				},
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "cs1"
+				},
+				"inspect": {
+					"revealAs": "cs1"
+				}
+			}
+		},
+		{
+			"role": "cs5",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"help": "You loaded: a 'Crate of Pokemon Toys'! You also have the 'Crate of Dry Cereal' on board. As a result, you have a vote of 4. Use /load [your name] to load the remaining container. Due to safety regulations, there is a small chance you will be unable to load during the night in order to allow routine inspections to occur.",
+			"info": "Can convert self to gain a night kill. Vote of 4. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"load":{
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Role",
+						"priority": 2,
+						"silent": true,
+						"newRole": {
+							"cs11": ["cs5"]
+						},
+						"canConvert": ["cs5"],
+						"hide": true,
+						"failChance": 0.15
+					}
+				},
+				"vote": 4,
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "cs1"
+				},
+				"inspect": {
+					"revealAs": "cs1"
+				}
+			}
+		},	
+		{
+			"role": "cs6",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"help": "You loaded: an 'Anti-Aircraft Turret'! You also have the 'Crate of Dry Cereal' on board. As a result, you have a vote of 2 and are able to /kill one person during the night. Use /load [your name] to load the remaining container. Due to safety regulations, there is a small chance you will be unable to load during the night in order to allow routine inspections to occur.",
+			"info": "Can convert self to gain +2 vote. Can kill one person during the night. Vote of 2. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"load":{
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Role",
+						"priority": 2,
+						"silent": true,
+						"newRole": {
+							"cs12": ["cs6"]
+						},
+						"canConvert": ["cs6"],
+						"hide": true,
+						"failChance": 0.15
+					},
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 10,
+						"hide": true
+					}
+				},
+				"vote": 2,
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "cs1"
+				},
+				"inspect": {
+					"revealAs": "cs1"
+				}
+			}
+		},	
+		{
+			"role": "cs7",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"hide": true,
+			"help": "You loaded: a 'Crate of Dry Cereal'! You also have the 'Crate of Pokemon Toys' on board. As a result, you have a vote of 4. Use /load [your name] to load the remaining container. Due to safety regulations, there is a small chance you will be unable to load during the night in order to allow routine inspections to occur.",
+			"info": "Can convert self to gain a night kill. Vote of 4. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"load":{
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Role",
+						"priority": 2,
+						"silent": true,
+						"newRole": {
+							"cs11": ["cs7"]
+						},
+						"canConvert": ["cs7"],
+						"hide": true,
+						"failChance": 0.15
+					}
+				},
+				"vote": 4,
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "cs1"
+				},
+				"inspect": {
+					"revealAs": "cs1"
+				}
+			}
+		},
+		{
+			"role": "cs8",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"help": "You loaded: an 'Anti-Aircraft Turret'! You also have the 'Crate of Pokemon Toys' on board. As a result, you have a vote of 3 and are able to /kill one person during the night. Use /load [your name] to load the remaining container. Due to safety regulations, there is a small chance you will be unable to load during the night in order to allow routine inspections to occur.",
+			"info": "Can convert self to gain +1 votes. Can kill one person during the night. Vote of 3. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"load":{
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Role",
+						"priority": 2,
+						"silent": true,
+						"newRole": {
+							"cs13": ["cs8"]
+						},
+						"canConvert": ["cs8"],
+						"hide": true,
+						"failChance": 0.15
+					},
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 10,
+						"hide": true
+					}
+				},
+				"vote": 3,
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "cs1"
+				},
+				"inspect": {
+					"revealAs": "cs1"
+				}
+			}
+		},	
+		{
+			"role": "cs9",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"hide": true,
+			"help": "You loaded: an 'Crate of Dry Cereal'! You also have the 'Anti-Aircraft Turret' on board. As a result, you have a vote of 2 and are able to /kill one person during the night. Use /load [your name] to load the remaining container. Due to safety regulations, there is a small chance you will be unable to load during the night in order to allow routine inspections to occur.",
+			"info": "Can convert self to gain +2 votes. Can kill one person during the night. Vote of 2. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"load":{
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Role",
+						"priority": 2,
+						"silent": true,
+						"newRole": {
+							"cs12": ["cs9"]
+						},
+						"canConvert": ["cs9"],
+						"hide": true,
+						"failChance": 0.15
+					},
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 10,
+						"hide": true
+					}
+				},
+				"vote": 2,
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "cs1"
+				},
+				"inspect": {
+					"revealAs": "cs1"
+				}
+			}
+		},
+		{
+			"role": "cs10",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"hide": true,
+			"help": "You loaded: an 'Crate of Pokemon Toys'! You also have the 'Anti-Aircraft Turret' on board. As a result, you have a vote of 3 and are able to /kill one person during the night. Use /load [your name] to load the remaining container. Due to safety regulations, there is a small chance you will be unable to load during the night in order to allow routine inspections to occur.",
+			"info": "Can convert self to gain +1 vote. Can kill one person during the night. Vote of 3. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"load":{
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Role",
+						"priority": 2,
+						"silent": true,
+						"newRole": {
+							"cs13": ["cs10"]
+						},
+						"canConvert": ["cs10"],
+						"hide": true,
+						"failChance": 0.15
+					},
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 10,
+						"hide": true
+					}
+				},
+				"vote": 3,
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "cs1"
+				},
+				"inspect": {
+					"revealAs": "cs1"
+				}
+			}
+		},
+		{
+			"role": "cs11",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"help": "You loaded: an 'Anti-Aircraft Turret'! You also have the 'Crate of Dry Cereal' and 'Crate of Pokemon Toys' on board. As a result, you have a vote of 4 and are able to /kill one person during the night. You now have every container loaded and will be unable to load anymore.",
+			"info": "Can kill one person during the night. Vote of 4. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 10,
+						"hide": true
+					}
+				},
+				"vote": 4,
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "cs1"
+				},
+				"inspect": {
+					"revealAs": "cs1"
+				}
+			}
+		},	
+		{
+			"role": "cs12",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"hide": true,
+			"help": "You loaded: a 'Crate of Pokemon Toys'! You also have the 'Crate of Dry Cereal' and 'Anti-Aircraft Turret' on board. As a result, you have a vote of 4 and are able to /kill one person during the night. You now have every container loaded and will be unable to load anymore.",
+			"info": "Can kill one person during the night. Vote of 4. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 10,
+						"hide": true
+					}
+				},
+				"vote": 4,
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "cs1"
+				},
+				"inspect": {
+					"revealAs": "cs1"
+				}
+			}
+		},	
+		{
+			"role": "cs13",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"hide": true,
+			"help": "You loaded: a 'Crate of Dry Cereal'! You also have the 'Anti-Aircraft Turret' and 'Crate of Pokemon Toys' on board. As a result, you have a vote of 4 and are able to /kill one person during the night. You now have every container loaded and will be unable to load anymore.",
+			"info": "Can kill one person during the night. Vote of 4. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 10,
+						"hide": true
+					}
+				},
+				"vote": 4,
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "cs1"
+				},
+				"inspect": {
+					"revealAs": "cs1"
+				}
+			}
+		},	
+		{
+			"role": "cs14",
+			"translation": "Cargo Ship",
+                "side": "ship",
+                "hide": true,
+			"help": "Oh no! Your computer systems have been damaged by intense magnetic waves. Unfortunately, some of your cargo fell off and sank to the bottom of the ocean. Your vote returns to 1, but you are still able to /kill someone at night!",
+			"info": "Can kill one person during the night. Sided with the Ship Mafia.",
+			"actions": {
+				"night": {
+					"kill":{
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 10
+					}
+				},
+				"onlist": "cs1",
+                "startup": "team-reveal-with-roles"
+			}
+		},	
+		{
+			"role": "stealthj",
+			"translation": "Stealth Jet",
+			"side": "plane",
+			"help": "You can /bomb someone during the night to poison them with mustard gas so potent that they will die immediately! Your sneakiness means you can't be haxed and have a 25% chance of evading night kills.",
+			"info": "Can instant-kill poison one person during the night. Evades 25% of nightkills. Converts Helicopter into Stealth Helicopter on death. Sided with the Plane Mafia.",
+			"actions": {
+				"kill": {
+					"mode": {
+						"evadeChance": 0.25
+					}
+				},
+				"night": {
+					"bomb": {
+						"command": "poison",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 4,
+						"count": -1,
+						"poisonDeadMessage": "Kaboom."
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"heli":"stealthh1"
+					},
+					"convertmsg": "After rigorous testing, the technology from the Stealth Jet has been applied to the Helicopter."
+				},
+                "startup": "team-reveal-with-roles"
+			}
+		},
+		{
+			"role": "heli",
+			"translation": "Helicopter",
+			"side": "plane",
+			"help": "Whup-whup-whup your way to victory, evading 15% of nightkills along the way. Don't forget to /safeguard one of your teammates! If Stealth Jet dies, you will inherit the technology that enables you to /bomb targets, which is a poison that kills instantly!",
+			"info": "Can safeguard one person during the night. Evades 15% of night kills. Converts to Stealth Helicopter when Stealth Jet dies. Sided with the Plane Mafia.",
+			"actions": {
+				"kill": {
+					"mode": {
+						"evadeChance": 0.15
+					}
+				},
+				"night": {
+					"safeguard": {
+						"target": "Any",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 12
+					}
+				},
+                "startup": "team-reveal-with-roles"
+			}
+		},
+		{
+			"role": "stealthh1",
+			"translation": "Stealth Helicopter",
+			"side": "plane",
+			"help": "You can /bomb someone during the night to poison them with mustard gas so potent that they will die immediately! Your sneakiness means you can't be haxed and have a 25% chance of evading night kills.",
+			"info": "Can instant-kill poison one person during the night. Evades 25% of nightkills. Sided with the Plane Mafia.",
+			"actions": {
+				"kill": {
+					"mode": {
+						"evadeChance": 0.25
+					}
+				},
+				"night": {
+					"bomb": {
+						"command": "poison",
+						"target": "AnyButTeam",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 4,
+						"count": -1,
+						"poisonDeadMessage": "Kaboom."
+					}
+				},
+                "startup": "team-reveal-with-roles"
+			}
+		},
+		{
+			"role": "stealthh2",
+			"translation": "Stealth Helicopter [2]",
+                "side": "plane",
+                "hide": "side",
+			"help": "Argh! Your computer system was damaged by magnetic waves. You can still /bomb someone during the night to poison them with mustard gas so potent that they will die immediately, but your accuracy has declined. The technology that cloaks you has also been damaged so now you only have a 15% chance of evading night kills.",
+			"info": "Can instant-kill poison one person during the night (25% fail chance). Evades 15% of nightkills. Sided with the Plane Mafia.",
+			"actions": {
+				"kill": {
+					"mode": {
+						"evadeChance": 0.15
+					}
+				},
+				"night": {
+					"bomb": {
+						"command": "poison",
+						"target": "AnyButTeam",
+						"common": "Role",
+						"broadcast": "Team",
+						"priority": 4,
+						"count": -1,
+						"poisonDeadMessage": "Kaboom.",
+						"failChance": 0.25,
+						"hide": true
+					}
+				},
+				"onlist": "stealthh1",
+                "startup": "team-reveal-with-roles",
+				"lynch": {
+					"revealAs": "stealthh1"
+				},
+				"inspect": {
+					"revealAs": "stealthh1"
+				}
+			}
+		},
+		{
+			"role": "jet1",
+			"translation": "Jumbo Jet",
+			"side": "plane",
+			"help": "Every night you will stop at a major airport where you can /inspect someone, but your eyes get weary at night, so the more you inspect, the less reliable you become. If it becomes too bad, you can eventually refresh yourself, allowing for a better rate. Recently increased airport security helps you to evade 5% of incoming threats at night.",
+			"info": "Can inspect one person during the night but the success rate declines after each successful use (100%, 95%, 85%, 1%). Evades 5% of night kills. Vote of 2.5. Sided with the Plane Mafia.",
+			"actions": {
+				"kill": {
+					"mode": {
+						"evadeChance": 0.05
+					}
+				},
+				"night": {
+					"inspect": {
+						"command": ["inspect", "copy"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"copyAs": "jet2",
+						"silent": true,
+						"priority": 15
+					}
+				},
+				"vote": 2.5,
+                "startup": "team-reveal-with-roles"
+			}
+		},
+		{
+			"role": "jet2",
+			"translation": "Jumbo Jet [2]",
+                "side": "plane",
+                "hide": true,
+			"help": "Every night you will stop at a major airport where you can /inspect someone, but your eyes get weary at night, so the more you inspect, the less reliable you become. If it becomes too bad, you can eventually refresh yourself, allowing for a better rate. Recently increased airport security helps you to evade 5% of incoming threats at night.",
+			"info": "Can inspect one person during the night but converts to Jumbo Jet [3] if successfully used (5% fail chance). Evades 5% of night kills. Vote of 2.5. Sided with the Plane Mafia.",
+			"actions": {
+				"kill": {
+					"mode": {
+						"evadeChance": 0.05
+					}
+				},
+				"night": {
+					"inspect": {
+						"command": ["inspect", "copy"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"copyAs": "jet3",
+						"silent": true,
+						"priority": 15,
+						"failChance": 0.05,
+						"hide": true
+					}
+				},
+				"onlist": "jet1",
+                "startup": "team-reveal-with-roles",
+				"vote": 2.5,
+				"lynch": {
+					"revealAs": "jet1"
+				},
+				"inspect": {
+					"revealAs": "jet1"
+				}
+			}
+		},		
+		{
+			"role": "jet3",
+			"translation": "Jumbo Jet [3]",
+                "side": "plane",
+                "hide": true,
+			"help": "Every night you will stop at a major airport where you can /inspect someone, but your eyes get weary at night, so the more you inspect, the less reliable you become. If it becomes too bad, you can eventually refresh yourself, allowing for a better rate. Recently increased airport security helps you to evade 5% of incoming threats at night.",
+			"info": "Can inspect one person during the night but converts to Jumbo Jet [4] if successfully used (15% fail chance). Evades 5% of night kills. Vote of 2.5. Sided with the Plane Mafia.",
+			"actions": {
+				"kill": {
+					"mode": {
+						"evadeChance": 0.05
+					}
+				},
+				"night": {
+					"inspect": {
+						"command": ["inspect", "copy"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"copyAs": "jet4",
+						"silent": true,
+						"priority": 15,
+						"failChance": 0.15,
+						"hide": true
+					}
+				},
+				"onlist": "jet1",
+                "startup": "team-reveal-with-roles",
+				"vote": 2.5,
+				"lynch": {
+					"revealAs": "jet1"
+				},
+				"inspect": {
+					"revealAs": "jet1"
+				}
+			}
+		},
+		{
+			"role": "jet4",
+			"translation": "Jumbo Jet [4]",
+                "side": "plane",
+                "hide": "side",
+			"help": "Every night you will stop at a major airport where you can /inspect someone, but at this point, you won't be able to see anything. You should probably /refresh yourself instead of trying to inspect someone tonight. Your drowsiness prevents you from changing your mind, so once you decide on what to do, you cannot change it. To make matters worse, you accidentally told Airport Security to take a break, so you have no protection during the night.",
+			"info": "Can inspect one person during the night (99% fail chance). Can refresh self to convert into Jumbo Jet [5] (Inspect with 35% fail chance). Vote of 2.5. Sided with the Plane Mafia.",
+			"actions": {
+				"night": {
+					"inspect": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 15,
+						"failChance": 0.99,
+						"restrict": ["refresh"],
+						"hide": true
+					},
+					"refresh": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"newRole": {
+							"jet5": ["jet4"]
+						},
+						"silent": true,
+						"priority": 2,
+						"restrict": ["inspect"]
+					}
+				},
+				"onlist": "jet1",
+                "startup": "team-reveal-with-roles",
+				"vote": 2.5,
+				"lynch": {
+					"revealAs": "jet1"
+				},
+				"inspect": {
+					"revealAs": "jet1"
+				}
+			}
+		},
+		{
+			"role": "jet5",
+			"translation": "Jumbo Jet [5]",
+                "side": "plane",
+                "hide": "side",
+			"help": "Ahh... Much better. Every night you will still stop at a major airport where you can /inspect someone, but you feel refreshed and have a stable rate of success now. Airport Security is back from their break and will continue to help remove 5% of threats aimed at you.",
+			"info": "Can inspect one person during the night (35% fail chance). Evades 5% of night kills. Vote of 2.5. Sided with the Plane Mafia.",
+			"actions": {
+				"kill": {
+					"mode": {
+						"evadeChance": 0.05
+					}
+				},
+				"night": {
+					"inspect": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "Team",
+						"priority": 15,
+						"failChance": 0.35,
+						"hide": true
+					}
+				},
+				"onlist": "jet1",
+                "startup": "team-reveal-with-roles",
+				"vote": 2.5,
+				"lynch": {
+					"revealAs": "jet1"
+				},
+				"inspect": {
+					"revealAs": "jet1"
+				}
+			}
+		},
+		{
+			"role": "hijack1",
+			"translation": "Hijacker",
+			"side": "hijack",
+			"help": "You are in hiding, and as a result have a vote of -999. You can use /hijack in order to terrorize innocent commuters with a vote of 999.",
+			"info": "Can convert self into Hijacker [2] during the night (vote of 999). Vote of -999. Sided with the Hijacker Mafia.",
+			"winIfDeadRoles": [
+				"squad1", "squad2", "semi1", "semi2", "semi3", "semi4", "cs1", "cs2", "cs3", "cs4", "cs5", "cs6", "cs7", "cs8", "cs9", "cs10", "cs11", "cs12", "cs13", "cs14",  "tele1", "tele2", "tele3", "stealthh1", "stealthh2", "stealthj", "battle", "subway1", "subway2", "subway3", "subway4", "freight1", "freight2", "freight3"
+			],
+			"actions": {
+				"night": {
+					"hijack": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"newRole": {
+							"hijack2": ["hijack1"]
+						},
+						"priority": 2,
+						"silent": true
+					}
+				},
+				"vote": -999,
+				"distract": {
+                    "mode": "identify",
+                    "msg": "What's that unbearable stench??? Oh! It's ~Target~, the Garbage Truck!"
+                }
+			}
+		},
+		{
+			"role": "hijack2",
+			"translation": "Hijacker [2]",
+                "side": "hijack",
+                "hide": "side",
+			"help": "You are now actively searching for a vehicle to hijack, and as a result, have a vote of 999. You can use /hide in order to blend in with the crowd with a vote of -999.",
+			"info": "Can convert self into Hijacker during the night (vote of -999). Vote of 999. Sided with the Hijacker Mafia.",
+			"winIfDeadRoles": [
+				"squad1", "squad2", "semi1", "semi2", "semi3", "semi4", "cs1", "cs2", "cs3", "cs4", "cs5", "cs6", "cs7", "cs8", "cs9", "cs10", "cs11", "cs12", "cs13", "cs14",  "tele1", "tele2", "tele3", "stealthh1", "stealthh2", "stealthj", "battle", "subway1", "subway2", "subway3", "subway4", "freight1", "freight2", "freight3"
+			],
+			"actions": {
+				"night": {
+					"hide": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"newRole": {
+							"hijack1": ["hijack2"]
+						},
+						"priority": 2,
+						"silent": true
+					}
+				},
+				"vote": 999,
+				"onlist": "hijack1",
+				"lynch": {
+					"revealAs": "hijack1"
+				},
+				"inspect": {
+					"revealAs": "hijack1"
+				}
+			}
+		},
+		{
+			"role": "tele1",
+			"translation": "Teleporter",
+			"side": "teleport",
+			"help": "You make travel so easy that any other vehicles become defunct so use /kill to get rid of one of them during the night. You can /kill2 someone for a second kill, or you can trade that kill for a non-revealing daykill with /upgrade [your name], your shoddy programming prevents you from using both kill2 and upgrade in the same night and will only accept the first one selected.",
+			"info": "Can kill one person during the night. Can kill2 one person during the night or convert itself into Teleporter [2] (night kill and day kill). Sided with the Teleporter Mafia.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11
+					},
+					"kill2": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11,
+						"restrict": ["upgrade"]
+					},
+					"upgrade":{
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"newRole": {
+							"tele2": ["tele1"]
+						},
+						"priority": 2,
+						"restrict": ["kill2"],
+						"silent": true
+					}
+				}
+			}
+		},	
+		{
+			"role": "tele2",
+			"translation": "Teleporter [2]",
+                "side": "teleport",
+                "hide": "side",
+			"help": "System upgrade complete! You are now able to teleport and unsuspecting vehicle to an undisclosed location using /beam during the day. You can also /kill someone during the night, or you can trade that kill for another non-revealing daykill with /upgrade2 [your name]. Your shoddy programming prevents you from using upgrade again for 2 nights and still prevents you from using kill and upgrade in the same night.",
+			"info": "Can kill one person during the day. Can kill one person during the night or after 2 nights, convert itself into Teleporter [3] (2 day kills). Sided with the Teleporter Mafia.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11,
+						"restrict": ["upgrade2"],
+						"hide": true
+					},
+					"upgrade":{
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"initialrecharge": 2,
+						"newRole": {
+							"tele3": ["tele2"]
+						},
+						"canConvert": ["tele2"],
+						"priority": 2,
+						"restrict": ["kill"],
+						"silent": true,
+						"hide": true
+					}
+				},
+				"standby": {
+					"beam": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"msg": "Use /beam to kill someone (non-revealing).",
+						"killmsg": "ZAP! ~Target~ materialized and was teleported to a galaxy far, far away."
+					}
+				},
+				"onlist": "tele1",
+				"lynch": {
+					"revealAs": "tele1"
+				},
+				"inspect": {
+					"revealAs": "tele1"
+				}
+			}
+		},	
+		{
+			"role": "tele3",
+			"translation": "Teleporter [3]",
+                "side": "teleport",
+                "hide": "side",
+			"help": "System upgrade complete! You decided that people should witness your immense power so you are able to /beam twice per day to teleport unsuspecting vehicles to another galaxy.",
+			"info": "Can kill two people during the day. Sided with the Teleporter Mafia.",
+			"actions": {
+				"standby": {
+					"beam": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"msg": "Use /beam to kill up to two people (non-revealing).",
+						"killmsg": "ZAP! ~Target~ materialized and was teleported to a galaxy far, far away.",
+						"limit": 2
+					}
+				},
+				"onlist": "tele1",
+				"lynch": {
+					"revealAs": "tele1"
+				},
+				"inspect": {
+					"revealAs": "tele1"
+				}
+			}
+		},	
+		{
+			"role": "cs0dummy",
+			"translation": "Cargo Ship",
+			"side": "ship",
+            "hide": "side",
+			"help": "Unused role for proper display.",
+			"info": "Can be one of many forms: Kill only / Vote of 2 / Vote of 3 / Kill and Vote of 2 / Kill and Vote of 3 / Vote of 4 / Kill and Vote of 4. Sided with the Ship Mafia.",
+			"actions": {
+			}
+		}
+	],
+	"roles1": [
+		"mail1",
+		"ambu1",
+		"garb1",
+		"stealthj",
+		"freight1",
+		"comm",
+			"comm",
+			"comm"
+	],
+	"roles2": [
+		"mail1",
+		"ambu1",
+		"garb1",
+		"stealthj",
+		"freight1",
+		"comm",
+			"comm",
+			"comm",
+			"battle",
+			"mechanic",
+			"maglev",
+			"fire1",
+			"squad1",
+			"subway1",
+			"submar1",
+			"jet1",
+			"racecar",
+			"cs1",
+			"semi1",
+			"heli",
+			"comm",
+			"tele1",
+			"mechanic",
+			"comm",
+			"hijack1",
+			"comm",
+			"comm",
+			"comm",
+			"comm",
+			"battle",
+			"maglev",
+			"heli",
+			"mechanic",
+			"fire1",
+			"comm"
+	],
+	"minplayers": 6,
+	"villageCantLoseRoles": [
+		"mechanic",
+		"squad1",
+		"squad2",
+		"semi1",
+		"semi2",
+		"semi3",
+		"semi4"
+        ],
+	"killmsg": "±Game: ~Role~ (~Player~) crashed!",
+	"lynchmsg": " ±Game: ~Role~'s (~Player~) emissions were deemed to be too high by the EPA and they were subsequently decomissioned.",
+	"killusermsg": "*** You crashed.",
+	"drawmsg": "±Game: Everyone crashed (and died)! Nature is now taking over the world. This is why we can't have nice things!",
+	"border": "*** ~~~~~~ ✈ ~~~~~~ ✈ ~~~~~~ ✈ ~~~~~~ ✈ ~~~~~~ ✈ ~~~~~~ ✈ ~~~~~~ ***",
+	"changelog": {
+		"03.29.13": "Updated Freight Train and Semi's kill+copy to properly resolve and futureproof it",
+        	"08.10.13": "Cleaned up coding."
+        
+	}
+}

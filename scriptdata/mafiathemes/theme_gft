@@ -1,0 +1,624 @@
+{
+  "name": "GFT",
+	"author": ["Fuzzysqurl", "ScorchedSwords"],
+	"summary": "No summary, just wiki link.",
+	"sides": [
+		{
+			"side": "village",
+			"translation": "Humans",
+			"winmsg": "The Village was protected thanks to the efforts of ~Players~."
+		},
+        {
+            "side": "mafia1",
+            "translation": "Mystics",
+			"winmsg": "The Mystics (~Players~) have harnessed the power of the elements and assumed control over the land."
+		},
+        {
+            "side": "mafia2",
+            "translation": "Elves",
+			"winmsg": "The Spirit of the Woods helped the Elves (~Players~) achieve victory in the battle."
+		},
+		{
+            "side": "mafia3",
+            "translation": "Dwarves",
+			"winmsg": "Dwarven technology is the best kind of technology, and ~Players~ proved that today."
+		},
+        {
+            "side": "solo1",
+            "translation": "Wyverns",
+			"winmsg": "The power of the Wyvern, harnessed by ~Players~, has completely destroyed the village."
+		},
+		{
+			"side": "solo2",
+			"translation": "Chaos Lord",
+			"winmsg": "Devastation and suffering. The village has been ravaged by the power of the Chaos Lord ~Players~."
+		}
+	],
+	"roles": [
+		{
+			"role": "vill",
+			"translation": "Villager",
+			"side": "village",
+			"help": "Hi!  You're a Villager. You don't have any special abilities though. :(",
+			"info": "Sided with Humans.",
+			"actions": {}
+		},
+		{
+            "role": "bg",
+            "translation": "Monk",
+            "side": "village",
+            "help": "You are the Monk! You practice your Chi every morning and have a great sense of awareness. Because of this, you are able to /protect yourself from kills during the night and you have a vote of -2. If the village is threatened, you can /arm yourself to become a Sentinel (protect and vote of 2).",
+			"info": "Can protect self during the night. Can convert self during the night. Vote counts as -2. Sided with Humans.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 4
+                    },
+                    "arm": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 11,
+                        "newRole": "bg2",
+                        "canConvert": [
+                            "bg"
+                        ],
+                        "convertmsg": "The Monk has equipped themself with weapons from the Armory.",
+                        "silent": false
+                    }
+                },
+                "vote": -2
+            }
+        },
+        {
+            "role": "bg2",
+            "translation": "Sentinel",
+            "side": "village",
+            "help": "You are the Sentinel! You have taken up arms in order to help defend the village. As a result, you can /protect one person during the night and you have a vote of 2. You are able to /disarm yourself and become a Monk again (self-protect and vote of -2).",
+			"info": "Can protect one person during the night. Can convert self during the night. Vote counts as 2. Sided with Humans.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 4
+                    },
+                    "disarm": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 11,
+                        "newRole": "bg",
+                        "canConvert": [
+                            "bg2"
+                        ],
+                        "convertmsg": "The Sentinel has returned the weapons to the Armory.",
+                        "silent": false
+                    }
+                },
+                "vote": 2
+            }
+        },
+		{
+            "role": "pl",
+            "translation": "Paladin",
+            "side": "village",
+            "help": "You are the Paladin! You are the front line of defense for the village but you're more of an annoyance than a threat. You are able to /block someone from performing their action during the night. Your chivalrous background allows you to /protect someone from death every 3 nights.",
+            "info": "Can distract one person during the night. Can protect one person once every 3 nights. Sided with Humans.",
+            "actions": {
+                "night": {
+                    "block": {
+						"command": "distract",
+                        "target": "AnyButRole",
+                        "common": "Self",
+                        "priority": 2,
+                        "distractmsg": "The Paladin's shield blocked your action from occuring.",
+                        "teammsg": "The Paladin's shield blocked your teammate's action from occuring."
+                    },
+                    "protect": {
+                        "command": "protect",
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 4,
+                        "recharge": 3
+                    }
+                },
+                "startup": "role-reveal"
+            }
+        },
+		{
+            "role": "insp",
+            "translation": "Scholar",
+            "side": "village",
+            "help": "You are the Scholar! You tend to keep to yourself and possess a vast collection of literature. As a result, you are able to /read about a certain player, learning their role. After 3 nights, you can /study [your name] in order to turn your inspect into a non-revealing expose during standby, however, this action cannot be undone.",
+            "info": "Can inspect one person during the night. Can convert self after night 3. Sided with Humans.",
+            "actions": {
+                "night": {
+                    "read": {
+						"command": "inspect",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 10
+                    },
+                    "study": {
+                        "command": "convert",
+                        "convertmsg": "A Scholar has spent the past few nights studying the ways of the Oracle.",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 11,
+                        "initialrecharge": 3,
+                        "newRole": "insp2",
+                        "canConvert": [
+                            "insp"
+                        ],
+                        "silent": false
+                    }
+                }
+            }
+        },
+		{
+            "role": "insp2",
+            "translation": "Oracle",
+            "side": "village",
+            "help": "You are the Oracle! Your extensive studying has paid off and you are now able to harness the power of the Heavens to /expose someone during the day (non-revealing).",
+			"info": "Can expose one person during the standby. Sided with Humans.",
+            "actions": {
+				"standby": { 
+					"expose": {
+						"msg": "Use /expose [name] for a non-revealing expose.",
+						"exposemsg": "The Heavens declare: ~Target~ is the ~Role~!",
+						"target": "AnyButSelf"
+					}
+				}
+			}	
+		},
+		{
+            "role": "sam",
+            "translation": "Hero",
+            "side": "village",
+            "help": "You are the Hero! You have saved the village in the past and obtained the legendary ''Sword of Plot Advancement.'' The power in the sword allows you to /kill someone during the day, but the sheer excellence of the blade attracts the attention of everyone on the battlefield, revealing your identity.",
+			"info": "Can kill one person during standby (revealing). Sided with Humans.",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Use /kill [name] for a revealing kill.",
+                        "killmsg": "~Self~ casually walks up to ~Target~ and pokes them with the ''Sword of Plot Advancement'' killing them instantly because that's what the sword does."
+                    }
+                }
+            }
+        },
+		{
+            "role": "vigi",
+            "translation": "Highlander",
+            "side": "village",
+            "help": " You are the Highlander! You are a fierce battle spirit leading the village to victory. You can /kill each night, be careful not to harm anyone from the village! As a relentless warrior, you bring your killer down with you.",
+			"info": "Can kill one person during the night. Bombs night kills. Sided with Humans.",
+            "actions": {
+                "kill": {
+                    "mode": "killattacker"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "priority": 8,
+                        "common": "Self"
+                    }
+                }
+            }
+        },
+		{
+            "role": "spy",
+            "translation": "Wanderer",
+            "side": "village",
+            "help": "You are the Wanderer! You don't really do much except wander around town and observe your surroundings. Some people think you are a little creepy, but they are thankful you are able to get hax on kills to the extent of 25% Team and 12% player.",
+            "info": "Gets hax on kill (25% Team, 12% player). Sided with Humans.",
+            "actions": {
+                "hax": {
+                    "kill": {
+                        "revealTeam": 0.25,
+                        "revealPlayer": 0.12
+                    }
+                }
+            }
+        },
+		{
+            "role": "may",
+            "translation": "Orator",
+            "side": "village",
+            "help": "You are the Orator! You are very charismatic and are an excellent speaker. You are also well known in the village and many people trust you. As a result, you have a voting power of 3.",
+            "info": "Vote of 3. Sided with Humans.",
+            "actions":{
+                "vote": 3
+            }
+        },
+		{
+			"role": "stalk",
+            "translation": "Seer",
+            "side": "village",
+            "help": "You are the Seer! You are able to closely follow what others are doing during the night with /see. Your visions also help you see the future and as a result, are granted a 10% chance to evade all kills, day or night.",
+			"info": "Can stalk one person during the night. Evades 10% of daykills and kills. Sided with Humans.",
+			"actions": {
+                "night": {
+					"see": {
+						"command": "stalk",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 10
+					}
+				},
+				"daykill": {
+					"mode": {
+						"evadeChance": 0.1
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.1
+					}
+				}
+			}
+		},
+		{
+            "role": "maf1dummy",
+            "translation": "Dark Wisp",
+            "side": "mafia1",
+            "help": "You are a Dark Wisp! The magical powers of the Dark Mystic have stripped you of your previous abilities and you now float around him. As a result, anyone that inspects or exposes you will think you are the Dark Mystic. You have a vote of 0 and a voteshield of -1, but if the Dark Mystic dies, you die as well.",
+			"info": "Vote of 0. Voteshield of -1. Reveals as Dark Mystic when inspected or exposed. Dies when Dark Mystic dies. Sided with Mystics.",
+            "actions": {
+                "vote": 0,
+				"voteshield": -1,
+                "inspect": {
+                    "revealAs": "maf1conv"
+                },
+				"initialCondition": {
+					"clearCurse": true
+				}
+            }
+        },
+        {
+            "role": "maf1conv",
+            "translation": "Dark Mystic",
+            "side": "mafia1",
+            "help": "You are the Dark Mystic! Your practice in the Shadow Arts allows you to /corrupt one person's soul, turning them into a Dark Wisp (0 vote/-1 voteshield) every other night. You also share a /kill with your Team.",
+			"info": "Can convert one person every other night. Can kill one person during the night. Sided with Mystics.",
+            "actions": {
+                "night": {
+                    "corrupt": {
+						"command": "convert",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 3,
+                        "newRole": "maf1dummy",
+                        "silent": false,
+						"broadcast": "Team",
+                        "recharge": 2,
+                        "convertmsg": "The Dark Mystic has corrupted a player's soul with Forbidden Shadow Arts."
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 6,
+                        "broadcast": "Team"
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "onDeath": {
+                    "killRoles": [
+                        "maf1dummy"
+                    ],
+                    "killmsg": "The Dark Mystic's aura has faded causing the Dark Wisps (~Players~) to fade away aswell."
+                }
+            }
+        },
+		{
+            "role": "maf1maf",
+            "translation": "Ice Mystic",
+            "side": "mafia1",
+            "help": "You are the Ice Mystic! Your practice in Frost Arts allows you to /kill one person during the night, shared with your Team. ",
+            "info": "Can kill one person during the night. Sided with Mystics.",
+			"actions": {
+				"night": {
+					"kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 6,
+                        "broadcast": "Team"
+                    }
+				},
+				"startup": "team-reveal-with-roles"
+			}			
+        },
+		{
+            "role": "maf1bg",
+            "translation": "Fire Mystic",
+            "side": "mafia1",
+            "help": "You are the Fire Mystic! Your practice in Flame Arts allows you to conjure up a wall of fire in order to /protect one person on your Team from being killed every night. You also share a /kill with your Team. If anyone attacks you during the day, you will kill them too.",
+			"info": "Can kill one person during the night. Can protect one person during the night. Sided with Mystics.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 6,
+                        "broadcast": "Team"
+                    },
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 4,
+                        "broadcast": "Team"
+                    }
+                },
+				"daykill": "bomb",
+				"daykillrevengemsg": "~Target~ attempted to attack ~Self~. However, ~Self~'s recklessness cause them both to go down in a fiery explosion.",
+				"startup": "team-reveal-with-roles"
+            }
+        },
+		{
+            "role": "maf1may",
+            "translation": "Light Mystic",
+            "side": "mafia1",
+            "help": "You are the Light Mystic! Your practice in Astral Arts isn't well refined but it still grants you immunity from daykills. You possess a very weak healing spell, causing your vote count for -2. It might be enough to save a Team mate from death, but most of the time it is not.",
+			"info": "Vote of -2. Cannot be daykilled. Sided with Mystics.",
+            "actions": {
+                "vote": -2,
+                "daykill": "evade",
+                "startup": "team-reveal-with-roles"
+            }
+        },
+		{
+            "role": "maf2may",
+            "translation": "Elven Thaumaturge",
+            "side": "mafia2",
+            "help": "You're the Elven Thaumaturge! Your strength as a mage gives you prominence on the battlefield. As such, you are able to /expose foes without giving up your own prescence and anyone you vote will be eliminated! You are unable to target yourself or your teammates with this action however.",
+			"info": "Can expose one person during standby. Vote of 9999. Sided with Elves.",
+            "actions": {
+                "standby": {
+                    "expose": {
+                        "target": "AnyButTeam",
+                        "msg": "Use /expose for a expose. You will not be revealed.",
+                        "exposemsg": "A brilliant ray of light shines on ~Target~, revealing they are the ~Role~!"
+                    }
+                },
+                "vote": 9999
+            },
+			"winIfDeadRoles": [
+					"sam",
+					"vigi",
+					"maf3may",
+					"maf3mk",
+					"maf3sta",
+					"maf3bg",
+					"maf1conv",
+					"maf1bg",
+					"maf1maf",
+					"s1",
+					"s2"
+				]
+        },
+		{
+            "role": "maf2maf",
+            "translation": "Elven Archer",
+            "side": "mafia2",
+            "help": "You are the Elven Archer! Your supremacy with the bow allows you to strike from long ranges. You're far away, so any attempts to inspect or expose you reveal you as a villager. Due to your proficience at sniping, you cannot be haxed or distracted!",
+			"info": "Can kill one person during the night. Ignores distractors. Reveals as villager when inspected or exposed. Cannot be haxed. Sided with Elves.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 5,
+                        "broadcast": "Team"
+                    }
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "Someone tried to distract you during the night, but you simply ignored them."
+                },
+                "inspect": {
+                    "revealAs": "vill"
+                },
+                "avoidHax": [
+                    "kill"
+                ]
+            }
+        },
+		{
+            "role": "maf3sta",
+            "translation": "Dwarf Marauder",
+            "side": "mafia3",
+            "help": "You are the Dwarf Marauder! Your ability to blend into the dark allows you to /stalk a person at night to see where they went. Also, being one with the dark allows you to hear who's killing who 10% of the time and see the killer 3% of the time. You also share a /kill with your team.",
+			"info": "Can kill one person during the night. Can stalk one person during the night. Gets hax on kill (10% Team/3% Player). Sided with Dwarves.",
+            "actions": {
+                "hax": {
+                    "kill": {
+                        "revealTeam": 0.10,
+                        "revealPlayer": 0.03
+                    }
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 7,
+                        "broadcast": "Team"
+                    },
+                    "stalk": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 10,
+                        "broadcast": "Team"
+                    }
+                },
+                "startup": "team-reveal-with-roles"
+            }
+        },
+		{
+            "role": "maf3bg",
+            "translation": "Dwarf Guard",
+            "side": "mafia3",
+            "help": "You are the Dwarf Guard! Your shield cannot be stopped by normal means. Use /protect to shield an ally from harm and /kill to battle alongside your comrades!",
+			"info": "Can kill one person during the night. Can protect one person during the night. Sided with Dwarves.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 7,
+                        "broadcast": "Team"
+                    },
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 4,
+                        "broadcast": "Team"
+                    }
+                },
+                "startup": "team-reveal-with-roles"
+            }
+        },
+		{
+            "role": "maf3may",
+            "translation": "Dwarf Engineer",
+            "side": "mafia3",
+            "help": "You are the Dwarf Engineer! You are always tinkering with some sort of contraption. You're working on a powerful cannon, but it will take two days to complete. Until then, you don't want to be disturbed so use your -3 vote to avoid harm or divert attention. After the cannon is done, you will be able to /kill one person during the night while possessing a vote of -6.",
+            "info": "Converts after 2 nights. Vote of -3. Sided with Dwarves.",
+            "actions": {
+				"initialCondition": {
+                    "curse": {
+                        "cursedRole": "maf3mk",
+                        "curseCount": 3,
+                        "curseConvertMessage": "The Dwarf Engineer has finished building the cannon."
+                    }
+                },
+                "vote": -3,
+                "startup": "team-reveal-with-roles"
+            }
+        },
+        {
+            "role": "maf3mk",
+            "translation": "Dwarf Cannoneer",
+            "side": "mafia3",
+            "help": "You are the Dwarf Cannoneer! Your cannon is finally ready for action. You are able to /kill someone at night with incredible power and accuracy, even breaking through bodyguards! The blowback of your cannon gives you a -6 vote to save yourself or a comrade from a lynch.",
+            "info": "Can kill one person during the night. IVote of -6. Sided with Dwarves.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "priority": 1,
+                        "broadcast": "Team"
+                    }
+                },
+                "vote": -6,
+				"startup": "team-reveal-with-roles"
+            }
+        },
+		{
+            "role": "s1",
+            "translation": "Wyvern Rider",
+            "side": "solo1",
+            "help": "You are the Wyvern Rider! You spend the nights with your dragon, flying and scouting enemies. Due to this, you can't be killed at night or distracted and you can /inspect to discover a foe. During the day, you and your dragon can /kill to obliterate any obstacle and fly away without being seen!",
+            "info": "Can kill one person during the standby (non-revealing). Can inspect one person during the night. Evades nightkills. Ignores distractors. Sided with Wyverns.",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 10
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Use /kill [name] for a revealing kill.",
+                        "killmsg": "A blast of energy comes down from the sky striking ~Target~. Everyone looks up to see a dragon-like creature flying away."
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "Someone tried to distract you during the night, but you simply ignored them."
+                }
+            }
+        },
+		{
+            "role": "s2",
+            "translation": "Chaos Lord",
+            "side": "solo2",
+            "help": "You are the Chaos Lord! You're the epitome of power and destruction. Use /kill twice to level the battlefield. Your fearsome prescence protects you from daykills, shrouds you from hax and distractions.",
+			"info": "Can kill 2 people during the night. Ignores distractors. Evades daykills. Cannot be haxed. Vote of 2. Sided with Chaos Lord.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 9,
+                        "limit": 2
+                    }
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "Someone tried to distract you during the night, but you simply ignored them."
+                },
+                "daykill": "evade",
+                "vote": 2,
+                "avoidHax": [
+                    "kill"
+                ]
+            }
+        }
+	],
+	"roles1": [
+		"bg",
+		"maf3sta",
+		"may",
+		"maf1bg",
+		"maf1maf",
+		"insp",
+		"vill",
+		"pl",
+		"maf2maf",
+		"vill",
+		"vill",
+		"maf3bg",
+		"stalk",
+		"vill",
+		"s1",
+		"maf1may",
+		"vill",
+		"vigi",
+		"maf2may",
+		"sam",
+		"maf3may",
+		"maf1conv",
+		"stalk",
+		"vill",
+		"s2",
+		"vill",
+		"vill",
+		"vill",
+		"vill",
+		"vill",
+		"vill",
+		"vill",
+		"vill",
+		"vill",
+		"vill"
+	],
+	"villageCantLoseRoles": [
+		"vigi",
+		"sam",
+		"bg2",
+		"may"
+        ],
+	"killmsg": "±Kill: ~Player~ (~Role~) was killed in battle.",
+	"killusermsg": "***You have died.",
+	"drawmsg": "Everybody died! This is why we can't have nice things.",
+	"minplayers": 7
+}

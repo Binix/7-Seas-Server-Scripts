@@ -1,0 +1,200 @@
+{
+    "name": "C14",
+    "altname": "Carbon 14",
+    "author": "Fuzzysqurl",
+    "minplayers": 4,
+    "summary": "Carbon 14. Rumor has it, a group of Werewolves OR Mafia threaten the town, but no one knows which. A Cop, Seer, and group of Villagers band together to rid their land of any suspects. However, the Cop can only tell if a person is a Mafia and the Seer can only tell if a person is Werewolf. No plurality is enabled, all lynched must reach majority or no one is lynched.",
+    "noplur": true,
+    "nonPeak": true,
+    "ticks": {
+        "night": 20,
+        "standby": 40
+    },
+    "sides": [
+        { "side": "village",
+            "translation": "Village"
+        },
+        { "side": "mafia",
+            "translation": "Mafia"
+        },
+        { "side": "werewolf",
+            "translation": "Werewolf"
+        }            
+    ],
+    "roles": [
+        { "role": "vm",
+            "translation": "Villager",
+            "side": "village",
+            "help": "variable:thelp",
+            "help2": "variable:twin",
+            "info": "variable:vinfo",
+            "players": "variable:vplay",
+            "actions": {"inspect": {"revealAs": "nm"}}
+        },
+        { "role": "vw",
+            "translation": "Villager",
+            "side": "village",
+            "help": "variable:thelp",
+            "help2": "variable:twin",
+            "hide": "both",
+            "actions": {"inspect": {"revealAs": "nw"}}
+        },
+        { "role": "mm",
+            "translation": "Mafia",
+            "side": "mafia",
+            "help": "variable:mhelp",
+            "help2": "variable:mwin",
+            "info": "variable:minfo",
+            "players": "variable:mplay",
+            "actions": {
+                "night": "variable:kill",
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "onlist": "suspect",
+                "preventTeamvote": true
+            }
+        },
+        { "role": "ww",
+            "translation": "Werewolf",
+            "side": "werewolf",
+            "help": "variable:mhelp",
+            "help2": "variable:mwin",
+            "info": "variable:winfo",
+            "players": "variable:wplay",
+            "actions": {
+                "night": "variable:kill",
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "onlist": "suspect",
+                "preventTeamvote": true
+            }
+        },
+        { "role": "sm",
+            "translation": "Seer",
+            "side": "village",
+            "help": "variable:shelp",
+            "help2": "variable:twin",
+            "info": "variable:sinfo",
+            "players": "variable:tplay",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 2,
+                        "Sight": {"nw": 1}
+                    }
+                },
+                "inspect": {"revealAs": "nm"}
+            }
+        },
+        { "role": "sw",
+            "translation": "Seer",
+            "side": "village",
+            "help": "variable:shelp",
+            "help2": "variable:twin",
+            "hide": "both",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 2
+                    }
+                }
+            }
+        },
+        { "role": "cm",
+            "translation": "Cop",
+            "side": "village",
+            "help": "variable:chelp",
+            "help2": "variable:twin",
+            "info": "variable:cinfo",
+            "players": "variable:tplay",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 2
+                    }
+                }
+            }
+        },
+        { "role": "cw",
+            "translation": "Cop",
+            "side": "village",
+            "help": "variable:chelp",
+            "help2": "variable:twin",
+            "hide": "both",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 2,
+                        "Sight": {"nm": 1}
+                    }
+                },
+                "inspect": {"revealAs": "nw"}
+            }
+        },
+        { "role": "nm",
+            "translation": "Not Mafia",
+            "side": "village",
+            "hide": "both",
+            "help": ""
+        },
+        { "role": "nw",
+            "translation": "Not Werewolf",
+            "side": "village",
+            "hide": "both",
+            "help": ""
+        },
+        { "role": "suspect",
+            "translation": "Suspect",
+            "side": "village",
+            "hide": "side",
+            "info": "variable:suspect",
+            "players": false,
+            "help": ""
+        }
+    ],
+    "variables": {
+        "twin": "±Win Condition: You win when all threats to the town have been eliminated.",
+        "mwin": "±Win Condition: You win when all members of the town have been eliminated or nothing can prevent this from occurring.",
+        
+        "thelp": "±Abilities: Your weapon is your vote. You have no night actions.",
+        "mhelp": "±Abilities: Each night phase, you or your team may perform the factional kill using /kill. You can also use /tt to talk amongst your team.",
+        "chelp": "±Abilities: Each night phase, you may investigate one player in the game using /inspect. You will get results back in the form of \"Mafia\" or \"Not Mafia\".",
+        "shelp": "±Abilities: Each night phase, you may investigate one player in the game using /inspect. You will get results back in the form of \"Werewolf\" or \"Not Werewolf\".",
+        
+        "cinfo": "Can inspect one person's role during the night with results of \"Mafia\" or \"Not Mafia\". Reveals as \"Not Werewolf\" to the Seer. Sided with the Village.",
+        "sinfo": "Can inspect one person's role during the night with results of \"Werewolf\" or \"Not Werewolf\". Reveals as \"Not Mafia\" to the Cop. Sided with the Village.",
+        "vinfo": "Reveals as \"Not Mafia\" and \"Not Werewolf\". Sided with the Village.",
+        "minfo": "Can kill one person during the night. Reveals as \"Mafia\" and \"Not Werewolf\". Sided with the Mafia.",
+        "winfo": "Can kill one person during the night. Reveals as \"Not Mafia\" and \"Werewolf\". Sided with the Werewolves.",
+        "suspect": "Can be either Werewolf or Mafia.",
+        
+        "tplay": "4-11 Players. Only 1 will appear per game.",
+        "mplay": "4-11 Players. Between 1 and 3 will appear per game. Won't appear with the Werewolf.",
+        "wplay": "4-11 Players. Between 1 and 3 will appear per game. Won't appear with the Mafia.",
+        "vplay": "4-11 Players. Between 1 and 6 will appear per game.",
+        
+        "kill": {"kill": { "target": "AnyButTeam", "common": "Team", "priority": 1, "broadcast": "team"}}        
+    },
+    "spawnPacks": {
+        "a": { 
+            "chance": [0.5, 0.5],
+            "roles": [
+                ["vm", "cm", "sm", "mm", "vm", "mm", "vm", "vm", "mm", "vm", "vm"], 
+                ["vw", "cw", "sw", "ww", "vw", "ww", "vw", "vw", "ww", "vw", "vw"]
+            ]            
+        }
+    },
+    "roles1": ["pack:a", "pack:a", "pack:a", "pack:a", "pack:a", "pack:a", "pack:a", "pack:a", "pack:a", "pack:a", "pack:a"],
+    "changelog": {
+        "04.05.2014": "Removed Daystart. Updated /roles. Fixed issue with Werewolf not spawning correctly.",
+        "06.29.2014": "preventTeamvote"
+    }
+}

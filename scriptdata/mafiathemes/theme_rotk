@@ -1,0 +1,1021 @@
+{
+"name": "ROTK",
+"author": "Fuzzysqurl",
+"summary": "http://wiki.pokemon-online.eu/wiki/Theme:ROTK",
+"minplayers": 5,
+"ticks": {
+  "night": 30,
+	"standby": 30
+},
+"sides": [
+		{
+			"side": "none",
+			"translation": "Unaffiliated",
+			"winmsg": "Supreme excellence consists of breaking the enemy's resistance without fighting. ~Players~ won the war without fighting... somehow."
+		},
+        {
+            "side": "wu",
+            "translation": "Wu Army",
+            "winmsg": "All the learning in the world won't teach you how to defeat the Wu Army (~Players~)."
+        },
+        {
+            "side": "wei",
+            "translation": "Wei Army",
+            "winmsg": "No matter how many bodies you throw in our path, you cannot stop the might of Wei (~Players~)!"
+        },
+        {
+            "side": "shu",
+            "translation": "Shu Army",
+            "winmsg": "The word magnificent hardly does them justice! With the Shu Army (~Players~) on the battlefield, victory is never in doubt!"
+        },
+		{
+            "side": "yuanshao",
+            "translation": "Yuan Shao",
+            "winmsg": "I am the Emperor! I am the land itself! You dare threaten ~Players~, you landless peasants?"
+        },
+		{
+			"side": "lubu",
+			"translation": "Lu Bu",
+			"winmsg": "Did you think we (~Players~) could lose to scum like you?"
+		}
+    ],
+	 "roles": [
+        {
+		"role": "soldier",
+            "translation": "Soldier",
+            "side": "none",
+			"info": "Can join Shu, Wu, or Wei during the night. Sided with other unaffiliated players.",
+            "help": "Use /shu [your name], /wu [your name], or /wei [your name] to join a side during the night. If you remain unaffiliated and get voted, you will be removed from the game, so be sure to pick a side!",
+            "actions": {
+				"voteshield": 899,		
+				"night": {
+					"wu": {
+                        "command": "convert",
+                        "convertmsg": "An unaffiliated Soldier has joined the Wu Army",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "newRole": "wu_soldier",
+                        "silent": false,
+						"restrict": ["wei", "shu"]
+					},
+					"wei": {
+                        "command": "convert",
+                        "convertmsg": "An unaffiliated Soldier has joined the Wei Army",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "newRole": "wei_soldier",
+                        "silent": false,
+						"restrict": ["wu", "shu"]
+                    },
+					"shu": {
+                        "command": "convert",
+                        "convertmsg": "An unaffiliated Soldier has joined the Shu Army",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "newRole": "shu_soldier",
+                        "silent": false,
+						"restrict": ["wu", "wei"]
+                    }
+				},
+				"inspect": {
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				}
+			}
+		},		
+		{
+		"role": "shu_soldier",
+            "translation": "Shu Soldier",
+            "side": "shu",
+			"info": "Can defect to Wu or Wei during the night. Can cancel defecting. Sided with Shu Army.",
+            "help": "Team up with Shu Forces to bring victory. Use /wu [your name] or /wei [your name] to defect at night if you dislike the direction your team is headed. However, once you select, you are locked into that choice. You can /cancel [your name] to stay loyal if you ''accidentally'' try to defect. You also reveal as an ordinary Soldier.",
+            "actions": {
+				"night": {
+					"wu": {
+                        "command": "convert",
+                        "convertmsg": "A Shu Soldier has defected to the Wu Army",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 22,
+                        "newRole": "wu_soldier",
+                        "silent": false,
+						"restrict": ["wei"]
+					},
+					"wei": {
+                        "command": "convert",
+                        "convertmsg": "A Shu Soldier has defected to the Wei Army",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 22,
+                        "newRole": "wei_soldier",
+                        "silent": false,
+						"restrict": ["wu"]
+                    },
+					"cancel": {
+						"command": "distract",
+						"target": "Self",
+						"common": "Self",
+						"priority": 21,
+						"distractmsg": "You decided not to defect tonight."
+					}
+				},
+					"inspect": {
+						"revealAs": "soldier",
+						"mode": {
+							"ignore": ["shu_hooker"]
+						},
+						"silent": true					
+					}
+			}
+		},		
+		{
+            "role": "wu_soldier",
+            "translation": "Wu Soldier",
+            "side": "wu",
+			"info": "Can defect to Shu or Wei during the night. Can cancel defecting. Sided with Wu Army.",
+            "help": "Team up with Wu Forces to bring victory. Use /shu [your name] or /wei [your name] to defect at night if you dislike the direction your team is headed. However, once you select, you are locked into that choice. You can /cancel [your name] to stay loyal if you ''accidentally'' try to defect. You also reveal as an ordinary Soldier.",
+            "actions": {
+				"night": {
+					"shu": {
+                        "command": "convert",
+                        "convertmsg": "A Wu Soldier has defected to the Shu Army",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 22,
+                        "newRole": "shu_soldier",
+                        "silent": false,
+						"restrict": ["wei"]
+                    },
+					"wei": {
+                        "command": "convert",
+                        "convertmsg": "A Wu Soldier has defected to the Wei Army",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 22,
+                        "newRole": "wei_soldier",
+                        "silent": false,
+						"restrict": ["shu"]
+                    },
+					"cancel": {
+						"command": "distract",
+						"target": "Self",
+						"common": "Self",
+						"priority": 21,
+						"distractmsg": "You decided not to defect tonight."
+					}
+				},
+				"inspect": {
+					"mode": {
+						"revealAs": "soldier",
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				}  
+			}
+		},
+		{
+            "role": "wei_soldier",
+            "translation": "Wei Soldier",
+            "side": "wei",
+			"info": "Can defect to Wu or Shu during the night. Can cancel defecting. Sided with Wei Army.",
+            "help": "Team up with Wei Forces to bring victory. If you disagree with the direction your team is headed, you are able to defect at night. Use /wu [your name] or /shu [your name] to defect. However, once you select, you are locked into that choice. You can /cancel [your name] to stay loyal if you ''accidentally'' try to defect. You also reveal as an ordinary Soldier.",
+			"actions": {
+				"night": {
+					"wu": {
+                        "command": "convert",
+                        "convertmsg": "A Wei Soldier has defected to the Wu Army",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 22,
+                        "newRole": "wu_soldier",
+                        "silent": false,
+						"restrict": ["shu"]
+                    },
+					"shu": {
+                        "command": "convert",
+                        "convertmsg": "A Wei Soldier has defected to the Shu Army",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 22,
+                        "newRole": "shu_soldier",
+                        "silent": false,
+						"restrict": ["wu"]
+                    },
+					"cancel": {
+						"command": "distract",
+						"target": "Self",
+						"common": "Self",
+						"priority": 21,
+						"distractmsg": "You decided not to defect tonight."
+					}
+				},
+				"inspect": {
+					"mode": {
+						"revealAs": "soldier",
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				}   
+			}
+		},
+		{
+            "role": "yuanshao",
+            "translation": "Yuan Shao",
+            "side": "yuanshao",
+			"info": "Can kill 1 person during the night and 1 person during standby. Cannot be distracted. Voteshield of -5. Sided with Yuan Shao.",
+            "help": "Those who refuse to respect nobility shall die where they stand! You can /kill during the night AND during standby. You are initially unaware that a war is occurring and as a result, cannot kill during the first night. Your control over the empire grants you a voteshield of -5 and immunity from all distractors.",
+            "actions": {
+				"inspect": {
+						"mode": {
+							"ignore": ["shu_hooker"]
+						},
+						"silent": true					
+					},
+                "night": {				
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 9,
+                        "limit": 1,
+						"initialrecharge": 2
+                    }
+				},
+				"distract": {
+					"mode": "ignore"
+				},
+				"voteshield": -5,
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Use /kill [name] for a non-revealing kill.",
+                        "killmsg": "Yuan Shao: Those who refuse to respect nobility shall die where they stand!"
+                    }
+                }
+			}
+		},
+		{
+            "role": "shu_inspector",
+            "translation": "Shu- Zhuge Liang",
+            "side": "shu",
+			"info": "Can inspect 1 person during the standby. Sided with Shu Army.",
+            "help": "You are Zhuge Liang-- Shu's Inspector. You can /inspect during the STANDBY phase. The role you inspected will be broadcast to all, but only you know who you targeted. (Hint: You will need to pay attention to who you target and match it with the role that is broadcast)",
+            "actions": {
+				"startup": {
+                    "revealRole": [
+                        "shu_hooker"
+                    ]
+				},
+				"standby": { 
+					"inspect": {
+						"command": "expose",
+						"msg": "Use /inspect [name] for a non-revealing inspect/expose.",
+						"exposemsg": "Zhuge Liang: ~Role~! Even a child could devise a better strategy!",
+						"revealmsg": "Zhuge Liang: My strategies, however, shall be studied for centuries to come.",
+						"revealChance": 1,
+						"target": "AnyButSelf"
+					}
+				},
+				"standbyHax": {
+					"inspect": {
+						"revealTeam": 1
+					}
+				},
+				"inspect": {
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+						"silent": true					
+					}
+                }
+			
+		},
+		{
+            "role": "shu_killer",
+            "translation": "Shu- Guan Yu",
+            "side": "shu",
+			"info": "Can kill 1 person during the night. Evades daykills. Can rally troops during standby. Sided with Shu Army.",
+            "help": "You are Guan Yu-- Shu's Nightkiller. Use your pole arm to /kill enemies every night. You can /rally the troops during the day to raise moral (revealing). Your awwareness of the battlefield helps you evade all daykills.",
+            "actions": {
+				"daykill": "evade",
+				"night": {
+			        "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 13,
+                        "limit": 1
+                    }
+				},
+				"standby": {
+					"rally": {
+						"command": "expose",
+						"msg": "Use /rally [your name] to reveal/expose yourself.",
+						"target": "Self",
+						"exposemsg": "Guan Yu: This blade is the symbol of my duty to the entire the army. Alone we are strong, but together we are unbeatable!",
+						"revealmsg": "The Shu Army's moral has increased due to ~Self~'s motivational words.",
+						"revealChance": 1
+					}
+				},
+					"inspect": {
+						"mode": {
+							"ignore": ["shu_hooker"]
+						},
+						"silent": true					
+					}
+			}
+		},
+		{
+            "role": "shu_bodyguard",
+            "translation": "Shu- Zhao Yun",
+            "side": "shu",
+			"info": "Can protect 1 person during the night. Can kill 1 person during the standby every 3 days. Vote of 0. Sided with Shu Army.",
+            "help": "You are Zhao Yun-- Shu's Bodyguard. Use /protect (also safeguards) to keep your forces safe. If you ever run into trouble, you can /kill once per 3 days. You have also entrusted all your decisions to Liu Bei, making your vote count for 0, but this allows you to know his identity.",
+            "actions": {
+				"vote": 0,
+				"startup": {
+                    "revealRole": [
+                        "shu_command",
+						"shu_mcommand"
+                    ]
+				},					
+				"inspect": {
+						"mode": {
+							"ignore": ["shu_hooker"]
+						},
+						"silent": true					
+				},
+				"night": {
+					"protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 5,
+                        "limit": 1                   
+					}
+                },
+				"standby": {
+					"kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Use /kill [name] for a non-revealing kill.",
+						"killmsg": "Zhao Yun: Another obstacle in the path of justice has fallen before me!",
+						"recharge": 3
+                    }
+				}
+			}
+		},
+		{
+            "role": "shu_hooker",
+            "translation": "Shu- Yue Ying",
+            "side": "shu",
+			"info": "Can distract 1 person during the night. Sided with Shu Army.",
+            "help": "You are Yue Ying-- Shu's Distractor. You are married to Zhuge Liang, so you know his identity right away. Your experiences in crafting are an asset to the Shu Army and are able to /distract a target with your newest creation. Your distraction can also foil Sima Yi's attempt at blending in with the Shu Army by revealing him, albeit, in disguise (pseudo-inspect).",
+            "actions": {
+				"startup": {
+                    "revealRole": [
+                        "shu_inspector"
+                    ]
+				},
+				"night":{
+					"distract": {
+						"command": ["distract", "inspect"],
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 2,
+						"distractmsg": "Even great weapons become useless when in the hands of a coward. You were unable to act last night."
+					}
+				}
+			}	
+        },
+		{
+			"role": "shu_command",
+            "translation": "Shu Commander- Liu Bei",
+            "side": "shu",
+			"info": "Can convert self after the third night. Vote between 8 and 18, Voteshield between -8 and -18. Reveals as Shu Soldier. Sided with Shu Army.",
+			"help": "You are Liu Bei-- Shu's Commander. Your command over the troops varies based on battlefield movements, causing your vote to count for anywhere between 8 and 18. You also possess a voteshield between -8 and -18.  After night 3, you automatically convert to True Warrior- Liu Bei, which improves your vote and voteshield.. In addition, you know Zhao Yun from the start and you inspect as a Soldier.",
+			"actions": {
+				"initialCondition": {
+					"curse": {
+						"cursedRole": "shu_mcommand",
+						"curseCount": 3,
+						"curseConvertMessage": "Liu Bei: Those who stand in the way of virtue will fail!"
+					}
+				},
+				"startup": {
+                    "revealRole": [
+                        "shu_bodyguard"
+                    ]
+				},
+				"vote": [8,19],
+				"voteshield": [-18,-7],
+				"inspect": {
+					"revealAs": "soldier",
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				}
+			}
+		},
+		{
+            "role": "wei_inspector",
+            "translation": "Wei- Sima Yi",
+            "side": "wei",
+			"info": "Can inspect 1 person during the night. Cannot be daykilled. Reveals as Shu Soldier. Sided with Wei Army.",
+			"help": "You are Sima Yi-- Wei's Inspector. You can use /inspect to tell what a target is and you cannot be killed during the day. You inspect as a Soldier, but as a result, you cannot be protected by Cao Ren. The enemy will know your plan of hiding amongst the soldiers if you are distracted, however.",
+			"actions": {
+				"startup": {
+                    "revealRole": [
+                        "wei_killer2"
+                    ]
+				},
+				"daykill": "evade",
+				"protect": {
+					"mode": {
+						"ignore": [
+							"wei_bodyguard"
+						]
+					}
+				},
+				"inspect": {
+                    "revealAs": "soldier"
+                },
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 24
+					}
+				}	
+			}
+		},
+		{
+			"role": "wei_bodyguard",
+            "translation": "Wei- Cao Ren",
+            "side": "wei",
+			"info": "Can protect 1 person during the night. Can selfprotect (and safeguard) once every 3 nights. Vote of 2. Sided with Wei Army.",
+			"help": "You are Cao Ren-- Wei's Bodyguard. Your courage knows no bounds and you can /protect (protect+safeguard) your team from attacks. You excel at defense, allowing you to /selfprotect (protect+safeguard) yourself from all threats once per 3 nights. In addition, you know Xiahou Dun from the start.",
+			"actions": {
+				"startup": {
+                    "revealRole": [
+                        "wei_kinspector",
+						"wei_killer"
+                    ]
+				},
+				"vote": 2,
+				"inspect": {
+						"mode": {
+							"ignore": ["shu_hooker"]
+						},
+						"silent": true					
+					},
+				"night":{
+					"protect": {
+						"target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 6,
+                        "limit": 1
+					},
+					"selfprotect": {
+						"command": ["protect", "safeguard"],
+						"target": "Self",
+                        "common": "Self",
+                        "priority": 3,
+                        "limit": 1,					
+						"recharge": 3
+					}
+				}
+			}
+		},
+		{
+			"role": "wei_command",
+            "translation": "Wei Commander- Cao Cao",
+            "side": "wei",
+			"info": "Can convert self after the third night. Vote between 13 and 21, Voteshield between 2 and -8. Reveals as Wei Soldier. Sided with Wei Army.",
+			"help": "You are Cao Cao-- Wei's Commander. Your political proficiency gives you command over the battlefield, causing your vote to count for anywhere between 13 and 21. However, your defense against votes is unreliable leaving you a vote-'shield' between 2 and -8.  After night 3, you automatically convert to True Warrior- Cao Cao, which improves your vote and voteshield. In addition, you know Xiahou Dun from the start and you inspect as a Soldier.",
+			"actions": {
+				"initialCondition": {
+					"curse": {
+						"cursedRole": "wei_mcommand",
+						"curseCount": 3,
+						"curseConvertMessage": "Cao Cao: Nobody shall stop me from achieving my ambitions!"
+					}
+				},
+				"startup": {
+                    "revealRole": [
+                        "wei_killer"
+                    ]
+				},
+				"vote": [13,22],
+				"voteshield": [-8,3],
+				"inspect": {
+					"revealAs": "soldier",
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				}
+			}
+		},		
+		{
+			"role": "wei_killer",
+            "translation": "Wei- Xiahou Dun",
+            "side": "wei",
+			"info": "Can kill 1 person during the day. Revenges night kills. Sided with Wei Army.",
+			"help": "You are Xiahou Dun-- Wei's Daykiller. You are able to /kill every standby phase, but you will be revealed! You kill anyone that tries to attack you, whether you are protected or not. In addition, you know Cao Cao and Cao Ren from the start.",
+			"actions": {
+				"startup": {
+                    "revealRole": [
+                        "wei_command",
+						"wei_mcommand",
+						"wei_bodyguard"
+                    ]
+				},
+				"inspect": {
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				},				
+				"standby":{
+					"kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Use /kill [name] for a revealing kill.",
+                        "killmsg": "~Self~: Watch and fear the force of Xiahou Dun!"			
+                    }
+				},
+				"kill": {
+					"mode": "killattackerevenifprotected"
+				}
+			}
+		},
+		{
+			"role": "wei_killer2",
+            "translation": "Wei- Sima Shi",
+            "side": "wei",
+			"info": "Can kill 1 person every other night. Can kill2 1 person every other night twice per game. Reveals as Wei Soldier. Sided with Wei Army.",
+			"help": "You are Sima Shi-- Wei's Nightkiller. You are able to /kill one target every other night. You are able to /kill2 twice per game after night 1, but it is slower than your normal kill and you can't use it two nights in a row. You inspect as a Soldier and since you are Sima Yi's eldest son you know him by default. Upon your death, Sima Yi is powered up.",
+			"actions": {
+				"startup": {
+                    "revealRole": [
+                        "wei_inspector"
+                    ]
+				},
+				"inspect": {
+					"revealAs": "soldier",
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true
+				},
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 11,
+						"limit": 1,
+						"recharge": 2
+					},
+					"kill2": {
+						"command": "kill",
+						"target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 14,
+						"limit": 1,
+						"charges": 2,
+						"initialrecharge": 2,
+						"recharge": 2
+					}
+				},
+				"onDeath": {
+                    "convertRoles": {
+                        "wei_inspector": "wei_kinspector"
+                    },
+                    "convertmsg": "Sima Yi: Hmm. So now we have an opportunity to strike back. Very well, I shall join in this endeavor! Your death will be avenged, Sima Shi!"
+                }
+			}
+		},	
+		{
+            "role": "wei_kinspector",
+            "translation": "Wei- Empowered Sima Yi",
+            "side": "wei",
+			"info": "Can inspect 1 person during the night. Can kill 1 person during the standby once per game (non-revealing). Cannot be daykilled. Sided with Wei Army.",
+			"help": "Avenge Sima Shi's death with a non-revealing /kill during the standby (once per game). In addition, since you no longer appear as a Shu Soldier, Cao Ren is able to protect you. You can still /inspect but the enemy will now be able to track who you are targeted.",
+			"actions": {
+				"startup": {
+                    "revealRole": [
+                        "wei_bodyguard"
+                    ]
+				},
+				"daykill": "evade",
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 24
+					}
+				},
+				"standby":{
+					"kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Use /kill [name] for a non-revealing kill.",
+                        "killmsg": "Sima Yi: Letting you win would be most unsatisfying. It is time for you to learn the severity of war.",
+						"recharge": 99
+                    }
+				}
+			}
+		},		
+		{
+			"role": "wu_killer",
+            "translation": "Wu- Lu Xun",
+            "side": "wu",
+			"info": "Can kill 1 person during the night. Kill has stalking properties. Teammates ignore kills. Sided with Wu Army.",
+			"help": "You are Lu Xun-- Wu's Nightkiller. You are able to /kill every night. You are unable to kill your allies but can still target them. If your target didn't die, you will learn of who they visited. (Hint: If your target didn't die, wasn't protected, or you got distracted, then your target was an ally)",
+			"actions": {
+				"inspect": {
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				},
+				"night": {
+			        "kill": {
+						"command": ["kill", "stalk"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 12,
+                        "limit": 1
+                    }				
+				}
+			}
+		},		
+		{
+			"role": "wu_bodyguard",
+            "translation": "Wu- Sun Ce",
+            "side": "wu",
+			"info": "Can protect 1 person during the night. Can perfect inspect 1 person during the night once every 3 nights. Sided with Wu Army.",
+			"help": "You are Sun Ce-- Wu's Bodyguard. You are able to /protect once a night and you can /inspect once per 3 nights in order to prepare for incoming threats. Unlike other unsuccessful battle strategists, you know the true identity of ALL people you inspect. In addition, you know Sun Jian and Sun Quan from the start.",
+			"actions": {
+			"startup": {
+                    "revealRole": [
+						"wu_command",
+						"wu_mcommand",
+						"wu_pkiller"
+                    ]
+				},			
+				"kill": {
+					"mode": {
+						"ignore": ["wu_killer"],
+					"silent": true
+					}
+				},			
+				"inspect": {
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				},
+				"night":{
+					"protect": {
+						"target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 7,
+                        "limit": 1
+					},
+					"inspect": {
+						"target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 25,
+                        "limit": 1,
+						"recharge": 3,
+						"Sight": {
+                            "true": 1
+						}
+					}
+				}
+			}
+		},		
+		{
+			"role": "wu_command",
+            "translation": "Wu Commander- Sun Jian",
+            "side": "wu",
+			"info": "Can convert self after the third night. Vote between -8 and 2, Voteshield between -13 and -21. Reveals as Wu Soldier. Sided with Wu Army.",
+			"help": "You are Sun Jian-- Wu's Commander. You know your bodyguard Sun Ce from the start. Striving to only take calculated risks, your voting power lies between -8 and 2. Awareness of your own weakness contributes to your strength, giving you a voteshield between -13 and -21.  After night 3, you automatically convert to True Warrior- Sun Jian, which improves your vote and voteshield. In addition, you inspect as a Soldier.",
+			"actions": {
+				"initialCondition": {
+					"curse": {
+						"cursedRole": "wu_mcommand",
+						"curseCount": 3,
+						"curseConvertMessage": "Sun Jian: Now you will see the spirit of Wu!"
+					}
+				},
+				"startup": {
+                    "revealRole": [
+						"wu_bodyguard"
+                    ]
+				},	
+				"vote": [-8,3],
+				"voteshield": [-21,-12],				
+				"kill": {
+					"mode": {
+						"ignore": ["wu_killer"],
+					"silent": true
+					}
+				},			
+				"inspect": {
+					"revealAs": "soldier",
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				}
+			}
+		},		
+		{
+			"role": "wu_pkiller",
+            "translation": "Wu- Sun Quan",
+            "side": "wu",
+			"info": "Can kill 1 person during the night. Can kill protected targets. Cannot kill selfprotected targets. Vote of 4. Sided with Wu Army.",
+			"help": "You are Sun Quan-- Wu's Priority Nightkiller. You are able to /kill someone before a bodyguard can go to their aid! However, your abilities do have their limits and you are unable to kill those that self-protect. You also have a vote of 4.",
+			"actions": {
+				"kill": {
+					"mode": {
+						"ignore": ["wu_killer"],
+					"silent": true
+					}
+				},
+				"startup": {
+                    "revealRole": [
+						"wu_bodyguard"
+                    ]
+				},	
+				"vote": 4,				
+				"inspect": {
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				},	
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 4,
+						"limit": 1
+					}
+				}				
+			}
+		},
+		{
+			"role": "shu_mcommand",
+            "translation": "True Warrior- Liu Bei",
+            "side": "shu",
+			"info": "Vote between 14 and 19, Voteshield between -14 and -19. Sided with Shu Army.",
+			"help": "You have entered Musou mode. Your leadership proficiency has significantly improved, causing your vote to count for between 14 and 19. You also possess a voteshield between -14 and -19.",
+			"actions": {
+				"startup": {
+                    "revealRole": [
+                        "shu_bodyguard"
+                    ]
+				},
+				"vote": [14,20],
+				"voteshield": [-19,-13],
+				"inspect": {
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				}
+			}
+		},	
+		{
+			"role": "wei_mcommand",
+            "translation": "True Warrior- Cao Cao",
+            "side": "wei",
+			"info": "Vote between 20 and 25, Voteshield between 0 and -5. Sided with Wei Army.",
+			"help": "You have entered Musou mode. Your political proficiency has significantly improved, causing your vote to count for between 20 and 25. You also possess a voteshield between 0 and -5.",
+			"actions": {
+				"startup": {
+                    "revealRole": [
+                        "wei_killer"
+                    ]
+				},
+				"vote": [20,26],
+				"voteshield": [-5,1],
+				"inspect": {
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				}	
+			}
+		},	
+		{
+			"role": "wu_mcommand",
+            "translation": "True Warrior- Sun Jian",
+            "side": "wu",
+			"info": "Vote between -7 and -13, Voteshield between -20 and -25. Sided with Wu Army.",
+			"help": "You have entered Musou mode. Your tactical proficiency has significantly improved, causing your vote to count for between -7 and -13. You also possess a voteshield between -20 and -25.",
+			"actions": {
+				"startup": {
+                    "revealRole": [
+						"wu_bodyguard"
+                    ]
+				},	
+				"vote": [-13,-7],
+				"voteshield": [-25,-19],				
+				"kill": {
+					"mode": {
+						"ignore": ["wu_killer"],
+					"silent": true
+					}
+				},			
+				"inspect": {
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				}
+			}
+		},
+		{
+			"role": "lubu",
+			"translation": "Lu Bu",
+			"side": "lubu",
+			"info": "Can convert self after the fourth night. Can kill 1 person during the night. Cannot be distracted. Sided with Lu Bu.",
+			"help": "You are Lu Bu, the extremely aggressive warrior looking for a worthy challenger. You can /kill once a night. At night, you cannot be distracted. During night 4, you automatically convert to Ultimate Warrior- Lu Bu. You know Diao Chan from the start and power up if she dies.",
+			"actions": {
+				"initialCondition": {
+					"curse": {
+						"cursedRole": "lubu2",
+						"curseCount": 4,
+						"curseConvertMessage": "Lu Bu: Can anybody provide me with a decent challenge?"
+					}
+				},
+				"inspect": {
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				},	
+				"startup":{
+					"revealRole": [
+						"diaochan"
+					]
+				},
+				"distract": {
+					"mode": "ignore"
+				},
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 8,
+                        "limit": 1					
+					}
+				}	
+			}
+		},
+		{
+			"role": "lubu2",
+			"translation": "Ultimate Warrior- Lu Bu",
+			"side": "lubu",
+			"info": "Can kill 1 person during the night and 1 person during the standby. Cannot be distracted. Counters daykills. Sided with Lu Bu.",
+			"help": "You have entered Musou mode. Your warfare proficiency has significantly improved, giving you a daykill and the ability to /kill twice at night. You still cannot be distracted or daykilled.",
+			"actions": {
+				"inspect": {
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				},	
+				"startup":{
+					"revealRole": [
+						"diaochan"
+					]
+				},
+				"distract": {
+					"mode": "ignore"
+				},
+				"daykill": "revenge",
+				"daykillrevengemsg": "~Role~: Did you think you could take me by yourself, ~Target~?",
+				"night": {	
+					"kill": {
+						"target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 8,
+                        "limit": 1					
+					}
+				},
+				"standby": {
+					"kill": {
+                        "target": "AnyButTeam",
+                        "msg": "Use /kill [name] for a non-revealing kill.",
+                        "killmsg": "Lu Bu: Get lost, you scum!"
+                    }
+				}
+			}
+		},
+		{
+			"role": "diaochan",
+			"translation": "Diao Chan",
+			"side": "lubu",
+			"info": "Bombs nightkills. Bombs daykills. Vote of -999. Wins with anyone. Sided with Lu Bu.",
+			"help": "You are Diao Chan, a benevolent and beautiful maiden. Anyone that kills you also dies. You can save someone, or yourself, during the voting phase with your -999 vote. Lu Bu is powered up when you die, but he is unable to kill you. In addition, if Lu Bu happens to die, you win with everyone.",
+			"winningSides": "*",
+			"actions": {
+				"kill": {
+					"mode": "killattacker", 
+					"msg": "Some flowers are just too dangerous to touch."
+				},
+
+				"inspect": {
+					"mode": {
+						"ignore": ["shu_hooker"]
+					},
+					"silent": true					
+				},	
+				"startup":{
+					"revealRole": [
+						"lubu",
+						"lubu2"
+					]
+				},
+				"vote": -999,
+				"daykill": "bomb",
+				"daykillrevengemsg": "Some flowers are just too dangerous to touch.",			
+				"onDeath": {
+                    "convertRoles": {
+						"lubu": "lubu2"
+                    },
+                    "convertmsg": "Lu Bu: The punishment for any who threaten Diao Chan, is death!"
+                }
+			}
+		}
+	],
+	"roles1": [
+		"shu_inspector",
+		"shu_bodyguard",
+		"wei_killer2",
+		"wu_killer",
+		"soldier",
+		"wu_bodyguard",
+		"shu_hooker",
+		"wei_inspector",
+		"soldier",
+		"wei_bodyguard",
+		"wu_pkiller",
+		"shu_killer",
+		"wei_killer",
+		"diaochan",
+		"yuanshao",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier"
+	],
+	"roles2": [
+		"shu_inspector",
+		"shu_bodyguard",
+		"wei_killer2",
+		"wu_pkiller",
+		"soldier",
+		"wu_bodyguard",
+		"shu_hooker",
+		"wei_inspector",
+		"soldier",
+		"wei_bodyguard",
+		"shu_killer",
+		"wu_killer",
+		"wei_killer",
+		"diaochan",
+		"soldier",
+		"soldier",
+		"lubu",
+		"shu_command",
+		"wu_command",
+		"wei_command",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier",
+		"soldier"
+		],
+	"killmsg": "±Sun Tzu: ~Player~ (~Role~) was killed in battle.",
+    "killusermsg": "***You have been killed in battle!",
+    "lynchmsg": "±Sun Tzu: The supreme art of war is to subdue the enemy, ~Player~ (~Role~), without fighting.",
+	"drawmsg": "±Sun Tzu: There is no instance of a country having benefited from prolonged warfare. Today is no exception.",
+	"border": "***-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-*-^-***"
+}

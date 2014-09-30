@@ -1,0 +1,268 @@
+{
+    "name": "Survivors",
+    "author": "Crystal Moogle",
+    "summary": "The Zombies have a certain amount of time to kill the humans before they manage to escape! The humans must try to survive, if at least one lives at the end, they win! The humans know each other, but the zombies must find their team themselves! There's also a sneaky Hybrid who can aid either side and will win no matter who wins as long as he lives.",
+    "minplayers": 13,
+    "sides": [
+        {
+            "side": "zombies",
+            "translation": "Zombies",
+            "winmsg": "~Players~ managed to kill the humans and get a good meal out of it, until they realised there was no more food"
+        },
+        {
+            "side": "humans",
+            "translation": "Humans",
+            "winmsg": "~Players~ managed to escape from the Zombies. The Zombies were rounded up and used for TV Game Shows"
+        },
+        {
+            "side": "hybrid",
+            "translation": "Hybrid"
+        }
+    ],
+    "roles": [
+        {
+            "role": "plain_zombie",
+            "translation": "Armless Zombie",
+            "side": "zombies",
+            "help": "Zombies are not known for having strong joints and thus you unfortunately lost your arms leaving you incapable of killing, however you still get one vote during the day!",
+            "actions": {
+                "initialCondition": {
+                    "poison": {
+                        "count": 7,
+                        "poisonDeadMessage": "They managed to escape!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "killing_zombie",
+            "translation": "Zombie",
+            "side": "zombies",
+            "help": "Lucky for you, you still have your arms! You and any fellow Zombies you have can kill one person during the night using /kill [name], but be careful, because there's one crazed human who'll blow you up! You get one vote during the day",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 10,
+                        "broadcast": "role"
+                    }
+                },
+                "initialCondition": {
+                    "poison": {
+                        "count": 7,
+                        "poisonDeadMessage": "They managed to escape!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "werewolf_zombie",
+            "translation": "Ravager Zombie",
+            "side": "zombies",
+            "help": "The hunger struck you the hardest and those humans look ever so tasty... You don't care for distractions as long as you eat! You can kill one person during the night using /kill [name], but during the day you're busy feeding so you get no votes!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 2
+                    }
+                },
+                "distract": {
+                    "mode": "ignore"
+                },
+                "initialCondition": {
+                    "poison": {
+                        "count": 7,
+                        "poisonDeadMessage": "They managed to escape!"
+                    }
+                },
+                "vote": 0
+            }
+        },
+        {
+            "role": "twin_zombie",
+            "translation": "Two-headed Zombie",
+            "side": "zombies",
+            "help": "Not even sure how this is possible, but somehow you ended up merging with another Zombie to have 2 heads. Unfortunately you share a body and apparently controlling it is hard, so you have no night actions. However you do get 2 votes instead!",
+            "actions": {
+                "initialCondition": {
+                    "poison": {
+                        "count": 7,
+                        "poisonDeadMessage": "They managed to escape!"
+                    }
+                },
+                "vote": 2
+            }
+        },
+        {
+            "role": "plain_human",
+            "translation": "Survivor",
+            "side": "humans",
+            "help": "You're fairly useless during the night... just try to make sure you live. You do get 1 vote during the day though, so use that to help your team!",
+            "actions": {
+                "startup": "team-reveal-with-roles"
+            }
+        },
+        {
+            "role": "science_human",
+            "translation": "Scientist",
+            "side": "humans",
+            "help": "You were one of the scientists that was working on the [CLASSIFIED] which caused these Zombies. You also managed to find a temporary vaccine to it. Each night you can use /inject [name] to protect one person from the zombies (including yourself), however, you only managed to grab 4 doses before leaving, so use them wisely! You can use them all in one night, or spread them out. You get one vote!",
+            "actions": {
+                "night": {
+                    "inject": {
+                        "command": "protect",
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 1,
+                        "limit": 4,
+                        "charges": 4,
+                        "chargesmsg": "You have ~Charges~ doses remaining"
+                    }
+                },
+                "startup": "team-reveal-with-roles"
+            }
+        },
+        {
+            "role": "torch_human",
+            "translation": "Engineer",
+            "side": "humans",
+            "help": "Out of all the things an engineer could bring to a Zombie outbreak, you brought a torch, not even a spanner or a crowbar or anything! Just a torch you ninny. Luckily for you, Zombies hate light and will be stopped from using actions if you use /shine [name] on them. You only have enough batteries to use it over 3 nights though, so be careful! You get 1 vote.",
+            "actions": {
+                "night": {
+                    "shine": {
+                        "command": "distract",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 3,
+                        "charges": 3,
+                        "chargesmsg": "You have ~Charges~ batteries left!"
+                    }
+                },
+                "startup": "team-reveal-with-roles"
+            }
+        },
+        {
+            "role": "sniper_human",
+            "translation": "Sniper",
+            "side": "humans",
+            "help": "You were trained in the US Navy SEALS... or that's what you tell people. In actual fact you just own some guns, but luckily for you, you remembered to bring one! Unluckily, you don't know how to put it together properly and so won't be available until Night 4. You brought 4 bullets, use them wisely with /kill [name]. You can fire up to 4 shots in one night, but remember you only have 4 shots overall. You have one vote.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 3,
+                        "charges": 4,
+                        "limit": 4,
+                        "initialrecharge": 4
+                    }
+                },
+                "startup": "team-reveal-with-roles"
+            }
+        },
+        {
+            "role": "bomb_human",
+            "translation": "Bomber",
+            "side": "humans",
+            "help": "You were smart enough to bring some explosives with you, though you decided to strap them to yourself instead and blow up any zombie that tries to kill you... You can use also use /bomb [name] to kill any zombie, but it will also kill you, try to time it right so your sacrifice will help your team to escape! You have 1 vote",
+            "actions": {
+                "night": {
+                    "bomb": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "suicideChance": 1,
+                        "suicidemsg": "You blew yourself up to kill the Zombie!",
+                        "priority": 4
+                    }
+                },
+                "kill": {
+                    "mode": "killattacker",
+                    "targetmsg": "The bomber took you out with him!"
+                },
+                "startup": "team-reveal-with-roles"
+            }
+        },
+        {
+            "role": "leader_human",
+            "translation": "Survivor Leader",
+            "side": "humans",
+            "help": "You, unfortunately, was picked to become the Survivor leader. This may sound all well and good, until you realise you're probably going to be the number 1 target! Though it's not all doom and gloom, you once read a book on zombies, so you're able to tell the different kinds apart. Use /examine [name] during the night to find out a Zombie's role. You also get 2 votes!",
+            "actions": {
+                "night": {
+                    "examine": {
+                        "command": "inspect",
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 29
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "vote": 2
+            }
+        },
+        {
+            "role": "conspirator_hybrid",
+            "translation": "Hybrid",
+            "side": "hybrid",
+            "winningSides": [
+                "humans",
+                "zombies"
+            ],
+            "help": "You are some weird half-zombie half-human thing which doesn't really make sense and is probably incredibly painful, but let's not dwell on that. Due to your unique nature, you win no matter which team wins! You are able to use /stalk [name] to watch from afar. You also get a one-use only daykill which reveals so use it wisely, help the team you've decided to ally... or backstab them once you gain their trust~ You have 2 votes.",
+            "actions": {
+                "night": {
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 30
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can know kill using /kill [name], remember you will be revealed and you only have 1 shot!",
+                        "killmsg": "~Self~ sneaks up behind ~Target~ and stabs them in the back, unfortunately that was his only knife and it somehow broke!",
+                        "recharge": 7
+                    }
+                },
+                "vote": 2
+            }
+        }
+    ],
+    "roles1": [
+        "plain_zombie",
+        "plain_zombie",
+        "plain_zombie",
+        "plain_zombie",
+        "killing_zombie",
+        "killing_zombie",
+        "werewolf_zombie",
+        "twin_zombie",
+        "science_human",
+        "torch_human",
+        "sniper_human",
+        "bomb_human",
+        "leader_human",
+        "conspirator_hybrid",
+        "plain_zombie",
+        "plain_human",
+        "plain_zombie",
+        "killing_zombie",
+        "plain_human",
+        "twin_zombie",
+        "plain_zombie",
+        "plain_zombie",
+        "killing_zombie",
+        "plain_human",
+        "plain_zombie",
+        "plain_zombie",
+        "plain_zombie",
+        "plain_human",
+        "killing_zombie",
+        "werewolf_zombie"
+    ]
+}
