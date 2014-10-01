@@ -1,0 +1,1916 @@
+{
+	"powers": {
+		"none": {
+			"color": "#000000",
+			"ev": { "life":2, "str":1, "def":2, "spd":2, "evd":1 },
+			"attacks": [
+				{
+					"power": 3,
+					"cooldown": 3,
+					"message": "~Self~ attacks ~Target~ with a weak kick! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"fire": {
+			"color": "#f00000",
+			"ev": { "life":1, "str":1, "def":0, "spd":3, "evd":0 },
+			"attacks": [
+				{
+					"power": 10,
+					"cooldown": 9,
+					"message": "~Self~ spits fire on ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 6,
+					"cooldown": 5,
+					"message": "~Self~ turns into a fireball and blazes through ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"ice": {
+			"color": "#80e0f0",
+			"ev": { "life":2, "str":0, "def":2, "spd":1, "evd":0 },
+			"attacks": [
+				{
+					"power": 8,
+					"cooldown": 8,
+					"message": "~Self~ freezes ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 12,
+					"cooldown": 13,
+					"message": "~Self~ throws several ice shards at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"sword": {
+			"color": "#00b010",
+			"ev": { "life":0, "str":3, "def":0, "spd":1, "evd":1 },
+			"attacks": [
+				{
+					"power": 20,
+					"cooldown": 15,
+					"message": "~Self~ slice ~Target~ with a sword! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 4,
+					"cooldown": 4,
+					"message": "~Self~ pulls out a sword and, in a blink of an eye, slices ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"beam": {
+			"color": "#f05800",
+			"ev": { "life":0, "str":2, "def":0, "spd":2, "evd":1 },
+			"attacks": [
+				{
+					"power": 7,
+					"cooldown": 6,
+					"message": "~Self~ attacks ~Target~ with a energy whip! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}, 
+				{
+					"power": 10,
+					"cooldown": 10,
+					"message": "~Self~ uses a cycle beam attack on ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 16,
+					"cooldown": 14,
+					"message": "~Self~ shoots a charged energy beam at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"bomb": {
+			"color": "#301880",
+			"ev": { "life":1, "str":2, "def":0, "spd":0, "evd":2 },
+			"attacks": [
+				{
+					"power": 14,
+					"cooldown": 11,
+					"message": "~Self~ throws a bomb at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"hammer": {
+			"color": "#b04000",
+			"ev": { "life":1, "str":4, "def":0, "spd":0, "evd":0 },
+			"attacks": [
+				{
+					"power": 13,
+					"cooldown": 9,
+					"message": "~Self~ hits ~Target~ with a hammer! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"cutter": {
+			"color": "#f8b818",
+			"ev": { "life":0, "str":1, "def":0, "spd":2, "evd":2 },
+			"attacks": [
+				{
+					"power": 6,
+					"cooldown": 5,
+					"message": "~Self~ throws a cutter boomerang at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 16,
+					"cooldown": 15,
+					"message": "~Self~ slices ~Target~ once, twice, jumps into the air and then falls cutting again! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"fighter": {
+			"color": "#f82010",
+			"ev": { "life":0, "str":3, "def":1, "spd":1, "evd":0 },
+			"attacks": [
+				{
+					"power": 5,
+					"cooldown": 5,
+					"message": "~Self~ punches ~Target~ multiple times! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 10,
+					"cooldown": 11,
+					"message": "~Self~ runs towards ~Target~ and hits a strong kick! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 17,
+					"cooldown": 15,
+					"message": "~Self~ hits ~Target~ with a powerful uppercut! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"jet": {
+			"color": "#90a0b8",
+			"ev": { "life":2, "str":0, "def":0, "spd":3, "evd":0 },
+			"attacks": [
+				{
+					"power": 11,
+					"cooldown": 10,
+					"message": "~Self~ dashes at full speed and hit ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 5,
+					"cooldown": 6,
+					"message": "~Self~ attacks ~Target~ with a rocket-powered kick! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 19,
+					"cooldown": 20,
+					"message": "~Self~ grabs ~Target~, takes off with a rocket and throws ~Target~ on the ground! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"mirror": {
+			"color": "#30d0b8",
+			"ev": { "life":0, "str":0, "def":2, "spd":0, "evd":3 },
+			"attacks": [
+				{
+					"power": 10,
+					"cooldown": 11,
+					"message": "~Self~ waves its rod, creating several magical mirrors that hit ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 7,
+					"cooldown": 6,
+					"message": "~Self~ splits in two, hitting ~Target~ twice! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"ninja": {
+			"color": "#8850a0",
+			"ev": { "life":0, "str":0, "def":0, "spd":1, "evd":4 },
+			"attacks": [
+				{
+					"power": 4,
+					"cooldown": 4,
+					"message": "~Self~ throws several kunais and shurikens at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 10,
+					"cooldown": 9,
+					"message": "~Self~ grabs ~Target~, jump into the sky and then slam ~Target~ down into the ground! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"parasol": {
+			"color": "#f01018",
+			"ev": { "life":4, "str":0, "def":1, "spd":0, "evd":0 },
+			"attacks": [
+				{
+					"power": 7,
+					"cooldown": 8,
+					"message": "~Self~ hits ~Target~ with a parasol! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 13,
+					"cooldown": 13,
+					"message": "~Self~ raises ~Target~ into the air, bounces him/her for a while with a parasol and then throw ~Target~ against a wall! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"plasma": {
+			"color": "#40e8c0",
+			"ev": { "life":0, "str":2, "def":2, "spd":0, "evd":1 },
+			"attacks": [
+				{
+					"power": 4,
+					"cooldown": 5,
+					"message": "~Self~ throws a plasma needle at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 10,
+					"cooldown": 10,
+					"message": "~Self~ shoots a plasma laser at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 17,
+					"cooldown": 15,
+					"message": "~Self~ fires a plasma wave at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"stone": {
+			"color": "#b09078",
+			"ev": { "life":1, "str":0, "def":4, "spd":0, "evd":0 },
+			"attacks": [
+				{
+					"power": 25,
+					"cooldown": 22,
+					"message": "~Self~ turns into a Kirby statue and falls over ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 25,
+					"cooldown": 22,
+					"message": "~Self~ turns into a 8-ton weight and falls over ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 25,
+					"cooldown": 22,
+					"message": "~Self~ turns into a brick and falls over ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 25,
+					"cooldown": 22,
+					"message": "~Self~ turns into a Thwomp and falls over ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 25,
+					"cooldown": 22,
+					"message": "~Self~ turns into a golden Mario statue and falls over ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"suplex": {
+			"color": "#d06868",
+			"ev": { "life":0, "str":2, "def":1, "spd":2, "evd":0 },
+			"attacks": [
+				{
+					"power": 6,
+					"cooldown": 7,
+					"message": "~Self~ grabs ~Target~ and throm him/her into the ground! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 12,
+					"cooldown": 12,
+					"message": "~Self~ grabs ~Target~, jump into the air and slams ~Target~ into the ground! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 17,
+					"cooldown": 15,
+					"message": "~Self~ grabs ~Target~ and stomp furiosly on his/her head! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"wheel": {
+			"color": "#686860",
+			"ev": { "life":1, "str":0, "def":0, "spd":4, "evd":0 },
+			"attacks": [
+				{
+					"power": 9,
+					"cooldown": 9,
+					"message": "~Self~ turns into a wheel and runs over ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"wing": {
+			"color": "#80d038",
+			"ev": { "life":3, "str":0, "def":0, "spd":1, "evd":1 },
+			"attacks": [
+				{
+					"power": 6,
+					"cooldown": 7,
+					"message": "~Self~ throws some sharp feathers at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 10,
+					"cooldown": 10,
+					"message": "~Self~ flies above ~Target~, then suddenly dives into him/her! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 14,
+					"cooldown": 13,
+					"message": "~Self~ tosses ~Target~ into the air, then fly in a loop around him! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"yo-yo": {
+			"color": "#f82010",
+			"ev": { "life":1, "str":3, "def":1, "spd":0, "evd":0 },
+			"attacks": [
+				{
+					"power": 8,
+					"cooldown": 7,
+					"message": "~Self~ throws a yo-yo against ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 10,
+					"cooldown": 11,
+					"message": "~Self~ uses its yo-yo to grab ~Target~ and drop him/her in the ground! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 14,
+					"cooldown": 14,
+					"message": "~Self~ raises in the air spinning and hitting ~Target~ with a yo-yo! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"cook": {
+			"color": "#a0a0b0",
+			"ev": { "life":3, "str":0, "def":2, "spd":0, "evd":1 },
+			"attacks": [
+				{
+					"power": 50,
+					"cooldown": 40,
+					"message": "~Self~ puts ~Target~ in a pot and cook him/her! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"crash": {
+			"color": "#78b0f8",
+			"ev": { "life":0, "str":3, "def":1, "spd":1, "evd":1 },
+			"attacks": [
+				{
+					"power": 75,
+					"cooldown": 50,
+					"message": "~Self~ releases a massive energy surge! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"paint": {
+			"color": "#f8c800",
+			"ev": { "life":2, "str":0, "def":0, "spd":2, "evd":2 },
+			"attacks": [
+				{
+					"power": 45,
+					"cooldown": 35,
+					"message": "~Self~ sprays blobs of paint over ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"mike": {
+			"color": "#f8d000",
+			"ev": { "life":2, "str":0, "def":3, "spd":0, "evd":1 },
+			"attacks": [
+				{
+					"power": 35,
+					"cooldown": 30,
+					"message": "~Self~ puts a headphone, grabs a mic and sing loudly next to ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"copy": {
+			"color": "#686828",
+			"ev": { "life":2, "str":0, "def":3, "spd":0, "evd":0 },
+			"attacks": [
+				{
+					"power": 5,
+					"cooldown": 15,
+					"message": "~Self~ copies ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"sleep": {
+			"color": "#00c8a0",
+			"ev": { "life":5, "str":0, "def":0, "spd":0, "evd":0 },
+			"attacks": [
+				{
+					"power": 0,
+					"cooldown": 25,
+					"message": "~Self~ snores. Zzzz."
+				}
+			]
+		}
+	},
+	"enemies": {
+		"dee": {
+			"translation": "<font color='#f8b000'>Waddle Dee</font>",
+			"type": "common",
+			"power": "none",
+			"life": 30,
+			"exp": 15,
+			"items": ["milk", "pudding", "cookie"],
+			"attacks": [
+				{
+					"power": 6,
+					"cooldown": 9,
+					"message": "~Self~ tackles ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"doo": {
+			"translation": "<font color='#e87828'>Waddle Doo</font>",
+			"type": "common",
+			"power": "beam",
+			"life": 40,
+			"exp": 25,
+			"items": ["drink", "juice"],
+			"attacks": [
+				{
+					"power": 9,
+					"cooldown": 14,
+					"message": "~Self~ shots a beam at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"chilly": {
+			"translation": "<font color='#0080ff'>Chilly</font>",
+			"type": "common",
+			"power": "ice",
+			"life": 34,
+			"exp": 27,
+			"items": ["icecream", "milk", "pudding"],
+			"attacks": [
+				{
+					"power": 10,
+					"cooldown": 14,
+					"message": "~Self~ creates a snow cloak around itself, freezing ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"blade": {
+			"translation": "<font color='#40e840'>Blade Knight</font>",
+			"type": "common",
+			"power": "sword",
+			"life": 44,
+			"exp": 32,
+			"items": ["maxim", "cake", "watermelon"],
+			"attacks": [
+				{
+					"power": 15,
+					"cooldown": 19,
+					"message": "~Self~ slices ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"burning": {
+			"translation": "<font color='#f80040'>Burning Leo</font>",
+			"type": "common",
+			"power": "fire",
+			"life": 37,
+			"exp": 23,
+			"items": ["meat", "hotdog"],
+			"attacks": [
+				{
+					"power": 11,
+					"cooldown": 16,
+					"message": "~Self~ spits flames at ~Target~'s direction! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"ax": {
+			"translation": "<font color='#6868b8'>Ax Knight</font>",
+			"type": "common",
+			"power": "none",
+			"life": 34,
+			"exp": 22,
+			"items": ["drink", "meat", "watermelon"],
+			"attacks": [
+				{
+					"power": 8,
+					"cooldown": 12,
+					"message": "~Self~ hits ~Target~' with an axe! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"biospark": {
+			"translation": "<font color='#686868'>Biospark</font>",
+			"type": "common",
+			"power": "ninja",
+			"life": 32,
+			"exp": 24,
+			"items": ["maxim", "pudding", "cookie"],
+			"attacks": [
+				{
+					"power": 5,
+					"cooldown": 8,
+					"message": "~Self~ suddenly disappears, slice ~Target~ multiple times and then reappears! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"birdon": {
+			"translation": "<font color='#ff42ad'>Birdon</font>",
+			"type": "common",
+			"power": "wing",
+			"life": 25,
+			"exp": 14,
+			"items": ["drink", "meat", "watermelon"],
+			"attacks": [
+				{
+					"power": 9,
+					"cooldown": 18,
+					"message": "~Self~ flies towards ~Target~ and hit him/her with its wings! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"blipper": {
+			"translation": "<font color='#f8c820'>Blipper</font>",
+			"type": "common",
+			"power": "none",
+			"life": 20,
+			"exp": 13,
+			"items": ["drink", "juice", "watermelon"],
+			"attacks": [
+				{
+					"power": 6,
+					"cooldown": 15,
+					"message": "~Self~ splashes ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"bomber": {
+			"translation": "<font color='#504078'>Bomber</font>",
+			"type": "common",
+			"power": "crash",
+			"life": 35,
+			"exp": 23,
+			"items": ["meat", "hotdog"],
+			"attacks": [
+				{
+					"power": 25,
+					"cooldown": 38,
+					"message": "~Self~ explodes near ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"bounder": {
+			"translation": "<font color='#f8b8b8'>Bounder</font>",
+			"type": "common",
+			"power": "none",
+			"life": 20,
+			"exp": 17,
+			"items": ["icecream", "milk", "pudding"],
+			"attacks": [
+				{
+					"power": 5,
+					"cooldown": 12,
+					"message": "~Self~ throws a star at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"bronto": {
+			"translation": "<font color='#f860b8'>Bronto Burt</font>",
+			"type": "common",
+			"power": "none",
+			"life": 25,
+			"exp": 16,
+			"items": ["drink", "milk", "cookie"],
+			"attacks": [
+				{
+					"power": 7,
+					"cooldown": 16,
+					"message": "~Self~ tackles ~Target~ while flying! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"broom": {
+			"translation": "<font color='#d8b020'>Broom Hatter</font>",
+			"type": "common",
+			"power": "none",
+			"life": 19,
+			"exp": 14,
+			"items": ["milk", "pudding", "cookie", "watermelon"],
+			"attacks": [
+				{
+					"power": 5,
+					"cooldown": 19,
+					"message": "~Self~ uses its broom to clean the dust and ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"cappy": {
+			"translation": "<font color='#e8b878'>Cappy</font>",
+			"type": "common",
+			"power": "none",
+			"life": 22,
+			"exp": 17,
+			"items": ["drink", "cake"],
+			"attacks": [
+				{
+					"power": 6,
+					"cooldown": 13,
+					"message": "~Self~ throws its cap to the air and accidentally hit ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"capsule": {
+			"translation": "<font color='#008010'>Capsule J</font>",
+			"type": "common",
+			"power": "jet",
+			"life": 36,
+			"exp": 28,
+			"items": ["maxim", "drink", "hotdog"],
+			"attacks": [
+				{
+					"power": 12,
+					"cooldown": 27,
+					"message": "~Self~ tackles ~Target~ with a rocket! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"gator": {
+			"translation": "<font color='#008010'>Gator</font>",
+			"type": "common",
+			"power": "none",
+			"life": 20,
+			"exp": 15,
+			"items": ["meat", "pudding", "watermelon"],
+			"attacks": [
+				{
+					"power": 9,
+					"cooldown": 22,
+					"message": "~Self~ bites ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"gim": {
+			"translation": "<font color='#7050f8'>Gim</font>",
+			"type": "common",
+			"power": "yo-yo",
+			"life": 33,
+			"exp": 24,
+			"items": ["drink", "pudding", "cookie"],
+			"attacks": [
+				{
+					"power": 10,
+					"cooldown": 15,
+					"message": "~Self~ hits ~Target~ with a yo-yo! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"glunk": {
+			"translation": "<font color='#a8b818'>Glunk</font>",
+			"type": "common",
+			"power": "none",
+			"life": 22,
+			"exp": 16,
+			"items": ["icecream", "juice", "watermelon"],
+			"attacks": [
+				{
+					"power": 5,
+					"cooldown": 13,
+					"message": "~Self~ shoots water at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"gordo": {
+			"translation": "<font color='#000000'>Gordo</font>",
+			"type": "rare",
+			"power": "none",
+			"life": 1000,
+			"exp": 150,
+			"items": ["maxim", "drink"],
+			"attacks": [
+				{
+					"power": 10,
+					"cooldown": 100,
+					"message": "~Self~'s spikes touch ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"grizzo": {
+			"translation": "<font color='#e8d890'>Grizzo</font>",
+			"type": "common",
+			"power": "none",
+			"life": 50,
+			"exp": 27,
+			"items": ["meat", "pudding", "hotdog"],
+			"attacks": [
+				{
+					"power": 9,
+					"cooldown": 18,
+					"message": "~Self~ happily stomps on ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"javelin": {
+			"translation": "<font color='#e04030'>Javelin Knight</font>",
+			"type": "common",
+			"power": "none",
+			"life": 38,
+			"exp": 27,
+			"items": ["drink", "cookie", "cake"],
+			"attacks": [
+				{
+					"power": 14,
+					"cooldown": 22,
+					"message": "~Self~ throws a javelin at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"jungle": {
+			"translation": "<font color='#007000'>Jungle Bomb</font>",
+			"type": "common",
+			"power": "bomb",
+			"life": 33,
+			"exp": 25,
+			"items": ["maxim", "juice", "watermelon"],
+			"attacks": [
+				{
+					"power": 12,
+					"cooldown": 20,
+					"message": "~Self~ puts a bomb near ~Target~ and then run! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"kabu": {
+			"translation": "<font color='#c8a020'>Kabu</font>",
+			"type": "common",
+			"power": "none",
+			"life": 21,
+			"exp": 16,
+			"items": ["icecream", "milk", "cookie"],
+			"attacks": [
+				{
+					"power": 7,
+					"cooldown": 16,
+					"message": "~Self~ spins, spins, spins and spins, hitting ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"knuckle": {
+			"translation": "<font color='#f81848'>Knuckle Joe</font>",
+			"type": "common",
+			"power": "fighter",
+			"life": 40,
+			"exp": 30,
+			"items": ["drink", "milk", "watermelon"],
+			"attacks": [
+				{
+					"power": 12,
+					"cooldown": 19,
+					"message": "~Self~ kicks ~Target~, followed by a punch and a throw! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"laser": {
+			"translation": "<font color='#e05870'>Laser Ball</font>",
+			"type": "common",
+			"power": "beam",
+			"life": 30,
+			"exp": 20,
+			"items": ["maxim", "juice", "cake"],
+			"attacks": [
+				{
+					"power": 10,
+					"cooldown": 20,
+					"message": "~Self~ fires a laser beam at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"lovely": {
+			"translation": "<font color='#f89000'>Lovely</font>",
+			"type": "common",
+			"power": "none",
+			"life": 25,
+			"exp": 16,
+			"items": ["maxim", "juice", "watermelon"],
+			"attacks": [
+				{
+					"power": 5,
+					"cooldown": 12,
+					"message": "~Self~ grabs ~Target~ using its petals, then hit him/her multiple times before spitting out! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"mace": {
+			"translation": "<font color='#f86800'>Mace Knight</font>",
+			"type": "common",
+			"power": "none",
+			"life": 36,
+			"exp": 26,
+			"items": ["maxim", "icecream", "hotdog"],
+			"attacks": [
+				{
+					"power": 13,
+					"cooldown": 21,
+					"message": "~Self~ spins its mace and attacks ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"moto": {
+			"translation": "<font color='#8888e0'>Moto Shotzo</font>",
+			"type": "common",
+			"power": "none",
+			"life": 22,
+			"exp": 16,
+			"items": ["drink", "cookie", "hotdog"],
+			"attacks": [
+				{
+					"power": 4,
+					"cooldown": 10,
+					"message": "~Self~ fires three small cannon balls at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"noddy": {
+			"translation": "<font color='#e89048'>Noddy</font>",
+			"type": "common",
+			"power": "sleep",
+			"life": 15,
+			"exp": 5,
+			"items": ["milk"],
+			"attacks": [
+				{
+					"power": 2,
+					"cooldown": 35,
+					"message": "~Self~ walks while sleeping and tumbles at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"parasoldee": {
+			"translation": "<font color='#f82810'>Parasol Waddle Dee</font>",
+			"type": "common",
+			"power": "parasol",
+			"life": 30,
+			"exp": 22,
+			"items": ["icecream", "juice", "watermelon"],
+			"attacks": [
+				{
+					"power": 11,
+					"cooldown": 19,
+					"message": "~Self~ hits ~Target~ with a Parasol! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"parasoldoo": {
+			"translation": "<font color='#f82810'>Parasol Waddle Doo</font>",
+			"type": "common",
+			"power": "parasol",
+			"items": ["icecream", "drink", "watermelon"],
+			"life": 35,
+			"exp": 26,
+			"attacks": [
+				{
+					"power": 13,
+					"cooldown": 19,
+					"message": "~Self~ hits ~Target~ with a Parasol! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"plasma": {
+			"translation": "<font color='#30f830'>Plasma</font>",
+			"type": "common",
+			"power": "plasma",
+			"life": 25,
+			"exp": 24,
+			"items": ["maxim", "cookie", "cake"],
+			"attacks": [
+				{
+					"power": 15,
+					"cooldown": 21,
+					"message": "~Self~ fires a plasma wave at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"poppy": {
+			"translation": "<font color='#0078f8'>Poppy Bros. Jr.</font>",
+			"type": "common",
+			"power": "bomb",
+			"life": 32,
+			"exp": 22,
+			"items": ["milk", "pudding", "cookie"],
+			"attacks": [
+				{
+					"power": 12,
+					"cooldown": 22,
+					"message": "~Self~ throws a bomb at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"rocky": {
+			"translation": "<font color='#e74200'>Rocky</font>",
+			"type": "common",
+			"power": "stone",
+			"life": 60,
+			"exp": 24,
+			"items": ["pudding", "cookie", "watermelon"],
+			"attacks": [
+				{
+					"power": 23,
+					"cooldown": 40,
+					"message": "~Self~ falls on ~Target~'s head! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"scarfy": {
+			"translation": "<font color='#f87000'>Scarfy</font>",
+			"type": "common",
+			"power": "none",
+			"life": 23,
+			"exp": 16,
+			"items": ["drink", "meat", "juice"],
+			"attacks": [
+				{
+					"power": 8,
+					"cooldown": 15,
+					"message": "~Self~ bites ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"shotzo": {
+			"translation": "<font color='#000000'>Shotzo</font>",
+			"type": "rare",
+			"power": "none",
+			"life": 500,
+			"exp": 60,
+			"items": ["maxim", "drink", "hotdog"],
+			"attacks": [
+				{
+					"power": 19,
+					"cooldown": 60,
+					"message": "~Self~ fires three cannon balls at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"simirror": {
+			"translation": "<font color='#d05000'>Simirror</font>",
+			"type": "common",
+			"power": "mirror",
+			"life": 36,
+			"exp": 25,
+			"items": ["maxim", "pudding", "cake"],
+			"attacks": [
+				{
+					"power": 12,
+					"cooldown": 19,
+					"message": "~Self~ fires several magical mirrors at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"kibble": {
+			"translation": "<font color='#d0a038'>Sir Kibble</font>",
+			"type": "common",
+			"power": "cutter",
+			"life": 32,
+			"exp": 21,
+			"items": ["drink", "milk", "watermelon"],
+			"attacks": [
+				{
+					"power": 9,
+					"cooldown": 16,
+					"message": "~Self~ throws a cutter boomerang at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"slippy": {
+			"translation": "<font color='#CC1133'>Sir Slippy</font>",
+			"type": "common",
+			"power": "none",
+			"life": 23,
+			"exp": 17,
+			"items": ["icecream", "pudding", "juice", "watermelon"],
+			"attacks": [
+				{
+					"power": 6,
+					"cooldown": 12,
+					"message": "~Self~ jumps at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"squishy": {
+			"translation": "<font color='#f8c820'>Squishy</font>",
+			"type": "common",
+			"power": "none",
+			"life": 24,
+			"exp": 18,
+			"items": ["icecream", "juice", "watermelon"],
+			"attacks": [
+				{
+					"power": 8,
+					"cooldown": 15,
+					"message": "~Self~ shoots ink at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"tac": {
+			"translation": "<font color='#595959'>TAC</font>",
+			"type": "rare",
+			"power": "copy",
+			"life": 35,
+			"exp": 24,
+			"items": ["maxim", "meat", "pudding", "cake"],
+			"attacks": [
+				{
+					"power": 6,
+					"cooldown": 9,
+					"message": "~Self~ cat-punches ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"walky": {
+			"translation": "<font color='#8080b8'>Walky</font>",
+			"type": "common",
+			"power": "mike",
+			"life": 32,
+			"exp": 25,
+			"items": ["drink", "milk", "cookie"],
+			"attacks": [
+				{
+					"power": 10,
+					"cooldown": 23,
+					"message": "~Self~ sings a song for ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"wheelie": {
+			"translation": "<font color='#31314a'>Wheelie</font>",
+			"type": "common",
+			"power": "wheel",
+			"life": 32,
+			"exp": 23,
+			"items": ["maxim", "milk", "hotdog"],
+			"attacks": [
+				{
+					"power": 6,
+					"cooldown": 9,
+					"message": "~Self~ runs over ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"frosty": {
+			"translation": "<font color='#3058f0'>Mr. Frosty</font>",
+			"type": "miniboss",
+			"power": "ice",
+			"life": 95,
+			"exp": 120,
+			"items": ["maxim", "icecream", "watermelon"],
+			"attacks": [
+				{
+					"power": 7,
+					"cooldown": 7,
+					"message": "~Self~ throws an ice cube at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 23,
+					"cooldown": 20,
+					"message": "~Self~ swallow ~Target~, then spits him/her out against the wall! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"bonkers": {
+			"translation": "<font color='#9018a8'>Bonkers</font>",
+			"type": "miniboss",
+			"power": "hammer",
+			"life": 115,
+			"exp": 135,
+			"items": ["maxim", "meat", "hotdog"],
+			"attacks": [
+				{
+					"power": 21,
+					"cooldown": 17,
+					"message": "~Self~ slam ~Target~ with a big hammer! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 17,
+					"cooldown": 20,
+					"message": "~Self~ throws some explosive coconuts at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"bugzzy": {
+			"translation": "<font color='#ad00e6'>Bugzzy</font>",
+			"type": "miniboss",
+			"power": "suplex",
+			"life": 105,
+			"exp": 125,
+			"items": ["meat", "pudding", "watermelon"],
+			"attacks": [
+				{
+					"power": 20,
+					"cooldown": 24,
+					"message": "~Self~ grabs ~Target~ with its mandibles and tackles him/her at the ground! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 16,
+					"cooldown": 13,
+					"message": "~Self~ release two beetles that fly towards ~Target~ and bite him/her! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"chef": {
+			"translation": "<font color='#f8b001'>Chef Kawasaki</font>",
+			"type": "miniboss",
+			"power": "cook",
+			"life": 130,
+			"exp": 150,
+			"items": ["maxim"],
+			"attacks": [
+				{
+					"power": 9,
+					"cooldown": 13,
+					"message": "~Self~ tosses several dishes at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 22,
+					"cooldown": 19,
+					"message": "~Self~ puts ~Target~ in a frying pan, adds some spice and then serves him/her for dinner! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"iron": {
+			"translation": "<font color='#00a000'>Iron Mam</font>",
+			"type": "miniboss",
+			"power": "fighter",
+			"life": 120,
+			"exp": 135,
+			"items": ["drink", "meat", "milk"],
+			"attacks": [
+				{
+					"power": 28,
+					"cooldown": 24,
+					"message": "~Self~ extends its arm and hits ~Target~ with a punch! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 19,
+					"cooldown": 21,
+					"message": "~Self~ smack ~Target~ down with several blows! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"jukid": {
+			"translation": "<font color='#0000de'>Jukid</font>",
+			"type": "miniboss",
+			"power": "suplex",
+			"life": 98,
+			"exp": 115,
+			"items": ["icecream", "drink", "cake", "hotdog"],
+			"attacks": [
+				{
+					"power": 15,
+					"cooldown": 15,
+					"message": "~Self~ grabs ~Target~ and quickly pounds him/her into the ground! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 19,
+					"cooldown": 17,
+					"message": "~Self~ fires an energy blast at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"poppysr": {
+			"translation": "<font color='#f88800'>Poppy Bros. Sr.</font>",
+			"type": "miniboss",
+			"power": "bomb",
+			"life": 90,
+			"exp": 110,
+			"items": ["maxim", "drink", "meat", "watermelon"],
+			"attacks": [
+				{
+					"power": 18,
+					"cooldown": 16,
+					"message": "~Self~ throws several bombs at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 7,
+					"cooldown": 8,
+					"message": "~Self~ jumps around for a while, then stomps on ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"dynablade": {
+			"translation": "<font color='#da3a36'>Dyna Blade</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 300,
+			"exp": 300,
+			"attacks": [
+				{
+					"power": 35,
+					"cooldown": 24,
+					"message": "~Self~ takes flights, spreads her wings and strikes ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 20,
+					"cooldown": 19,
+					"message": "~Self~ spits fire balls at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 16,
+					"cooldown": 14,
+					"message": "~Self~ stretches her head and hits ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"fattywhale": {
+			"translation": "<font color='#4661ae'>Fatty Whale</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 350,
+			"exp": 350,
+			"attacks": [
+				{
+					"power": 42,
+					"cooldown": 30,
+					"message": "~Self~ splashes ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 24,
+					"cooldown": 26,
+					"message": "~Self~ shoots water to the sky, then several rocks and fishes fall on ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 20,
+					"cooldown": 23,
+					"message": "~Self~ rolls around, running over ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"dedede": {
+			"translation": "<font color='#3170b0'>King Dedede</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 500,
+			"exp": 500,
+			"attacks": [
+				{
+					"power": 34,
+					"cooldown": 28,
+					"message": "~Self~ hits ~Target~ with a hammer! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 21,
+					"cooldown": 18,
+					"message": "~Self~ throws a Waddle Dee at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 24,
+					"cooldown": 25,
+					"message": "~Self~ jumps high, falling on ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"metaknight": {
+			"translation": "<font color='#f88800'>Meta Knight</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 420,
+			"exp": 450,
+			"attacks": [
+				{
+					"power": 34,
+					"cooldown": 27,
+					"message": "~Self~ creates a vortex that hits ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 21,
+					"cooldown": 17,
+					"message": "~Self~ slices ~Target~ with its sword, Galaxia! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 24,
+					"cooldown": 21,
+					"message": "~Self~ extends its Dimensional Cape, wrapping ~Target~ in a dark space! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"kracko": {
+			"translation": "<font color='#fdb226'>Kracko</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 300,
+			"exp": 250,
+			"attacks": [
+				{
+					"power": 32,
+					"cooldown": 27,
+					"message": "~Self~ hits ~Target~ with a rainstorm! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 27,
+					"cooldown": 20,
+					"message": "~Self~ fires sparks at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 20,
+					"cooldown": 19,
+					"message": "~Self~ dives in ~Target~'s direction! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"whispy": {
+			"translation": "<font color='#c6923e'>Whispy Woods</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 200,
+			"exp": 175,
+			"attacks": [
+				{
+					"power": 15,
+					"cooldown": 16,
+					"message": "~Self~ drops some apples at ~Target~'s head! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 22,
+					"cooldown": 23,
+					"message": "~Self~ shoots air puffs at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 25,
+					"cooldown": 23,
+					"message": "~Self~ drops worms at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"lololo": {
+			"translation": "<font color='#0f6593'>Lololo</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 150,
+			"exp": 130,
+			"attacks": [
+				{
+					"power": 21,
+					"cooldown": 24,
+					"message": "~Self~ pushes at box, hitting ~Target~ who was on his way! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 30,
+					"cooldown": 24,
+					"message": "~Self~ pushes a Gordo, hitting ~Target~ who was on his way! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"lalala": {
+			"translation": "<font color='#f66a6a'>Lalala</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 150,
+			"exp": 130,
+			"attacks": [
+				{
+					"power": 21,
+					"cooldown": 24,
+					"message": "~Self~ pushes at box, hitting ~Target~ who was on her way! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 30,
+					"cooldown": 24,
+					"message": "~Self~ pushes a Gordo, hitting ~Target~ who was on her way! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"marx": {
+			"translation": "<font color='#7747cf'>Marx</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 600,
+			"exp": 700,
+			"attacks": [
+				{
+					"power": 79,
+					"cooldown": 40,
+					"message": "~Self~ opens a black role, swallowing ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 19,
+					"cooldown": 13,
+					"message": "~Self~ throws several cutter boomerangs at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 43,
+					"cooldown": 29,
+					"message": "~Self~ fires a charged beam at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 25,
+					"cooldown": 19,
+					"message": "~Self~ drops some seeds on the ground. They suddenly grows into thorny vines that hits ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"shine": {
+			"translation": "<font color='#f3a344'>Mr. Shine</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 210,
+			"exp": 240,
+			"attacks": [
+				{
+					"power": 33,
+					"cooldown": 27,
+					"message": "~Self~ throws a lunar boomerang at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 25,
+					"cooldown": 19,
+					"message": "~Self~ rolls against ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"bright": {
+			"translation": "<font color='#e84000'>Mr. Bright</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 210,
+			"exp": 240,
+			"attacks": [
+				{
+					"power": 33,
+					"cooldown": 27,
+					"message": "~Self~ launch a fireball at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 25,
+					"cooldown": 19,
+					"message": "~Self~ surrounds itself on fire and charge into ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"paintroller": {
+			"translation": "<font color='#deac48'>Paint Roller</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 330,
+			"exp": 330,
+			"attacks": [
+				{
+					"power": 34,
+					"cooldown": 28,
+					"message": "~Self~ draws a Kirby on a canvas, who then comes alive and attack ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 21,
+					"cooldown": 24,
+					"message": "~Self~ draws a bomb on a canvas, which explodes near ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 18,
+					"cooldown": 18,
+					"message": "~Self~ draws a cloud on a canvas, which came out of it and struck a lightning on ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		},
+		"darkmatter": {
+			"translation": "<font color='#5a2f77'>Dark Matter</font>",
+			"type": "boss",
+			"power": "none",
+			"life": 850,
+			"exp": 1000,
+			"attacks": [
+				{
+					"power": 38,
+					"cooldown": 20,
+					"message": "~Self~ shoots a dark beam at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 25,
+					"cooldown": 15,
+					"message": "~Self~ shoots a thunderbolt from its eye at ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				},
+				{
+					"power": 18,
+					"cooldown": 11,
+					"message": "~Self~ releases some purple orbs to attack ~Target~! ~Target~ lost ~Damage~ life points and now has ~Life~!"
+				}
+			]
+		}
+	},
+	"items": {
+		"maxim": {
+			"translation": "Maxim Tomato",
+			"restore": 500,
+			"duration": 50,
+			"message": "~Self~ cuts the Maxim Tomato in two halves and eat them in a single bite! ~Self~ gained 300 life points!"
+		},
+		"icecream": {
+			"translation": "Ice Cream",
+			"restore": 25,
+			"duration": 120,
+			"message": "~Self~ spots an ice cream! OM NOM NOM NOM! ~Self~ gained 25 life points!"
+		},
+		"drink": {
+			"translation": "Energy Drink",
+			"restore": 150,
+			"duration": 75,
+			"message": "~Self~ swallow an Energy Drink! ~Self~ gained 150 life points!"
+		},
+		"meat": {
+			"translation": "Meat",
+			"restore": 100,
+			"duration": 100,
+			"message": "~Self~ found meat and ate it! OM NOM NOM NOM! ~Self~ gained 100 life points!"
+		},
+		"milk": {
+			"translation": "Milk",
+			"restore": 75,
+			"duration": 120,
+			"message": "~Self~ drinks a glass of milk! ~Self~ gained 75 life points!"
+		},
+		"pudding": {
+			"translation": "Pudding",
+			"restore": 40,
+			"duration": 120,
+			"message": "~Self~ spots an pudding! OM NOM NOM NOM! ~Self~ gained 25 life points!"
+		},
+		"juice": {
+			"translation": "Orange Juice",
+			"restore": 50,
+			"duration": 120,
+			"message": "~Self~ drinks orange juice! ~Self~ gained 50 life points!"
+		},
+		"cookie": {
+			"translation": "Cookie",
+			"restore": 25,
+			"duration": 120,
+			"message": "~Self~ spots an cookie! OM NOM NOM NOM! ~Self~ gained 25 life points!"
+		},
+		"coffee": {
+			"translation": "Coffee",
+			"restore": 45,
+			"duration": 120,
+			"message": "~Self~ gets a cup of coffee! ~Self~ gained 45 life points!"
+		},
+		"cake": {
+			"translation": "Cake",
+			"restore": 50,
+			"duration": 120,
+			"message": "~Self~ spots an cake! OM NOM NOM NOM! ~Self~ gained 50 life points!"
+		},
+		"hotdog": {
+			"translation": "Hot Dog",
+			"restore": 60,
+			"duration": 120,
+			"message": "~Self~ eats a whole hot dog in a single bite! ~Self~ gained 60 life points!"
+		},
+		"watermelon": {
+			"translation": "Watermelon",
+			"restore": 100,
+			"duration": 100,
+			"message": "~Self~ spots an watermelon! OM NOM NOM NOM! ~Self~ gained 100 life points!"
+		}
+	},
+	"events": {
+		"icehell": {
+			"announcement": "<font color='#113399'><b>Warning! A snowstorm is approaching! Lots of Mr. Frosty, Chilly, Ice Creams and Ice power stars appeared!</b></font>",
+			"duration": 300,
+			"bonusexp": 2,
+			"enemies": {
+				"frosty": 2,
+				"chilly": 10
+			},
+			"items": {
+				"icecream": 20
+			},
+			"powers": {
+				"ice": 15
+			}
+		},
+		"hammerbros": {
+			"announcement": "<font color='#113399'><b>Hammer Bros. attacks! And they brought some Rockys, Meat and Hammer power stars with them!</b></font>",
+			"duration": 300,
+			"bonusexp": 2,
+			"enemies": {
+				"bonkers": 3,
+				"rocky": 8
+			},
+			"items": {
+				"meat": 15
+			},
+			"powers": {
+				"hammer": 10
+			}
+		},
+		"bugattack": {
+			"announcement": "<font color='#113399'><b>Bug Swarm! Bugzzy is leading Bronto Burt, Lovely and Cappy, all of them aiming for the Milk and Maxim Tomatoes! Use the Suplex power stars to defeat them!</b></font>",
+			"duration": 300,
+			"bonusexp": 2,
+			"enemies": {
+				"bugzzy": 2,
+				"bronto": 4,
+				"lovely":4,
+				"cappy": 4
+			},
+			"items": {
+				"milk": 15,
+				"maxim": 5
+			},
+			"powers": {
+				"suplex": 15
+			}
+		},
+		"cooktime": {
+			"announcement": "<font color='#113399'><b>Dinner Time! Chef Kawasaki's team came to get all the meat, pudding and cake they can! Use the Cutter, Fire and Parasol power stars to defeat them!</b></font>",
+			"duration": 300,
+			"bonusexp": 2,
+			"enemies": {
+				"chef": 2,
+				"broom": 4,
+				"birdon": 2,
+				"burning": 2,
+				"kibble": 2
+			},
+			"items": {
+				"meat": 10,
+				"pudding": 10,
+				"cake": 10
+			},
+			"powers": {
+				"cutter": 6,
+				"fire": 6, 
+				"parasol": 3
+			}
+		},
+		"ironfist": {
+			"announcement": "<font color='#113399'><b>Irom Mam is looking for a fight! Be sure to eat all the Meat and drink all the Energy Drinks you can to defeat him and the Knuckle Joes! Fighter and Suplex power stars appeared!</b></font>",
+			"duration": 300,
+			"bonusexp": 2,
+			"enemies": {
+				"iron": 2,
+				"knuckle": 10
+			},
+			"items": {
+				"meat": 10,
+				"drink": 10
+			},
+			"powers": {
+				"fighter": 10,
+				"suplex": 5
+			}
+		},
+		"judofight": {
+			"announcement": "<font color='#113399'><b>Fight in the dojo! Jukid, Knuckle Joe and Biospark are rampaging the place! There's food and power stars everywhere!</b></font>",
+			"duration": 300,
+			"bonusexp": 2,
+			"enemies": {
+				"jukid": 2,
+				"knuckle": 6,
+				"biospark": 6
+			},
+			"items": {
+				"cookie": 15,
+				"juice": 15
+			},
+			"powers": {
+				"suplex": 10,
+				"fighter": 5
+			}
+		},
+		"bombbattle": {
+			"announcement": "<font color='#113399'><b>EXPLOSIONS! Poppy Bros. Sr. and Jr., Jungle Bomber abd Bombers are going to blast everything! At the same time, some items and power stars appeared!</b></font>",
+			"duration": 300,
+			"bonusexp": 2,
+			"enemies": {
+				"poppysr": 2,
+				"poppy": 6,
+				"jungle": 4,
+				"bomber": 1
+			},
+			"items": {
+				"coffee": 15,
+				"watermelon": 15
+			},
+			"powers": {
+				"bomb": 15,
+				"crash": 1
+			}
+		},
+		"dynablade": {
+			"announcement": "<font color='#113399'><b>Warning: A Boss is approaching! Defeat Dyna Blade and her minions!</b></font>",
+			"duration": 360,
+			"bonusexp": 1.5,
+			"enemies": {
+				"dynablade": 1,
+				"birdon": 7
+			},
+			"items": {
+				"maxim": 10,
+				"drink": 10
+			},
+			"powers": {
+				"wing": 12
+			}
+		},
+		"fattywhale": {
+			"announcement": "<font color='#113399'><b>Warning: A Boss is approaching! Defeat Fatty Whale and his minions!</b></font>",
+			"duration": 360,
+			"bonusexp": 1.5,
+			"enemies": {
+				"fattywhale": 1,
+				"blipper": 10,
+				"squishy": 5,
+				"glunk": 5
+			},
+			"items": {
+				"maxim": 10,
+				"drink": 10
+			},
+			"powers": {
+				"stone": 6,
+				"parasol": 6
+			}
+		},
+		"dedede": {
+			"announcement": "<font color='#113399'><b>Warning: A Boss is approaching! Defeat King Dedede and his minions!</b></font>",
+			"duration": 360,
+			"bonusexp": 1.5,
+			"enemies": {
+				"dedede": 1,
+				"doo": 5,
+				"dee": 10
+			},
+			"items": {
+				"maxim": 10,
+				"drink": 10
+			},
+			"powers": {
+				"hammer": 3,
+				"beam": 5,
+				"cutter": 5,
+				"stone": 3
+			}
+		},
+		"metaknight": {
+			"announcement": "<font color='#113399'><b>Warning: A Boss is approaching! Defeat Meta Knight and his minions!</b></font>",
+			"duration": 360,
+			"bonusexp": 1.5,
+			"enemies": {
+				"metaknight": 1,
+				"ax": 2,
+				"blade": 2,
+				"mace": 2,
+				"javelin": 2
+			},
+			"items": {
+				"maxim": 10,
+				"drink": 10
+			},
+			"powers": {
+				"sword": 20
+			}
+		},
+		"kracko": {
+			"announcement": "<font color='#113399'><b>Warning: A Boss is approaching! Defeat Kracko and his minions!</b></font>",
+			"duration": 360,
+			"bonusexp": 1.5,
+			"enemies": {
+				"kracko": 1,
+				"doo": 8
+			},
+			"items": {
+				"maxim": 10,
+				"drink": 10
+			},
+			"powers": {
+				"beam": 10,
+				"bomb": 5,
+				"plasma": 5
+			}
+		},
+		"whispy": {
+			"announcement": "<font color='#113399'><b>Warning: A Boss is approaching! Defeat Whispy Woods and his minions!</b></font>",
+			"duration": 300,
+			"bonusexp": 1.5,
+			"enemies": {
+				"whispy": 1,
+				"grizzo": 3,
+				"dee": 5,
+				"kabu": 5
+			},
+			"items": {
+				"maxim": 10,
+				"drink": 10
+			},
+			"powers": {
+				"cutter": 10,
+				"wing": 5
+			}
+		},
+		"twinwoods": {
+			"announcement": "<font color='#113399'><b>Warning: A Boss is approaching! Defeat two Whispy Woods!</b></font>",
+			"duration": 360,
+			"bonusexp": 1.5,
+			"enemies": {
+				"whispy": 2
+			},
+			"items": {
+				"maxim": 10,
+				"drink": 10
+			},
+			"powers": {
+				"cutter": 10,
+				"wing": 5
+			}
+		},
+		"lolololalala": {
+			"announcement": "<font color='#113399'><b>Warning: A Boss is approaching! Defeat Lololo and Lalala!</b></font>",
+			"duration": 360,
+			"bonusexp": 1.5,
+			"enemies": {
+				"lololo": 1,
+				"lalala": 1
+			},
+			"items": {
+				"maxim": 10,
+				"drink": 10
+			},
+			"powers": {
+				"hammer": 5,
+				"yo-yo": 5,
+				"jet": 5
+			}
+		},
+		"marx": {
+			"announcement": "<font color='#113399'><b>Warning: A Boss is approaching! Defeat Marx!</b></font>",
+			"duration": 400,
+			"bonusexp": 2,
+			"enemies": {
+				"marx": 1
+			},
+			"items": {
+				"maxim": 10,
+				"drink": 10
+			},
+			"powers": {
+				"cutter": 6,
+				"ice": 6,
+				"mirror": 6
+			}
+		},
+		"shinebright": {
+			"announcement": "<font color='#113399'><b>Warning: A Boss is approaching! Defeat Mr. Shine & Mr. Bright and their minions!</b></font>",
+			"duration": 360,
+			"bonusexp": 1.5,
+			"enemies": {
+				"shine": 1,
+				"bright": 1,
+				"burning": 5,
+				"kibble": 5
+			},
+			"items": {
+				"maxim": 10,
+				"drink": 10
+			},
+			"powers": {
+				"fire": 8,
+				"cutter": 8
+			}
+		},
+		"paintroller": {
+			"announcement": "<font color='#113399'><b>Warning: A Boss is approaching! Defeat Paint Roller and his minions!</b></font>",
+			"duration": 360,
+			"bonusexp": 1.5,
+			"enemies": {
+				"paintroller": 1,
+				"dee": 5,
+				"wheelie": 5,
+				"parasoldoo": 5
+			},
+			"items": {
+				"maxim": 10,
+				"drink": 10
+			},
+			"powers": {
+				"paint": 1,
+				"mike": 1,
+				"bomb": 6,
+				"parasol": 6,
+				"wheel":6
+			}
+		},
+		"darkmatter": {
+			"announcement": "<font color='#113399'><b>Warning: A Boss is approaching! Defeat Dark Matter and his minions!</b></font>",
+			"duration": 420,
+			"bonusexp": 1.5,
+			"enemies": {
+				"darkmatter": 1,
+				"gordo": 2,
+				"noddy": 2,
+				"bomber": 2
+			},
+			"items": {
+				"maxim": 10,
+				"drink": 10
+			},
+			"powers": {
+				"bomb": 3,
+				"plasma": 3,
+				"sword": 3,
+				"beam": 3,
+				"crash": 1,
+				"mike": 1,
+				"cook": 1,
+				"paint": 1
+			}
+		}
+	}
+}
