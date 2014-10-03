@@ -387,15 +387,6 @@ function Hangman() {
         }
         hangbot.sendAll("Type /g [letter] to guess a letter, and /a [answer] to guess the answer!", hangchan);
         sendChanHtmlAll(" ", hangchan);
-        var time = parseInt(sys.time(), 10);
-        if (time > this.lastAdvertise + 60 * 20) {
-            this.lastAdvertise = time;
-            sys.sendAll("", 0);
-            sys.sendAll("*** ************************************************************ ***", 0);
-            hangbot.sendAll("A new game of Hangman with the hint '" + hint + "' started in #Hangman!", 0);
-            sys.sendAll("*** ************************************************************ ***", 0);
-            sys.sendAll("", 0);
-        }
     };
     this.startAutoGame = function(isEvent) {
         if (autoGames.length === 0) {

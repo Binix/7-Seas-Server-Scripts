@@ -15,7 +15,7 @@ function Casino(casinochan) {
             return;
         }
         
-        var symbols = ["?", "?", "?", "?", "?", "?", "?", "?"];
+        var symbols = ["❤", "★", "✰", "✿", "✧", "☾", "☯", "☮"];
         var s = symbols.length;
         
         // Reels
@@ -170,14 +170,14 @@ function Casino(casinochan) {
                 out = ["How to play Slots:",
                     "To play slots, you choose whether to play 1, 2 or 3 coins. 1 coin watches only the middle row. It has the lowest odds, but the highest payouts. 2 coin watches all three rows. It has much better odds, but only a medium pay out. 3 coin watches all three rows and diagonal. It has the best odds, but the lowest payouts. Simply type '/slots 1', '/slots 2' or '/slots 3' to play.",
                     "Combination - Payouts (1 Coin / 2 Coins / 3 Coins): ",
-                    "??? - 5000 / 1500 / 1000 [Jackpot] ",
-                    "??? - 2500 / 750 / 500 [Minipot] ",
-                    "??? - 1900 / 550 / 350 ",
-                    "??? - 1200 / 300 / 150 ",
-                    "??? - 300 / 100 / 75 ",
-                    "??? - 150 / 50 / 35 ",
-                    "3 match ? or ? - 10 / 4 / 2 ",
-                    "2 match ? or ? - 0 / 0 / 0 ",
+                    "❤❤❤ - 5000 / 1500 / 1000 [Jackpot] ",
+                    "★★★ - 2500 / 750 / 500 [Minipot] ",
+                    "❤❤★ - 1900 / 550 / 350 ",
+                    "❤★★ - 1200 / 300 / 150 ",
+                    "❤✰✿ - 300 / 100 / 75 ",
+                    "★☾✧ - 150 / 50 / 35 ",
+                    "3 match ☯ or ☮ - 10 / 4 / 2 ",
+                    "2 match ☯ or ☮ - 0 / 0 / 0 ",
                     "3 matching symbols - 55 / 15 / 10 ",
                     "2 matching symbols - 15 / 5 / 4 "
                 ];
