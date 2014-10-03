@@ -1,5 +1,5 @@
 // This is the official Pokemon Online Scripts
-// Edited By Kase for 7 Seas 2014
+//Edited By Kase for 7 Seas
 // These scripts will only work on 2.0.00 or newer.
 /*jshint "laxbreak":true,"shadow":true,"undef":true,"evil":true,"trailing":true,"proto":true,"withstmt":true*/
 // You may change these variables as long as you keep the same type
@@ -9,6 +9,7 @@ var Config = {
     bot: "Dratini",
     kickbot: "Blaziken",
     capsbot: "Exploud",
+    casinobot: "Chansey",
     channelbot: "Chatot",
     checkbot: "Snorlax",
     coinbot: "Meowth",
@@ -19,16 +20,26 @@ var Config = {
     commandbot: "CommandBot",
     querybot: "QueryBot",
     hangbot: "Unown",
-    rpgbot: "Xatu",
     bfbot: "Goomy",
-    Plugins: ["mafia.js", "tournaments.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js", "rpg.js"],
+    Plugins: ["mafia.js", "tournaments.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js", "kirby.js", "casino.js", "dice-slider.js", "pokerace.js", "wallet.js"],
     Mafia: {
-        bot: "Murkrow",
+        bot: "Game",
         norepeat: 5,
         stats_file: "scriptdata/mafia_stats.json",
         max_name_length: 16,
         notPlayingMsg: "±Game: The game is in progress. Please type /join to join the next mafia game."
     },
+    Games: [
+        "",
+        "*** SERVER GAMES ***",
+        "Slots: Go to #Casino.",
+        "Pokemon Race: Go to #Pokemon Race.",
+        "Hangman: Go to #Hangman.",
+        "Mafia: Go to #Mafia.",
+        "Trivia: Go to #Trivia.",
+        "Kirby Game: Go to #Kirby Game",
+        ""
+    ],
     DreamWorldTiers: ["No Preview OU", "No Preview Ubers", "DW LC", "DW UU", "DW LU", "Gen 5 1v1 Ubers", "Gen 5 1v1", "Challenge Cup", "CC 1v1", "DW Uber Triples", "No Preview OU Triples", "No Preview Uber Doubles", "No Preview OU Doubles", "Shanai Cup", "Shanai Cup 1.5", "Shanai Cup STAT", "Original Shanai Cup TEST", "Monocolour", "Clear Skies DW"],
     superAdmins: ["Kase", "Neos"],
     canJoinStaffChannel: ["Rose"],
@@ -98,7 +109,7 @@ var updateModule = function updateModule(module_name, callback) {
    }
 };
 
-var channel, contributors, mutes, mbans, smutes, detained, hmutes, mafiaSuperAdmins, hangmanAdmins, hangmanSuperAdmins, staffchannel, channelbot, normalbot, bot, mafiabot, kickbot, capsbot, checkbot, coinbot, countbot, tourneybot, battlebot, commandbot, querybot, rankingbot, hangbot, rpgbot, bfbot, scriptChecks, lastMemUpdate, bannedUrls, mafiachan, mafiarev, sachannel, tourchannel, dwpokemons, hapokemons, lcpokemons, bannedGSCSleep, bannedGSCTrap, breedingpokemons, rangebans, proxy_ips, mafiaAdmins, rules, authStats, nameBans, chanNameBans, isSuperAdmin, cmp, key, battlesStopped, lineCount, pokeNatures, pokeAbilities, maxPlayersOnline, pastebin_api_key, pastebin_user_key, getSeconds, getTimeString, sendChanMessage, sendChanAll, sendMainTour, VarsCreated, authChangingTeam, usingBannedWords, repeatingOneself, capsName, CAPSLOCKDAYALLOW, nameWarns, poScript, revchan, triviachan, watchchannel, lcmoves, hangmanchan, ipbans, battlesFought, lastCleared, blackjackchan, namesToWatch, allowedRangeNames, reverseTohjo;
+var channel, contributors, mutes, mbans, smutes, detained, hmutes, mafiaSuperAdmins, hangmanAdmins, hangmanSuperAdmins, staffchannel, casino, channelbot, normalbot, bot, mafiabot, kickbot, capsbot, checkbot, coinbot, countbot, tourneybot, battlebot, commandbot, querybot, rankingbot, hangbot, stopbot, rpgbot, rpgchan, bfbot, scriptChecks, lastMemUpdate, bannedUrls, mafiachan, mafiarev, sachannel, tourchannel, dwpokemons, hapokemons, lcpokemons, bannedGSCSleep, bannedGSCTrap, breedingpokemons, rangebans, proxy_ips, mafiaAdmins, rules, authStats, nameBans, chanNameBans, isSuperAdmin, cmp, key, battlesStopped, lineCount, pokeNatures, pokeAbilities, maxPlayersOnline, pastebin_api_key, pastebin_user_key, getSeconds, getTimeString, sendChanMessage, sendChanAll, sendMainTour, VarsCreated, authChangingTeam, usingBannedWords, repeatingOneself, capsName, CAPSLOCKDAYALLOW, nameWarns, poScript, revchan, triviachan, watchchannel, lcmoves, hangmanchan, ipbans, battlesFought, casinobot, casinochan, pokechan, stopchan, lastCleared, blackjackchan, namesToWatch, allowedRangeNames, reverseTohjo;
 
 var pokeDir = "db/pokes/";
 var moveDir = "db/moves/6G/";
@@ -306,6 +317,7 @@ normalbot = bot = new Bot(Config.bot);
 mafiabot = new Bot(Config.Mafia.bot);
 channelbot = new Bot(Config.channelbot);
 kickbot = new Bot(Config.kickbot);
+casinobot = new Bot(Config.casinobot);
 capsbot = new Bot(Config.capsbot);
 checkbot = new Bot(Config.checkbot);
 coinbot = new Bot(Config.coinbot);
@@ -316,7 +328,6 @@ battlebot = new Bot(Config.battlebot);
 commandbot = new Bot(Config.commandbot);
 querybot = new Bot(Config.querybot);
 hangbot = new Bot(Config.hangbot);
-rpgbot = new Bot(Config.rpgbot);
 bfbot = new Bot(Config.bfbot);
 
 /* Start script-object
@@ -334,10 +345,10 @@ step: function() {
     if (date.getUTCMinutes() === 10 && date.getUTCSeconds() === 0 && sys.os() !== "windows") {
         sys.get_output("nc -z server.pokemon-online.eu 10508", function callback(exit_code) {
             if (exit_code !== 0) {
-                sys.sendAll("±NetCat: Cannot reach Webclient Proxy - it may be down.", sys.channelId("Indigo Plateau"));
+                sys.sendAll("?NetCat: Cannot reach Webclient Proxy - it may be down.", sys.channelId("Indigo Plateau"));
             }
         }, function errback(error) {
-                sys.sendAll("±NetCat: Cannot reach Webclient Proxy - it may be down: " + error, sys.channelId("Indigo Plateau"));
+                sys.sendAll("?NetCat: Cannot reach Webclient Proxy - it may be down: " + error, sys.channelId("Indigo Plateau"));
         });
         clearTeamFiles();
     }
@@ -382,7 +393,9 @@ init : function() {
     battlesFought = +sys.getVal("Stats/BattlesFought");
     lastCleared = +sys.getVal("Stats/LastCleared");
 
-    mafiachan = SESSION.global().channelManager.createPermChannel("Mafia", "Use /help to get started!");   
+    mafiachan = SESSION.global().channelManager.createPermChannel("Mafia", "Use /help to get started!");
+	casinochan = SESSION.global().channelManager.createPermChannel("Casino", "Use /help to get started!");
+    pokechan = SESSION.global().channelManager.createPermChannel("Pokemon Race", "Use /commands to get started!");
     staffchannel = SESSION.global().channelManager.createPermChannel("Indigo Plateau", "Welcome to the Staff Channel! Discuss of all what users shouldn't hear here! Or more serious stuff...");
     tourchannel = SESSION.global().channelManager.createPermChannel("Tournaments", 'Play To Win');
     watchchannel = SESSION.global().channelManager.createPermChannel("Watch", "Alerts displayed here");
@@ -968,7 +981,7 @@ canJoinStaffChannel : function(src) {
 },
 
 isOfficialChan : function (chanid) {
-    var officialchans = [0, tourchannel, mafiachan, triviachan, hangmanchan];
+    var officialchans = [0, tourchannel, mafiachan, triviachan, hangmanchan, casinochan];
     if (officialchans.indexOf(chanid) > -1)
         return true;
     else
@@ -1267,7 +1280,7 @@ nameWarnTest : function(src) {
     for (var i = 0; i < nameWarns.length; ++i) {
         var regexp = nameWarns[i];
         if (regexp.test(lname)) {
-            sys.sendAll('Namewarning: Name `' + sys.name(src) + '´ matches the following regexp: `' + regexp + '´ on the IP `' + sys.ip(src) + "´.", watchchannel);
+            sys.sendAll('Namewarning: Name `' + sys.name(src) + '? matches the following regexp: `' + regexp + '? on the IP `' + sys.ip(src) + "?.", watchchannel);
         }
     }
 },
@@ -1685,7 +1698,7 @@ beforeChatMessage: function(src, message, chan) {
                 }
             }
         }
-        var BanList = [".tk", "nimp.org", "drogendealer", /\u0E49/, /\u00AD/, "nobrain.dk", /\bn[1i]gg+ers*\b/i,  "¦¦", "¦¦", "__", "¯¯", "___", "……", ".....", "¶¶", "¯¯", "----", "+-+"];
+        var BanList = [".tk", "nimp.org", "drogendealer", /\u0E49/, /\u00AD/, "nobrain.dk", /\bn[1i]gg+ers*\b/i,  "??", "??", "__", "??", "___", "??", ".....", "??", "??", "----", "+-+"];
         for (var i = 0; i < BanList.length; ++i) {
             var filter = BanList[i];
             if (typeof filter == "string" && m.indexOf(filter) != -1 || typeof filter == "function" && filter.test(m)) {
