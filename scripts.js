@@ -329,7 +329,7 @@ commandbot = new Bot(Config.commandbot);
 querybot = new Bot(Config.querybot);
 hangbot = new Bot(Config.hangbot);
 bfbot = new Bot(Config.bfbot);
-casinobot = new Bot(config.casinobot);
+casinobot = new Bot(Config.casinobot);
 
 /* Start script-object
  *
