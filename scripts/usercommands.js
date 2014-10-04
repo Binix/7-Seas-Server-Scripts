@@ -916,6 +916,35 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         }
         return;
     }
+    if (command == "changeavatar") {
+        if (commandData !== undefined){
+            normalbot.sendMessage(src, "Please specify avatar number!", channel);
+            return;
+        }
+        sys.changeAvatar(src, commandData);
+        normalbot.sendMessage(src, "Your avatar was changed to " + commandData +"!", channel);
+    }
+    if (command == "changeinfo") {
+        sys.changeInfo(src, commandData);
+        normalbot.sendMessage(src, "Your Trainer Infomation was changed! to " + commandData + "", channel);
+        return;
+    }
+    if (command == "joinclan") {
+        if (sys.name(src).indexOf('[MC]') != -1) {
+            clanbot.sendMessage(src, "You already join MC!", channel);
+            return;
+        }
+        sys.changeName(src, "[MC]"+sys.name(src));
+        sys.sendNetworkCommand(src, 14);
+        clanbot.sendAll("" + sys.name(src) + " joined MC! Don't forget to register again!");
+        return;
+    }
+    if (command == "leaveclan") {
+        name = sys.name(src).replace('[MC]', '');
+        sys.changeName(src, name);
+        clanbot.sendMessage("" + sys.name(src) + " left MC!");
+        return;
+    }
     return "no command";
 };
 
@@ -947,5 +976,9 @@ exports.help =
         "/seen [name]: Allows you to see the last login of a user.",
         "/changetier: Allows you to switch tier. Format is /changetier [tier]:[team]. Team is a number between 0-5 indicating loaded teams. Default is 0.",
         "/invitespec [name]: Allows you to invite someone to watch your battle.",
-        "/notice: Allows you to view current events"
+        "/notice: Allows you to view current events",
+        "/changeavatar [number]: Allows you to change your avatar.",
+        "/changeinfo [code]: Allows you to change your Trainer Information.",
+        "/joinclan: To join MC.",
+        "/leaveclan: To leave MC."
     ];
