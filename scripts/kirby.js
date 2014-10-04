@@ -968,7 +968,7 @@ function Kirby(kirbychan) {
         }
         SESSION.global().channelManager.restoreSettings(kirbychan);
         SESSION.channels(kirbychan).perm = true;
-        SESSION.channels(kirbychan).master = "RiceKirby";
+        SESSION.channels(kirbychan).master = "Kase";
 		game.loadInfo();
 	};
 
@@ -1049,7 +1049,7 @@ module.exports = function() {
 		}
 		SESSION.global().channelManager.restoreSettings(id);
 		SESSION.channels(id).perm = true;
-		SESSION.channels(id).master = "RiceKirby";
+		SESSION.channels(id).master = "Kase";
 	}
 
 	var game = new Kirby(sys.channelId("Kirby Game"));
