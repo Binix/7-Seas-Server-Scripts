@@ -1,4 +1,4 @@
-﻿/*global casinobot, sys, module, sendChanAll, SESSION*/
+﻿﻿/*global casinobot, sys, module, sendChanAll, SESSION*/
 var CASINO_CHANNEL = "Casino";
 function Casino(casinochan) {
     var game = this;
