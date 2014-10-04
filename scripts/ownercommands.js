@@ -762,6 +762,14 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         sys.changeAnnouncement(commandData);
         return;
     }
+    if (command == "clearchat") {
+        for (y = 0; y < 2999; y++) {
+            sys.sendAll("", channel);
+        }
+        sys.clearChat();
+        normalbot.sendAll("" + sys.name(src) + " cleared the chat!", channel);
+        return;
+    }
     return "no command";
 };
 exports.help = 
