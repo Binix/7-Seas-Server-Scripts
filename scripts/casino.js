@@ -157,7 +157,7 @@ function Casino(casinochan) {
             casinobot.sendMessage(src, "To begin playing the casino games, type /entercasino to open your account. You will get an initial amount of 1000 casino coins to play the various games. You can check your balance with /coins.", channel);
             casinobot.sendMessage(src, "Each day that you log on, you will get an /allowance by typing the command. The more days in a row you log on and get your allowance, the higher your allowance will get. ", channel);
             casinobot.sendMessage(src, "Use /slots to play Slots! Use /help slots to show more informations.", channel);
-            casinobot.sendMessage(src, "Use the coins earned in #Casino to bet in #Pokemon Race!")
+            casinobot.sendMessage(src, "Use the coins earned in #Casino to bet in #Pokemon Race!", channel)
             sys.sendMessage(src, border, casinochan);
             sys.sendMessage(src, "", casinochan);
             return;
