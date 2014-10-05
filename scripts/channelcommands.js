@@ -5,13 +5,13 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         
     if (command == "passcauth") {
         if (!commandData) {
-            channelbot.sendMessage(src, "Use /passcauth [name]*[position]", channel);
+            channelbot.sendMessage(src, "Use /passcauth [name]:[position]", channel);
             return;
         }
         var oldname = sys.name(src).toLowerCase();
-        var action = commandData.split("*");
+        var action = commandData.split(":");
         if (action.length !== 2) {
-            channelbot.sendMessage(src, "Use /passcauth [name]*[position]", channel);
+            channelbot.sendMessage(src, "Use /passcauth [name]:[position]", channel);
             return;
         }
         var newname = action[0].toLowerCase();
@@ -319,7 +319,7 @@ exports.help = function(src, channel) {
     sys.sendMessage(src, "/register: To register the current channel you're on if it isn't registered already.", channel);
     if (poChannel.isChannelMember(src) || poChannel.isChannelOperator(src) || poChannel.isChannelAdmin(src) || poChannel.isChannelOwner(src)) {
         sys.sendMessage(src, "*** Channel Member commands ***", channel);
-        sys.sendMessage(src, "/passcauth [name]*[position]: Passes channel authority to a new alt. New name must be registered, online, and have the same IP as the old name. Valid positions are member, mod (or op), admin, and owner.", channel);
+        sys.sendMessage(src, "/passcauth [name]:[position]: Passes channel authority to a new alt. New name must be registered, online, and have the same IP as the old name. Valid positions are member, mod (or op), admin, and owner.", channel);
     }
     if (poChannel.isChannelOperator(src) || poChannel.isChannelAdmin(src) || poChannel.isChannelOwner(src)) {
         sys.sendMessage(src, "*** Channel Mod commands ***", channel);

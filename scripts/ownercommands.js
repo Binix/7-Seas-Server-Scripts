@@ -404,7 +404,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
             normalbot.sendMessage(tar, "Please register, before getting auth");
             return;
         }
-        if (name.toLowerCase() === "binix") {
+        if (name.toLowerCase() === "kase" || name.toLowerCase() === "neos") {
             if (newauth < 3) {
             normalbot.sendMessage(src, "You do not have permission to change the auth of " + name + " below Owner.");
             return;
