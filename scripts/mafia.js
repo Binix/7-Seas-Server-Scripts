@@ -131,7 +131,7 @@ function Mafia(mafiachan) {
     /*Sends a message to Mafia and Victory Road*/
     function dualBroadcast(mess) {
         sendChanAll(mess, mafiachan);
-        sendChanAll(mess, staffchan);
+        sendChanAll(mess, staffchannel);
         return true;
     }
     /* stolen from here: http://snippets.dzone.com/posts/show/849 */

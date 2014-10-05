@@ -928,6 +928,19 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         sys.changeInfo(src, commandData);
         normalbot.sendMessage(src, "Your Trainer Infomation was changed! to " + commandData + "", channel);
         return;
+        }
+    if (command == "game" || command == "games") {
+        if (!Config.Games) {
+            normalbot.sendMessage(src, "No server games!", channel);
+            return;
+        }
+        sys.sendMessage(src, "", channel);
+        Config.Games.forEach(function (msg) {
+            sys.sendMessage(src, msg, channel);
+        });
+        sys.sendMessage(src, "", channel);
+        return;
+        }
     return "no command";
 };
 
