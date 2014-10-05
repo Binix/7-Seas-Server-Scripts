@@ -2,16 +2,16 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
     var poChannel = SESSION.channels(channel);
     if (poChannel.operators === undefined)
         poChannel.operators = [];
-        
+
     if (command == "passcauth") {
         if (!commandData) {
-            channelbot.sendMessage(src, "Use /passcauth [name]*[position]", channel);
+            channelbot.sendMessage(src, "Use /passcauth [name]:[position]", channel);
             return;
         }
         var oldname = sys.name(src).toLowerCase();
-        var action = commandData.split("*");
+        var action = commandData.split(":");
         if (action.length !== 2) {
-            channelbot.sendMessage(src, "Use /passcauth [name]*[position]", channel);
+            channelbot.sendMessage(src, "Use /passcauth [name]:[position]", channel);
             return;
         }
         var newname = action[0].toLowerCase();
@@ -71,11 +71,36 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         channelbot.sendMessage(src, "You don't have sufficient channel auth to pass that position.", channel);
         return;
     }
-    
+    if (command == "joinclan") {
+        if (sys.name(src).indexOf('[MC]') != -1) {
+            clanbot.sendMessage(src, "You already join MC!", channel);
+            return;
+        }
+        if (sys.name(src).indexOf('[') != -1 || sys.name(src).indexOf('!') != -1) {
+            clanbot.sendMessage(src, "You already join another clan!", channel);
+            return;
+        }
+        sys.changeName(src, "[MC]"+sys.name(src));
+        sys.sendNetworkCommand(src, 14);
+        clanbot.sendAll("" + sys.name(src) + " joined MC! Don't forget to register again!");
+        return;
+    }
+    if (command == "leaveclan") {
+        name = sys.name(src).replace('[MC]', '');
+        sys.changeName(src, name);
+        clanbot.sendMessage("" + sys.name(src) + " left MC!");
+        return;
+    }
+    if (command == "d" || command == "die") {
+        normalbot.sendAll(""+ sys.name(src) + " was slain!");
+        sys.kick(src);
+        return;
+    }
+
     if (!poChannel.isChannelOperator(src)) {
         return "no command";
     }
-    
+
     if (command == "lt" || command == "lovetap") {
         if (tar === undefined) {
             normalbot.sendMessage(src, "Choose a valid target for your love!", channel);
@@ -319,7 +344,9 @@ exports.help = function(src, channel) {
     sys.sendMessage(src, "/register: To register the current channel you're on if it isn't registered already.", channel);
     if (poChannel.isChannelMember(src) || poChannel.isChannelOperator(src) || poChannel.isChannelAdmin(src) || poChannel.isChannelOwner(src)) {
         sys.sendMessage(src, "*** Channel Member commands ***", channel);
-        sys.sendMessage(src, "/passcauth [name]*[position]: Passes channel authority to a new alt. New name must be registered, online, and have the same IP as the old name. Valid positions are member, mod (or op), admin, and owner.", channel);
+        sys.sendMessage(src, "/passcauth [name]:[position]: Passes channel authority to a new alt. New name must be registered, online, and have the same IP as the old name. Valid positions are member, mod (or op), admin, and owner.", channel);
+        sys.sendMessage(src, "/joinclan: To join MC.", channel);
+        sys.sendMessage(src, "/leaveclan: To leave MC.", channel);
     }
     if (poChannel.isChannelOperator(src) || poChannel.isChannelAdmin(src) || poChannel.isChannelOwner(src)) {
         sys.sendMessage(src, "*** Channel Mod commands ***", channel);
