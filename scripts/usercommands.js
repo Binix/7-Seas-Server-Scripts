@@ -928,23 +928,6 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         sys.changeInfo(src, commandData);
         normalbot.sendMessage(src, "Your Trainer Infomation was changed! to " + commandData + "", channel);
         return;
-    }
-    if (command == "joinclan") {
-        if (sys.name(src).indexOf('[MC]') != -1) {
-            clanbot.sendMessage(src, "You already join MC!", channel);
-            return;
-        }
-        sys.changeName(src, "[MC]"+sys.name(src));
-        sys.sendNetworkCommand(src, 14);
-        clanbot.sendAll("" + sys.name(src) + " joined MC! Don't forget to register again!");
-        return;
-    }
-    if (command == "leaveclan") {
-        name = sys.name(src).replace('[MC]', '');
-        sys.changeName(src, name);
-        clanbot.sendMessage("" + sys.name(src) + " left MC!");
-        return;
-    }
     return "no command";
 };
 
