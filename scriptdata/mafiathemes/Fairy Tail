@@ -1,0 +1,81 @@
+{
+	"name": "Fairy Tail",
+	"author": [
+		"Withoutatrace",
+		"Diamondslight",
+	],
+	"threadlink": insertthreadlinkhere,
+	"summary": "In a world full of magic, the city of Magnolia is home to the strongest official wizard guild, Fairy Tail! With the dark guilds Eisenwald and Phantom Lord running amuk, along with the Oracion Seis, and the occasional dragon flying around, Natsu and friends have their work cut out for them, but justice always prevails...or does it?(Remember to use /changelog to keep up with changes!)",
+	"sides" [
+		{
+			"side": "village",
+			"translation": "Fairy Tail",
+			"winmsg": "With the world saved once again, ~Players~ can live freely once again!",
+		},
+		{
+			"side": "eisen",
+			"translation": "Eisanwald",
+			"winmsg": "Now that ~Players~ have eliminated their enemies, nothing is stopping them from killing everyone with the Lullably flute! Mwahahahaha!"
+		},
+		{
+			"side": "oracion",
+			"translation": "Oracion Seis",
+			"winmsg": winmsg,
+		},
+		{
+			"side": "phantom",
+			"translation": "Phantom Lord",
+			"winmsg": too busy to do since at school,
+		},
+		{
+			"side": "black",
+			"translation": I literally cannot remember the black dragon's name to save my life,
+			"winmsg": insert something about scary dragons winning
+		}
+	],
+	"roles": [
+		{
+			"role": "villager",
+			"translation": "Wizard",
+			"side": "village",
+			"help": "Hello, basic Wizard of Magnolia! You use magic in everyday life, however you aren't very powerful, therefore pretty lame. Just vote to win!",
+			"info": "Villager. Sided with Fairy Tail."
+		},
+		{	
+			"role": "villager0"
+			"translation": "Wizard",
+			"side": "village",
+			"help": Hello, basic Wizard of Magnolia! You use magic in everyday life, howeve uo aren't very powerful. Although, if you /train with hard enough dedication, you have a chance to become powerful and have a vote of 2! You only have a vote of 1 until then, because you suck! :(",
+			"info": "Villager. 10% change to convert to Powerful Wizard. Sided with Fairy Tail.",
+			"actions": {
+				"night": {
+					"train": {
+						"failChance": 0.9,
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 100,
+						"pierce": true,
+						"canConvert": [
+							"villager0"
+						],
+						"newrole": "villager1",
+						"convertmsg": "A Wizard is no longer terrible!"
+					}
+				}
+			}
+		},
+		{
+			"role": "villager1",
+			"translation": "Powerful Wizard",
+			"side": "village",
+			"help": "With all of your training, you are no longer incredibly weak! Thanks to your hard work and dedication, you have a whopping 2 votes! Pull the clutch win for your team, and save Magnolia!",
+			"info": "Converted Villager. Vote of 2. Sided with Fairy Tail.",
+			"vote": 2
+		},
+		
+				
+					
+	
+			
+		
