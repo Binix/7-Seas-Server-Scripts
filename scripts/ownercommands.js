@@ -322,7 +322,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         if (sys.id(name) !== undefined) {
             SESSION.users(sys.id(name)).activate("smute", "Script", 0, "Evader", true);
         }
-        sys.writeToFile(Config.dataDir + 'secretsmute.txt', autosmute.join(":::"));
+        sys.writeToFile(Config.dataDir + 'secretsmute.txt', autosmute.join(":"));
         normalbot.sendAll(commandData + " was added to the autosmute list", staffchannel);
         return;
     }
@@ -334,7 +334,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
                 return true;
             }
         });
-        sys.writeToFile(Config.dataDir + 'secretsmute.txt', autosmute.join(":::"));
+        sys.writeToFile(Config.dataDir + 'secretsmute.txt', autosmute.join(":"));
         return;
     }
     if (command == "periodicsay" || command == "periodichtml") {
@@ -404,7 +404,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
             normalbot.sendMessage(tar, "Please register, before getting auth");
             return;
         }
-        if (name.toLowerCase() === "kase" || name.toLowerCase() === "neos") {
+        if (name.toLowerCase() === "binix") {
             if (newauth < 3) {
             normalbot.sendMessage(src, "You do not have permission to change the auth of " + name + " below Owner.");
             return;
@@ -775,7 +775,6 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
 exports.help = 
     [
         "/changerating: Changes the rating of a rating abuser. Format is /changerating user:tier:rating.",
-        "/setannouncement [code]: Change the server announcement data, also updates the data for all players.",
         "/stopbattles: Stops all new battles to allow for server restart with less problems for users.",
         "/hiddenauth: Displays all users with more higher auth than 3.",
         "/imp: Lets you speak as someone",
@@ -820,6 +819,6 @@ exports.help =
         "/advertise: Sends a html message to the main channels",
         "/tempmod/tempadmin: Gives temporary auth to a user. Lasts until they log out",
         "/detempauth: Removes temporary auth given to a user",
-        "/setannouncent [code]: Change the announcement/banner."
+        "/setannouncent [code]: Change the announcement/banner.",
         "/clearchat: Clears PO chat."
     ];
