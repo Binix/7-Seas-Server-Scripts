@@ -86,7 +86,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
                 messagetosend = messagetosend.toUpperCase();
             }
         }
-        if (channel === sys.channelId("White TreeHollow") && script.reverseTohjo === true) {
+        if (channel === sys.channelId("MC Wonderland") && script.reverseTohjo === true) {
             messagetosend = messagetosend.split("").reverse().join("");
         }
         if (command == "me") {
@@ -961,7 +961,5 @@ exports.help =
         "/invitespec [name]: Allows you to invite someone to watch your battle.",
         "/notice: Allows you to view current events",
         "/changeavatar [number]: Allows you to change your avatar.",
-        "/changeinfo [code]: Allows you to change your Trainer Information.",
-        "/joinclan: To join MC.",
-        "/leaveclan: To leave MC."
+        "/changeinfo [code]: Allows you to change your Trainer Information."
     ];
