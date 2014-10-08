@@ -929,18 +929,89 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         normalbot.sendMessage(src, "Your Trainer Infomation was changed! to " + commandData + "", channel);
         return;
         }
-    if (command == "game" || command == "games") {
-        if (!Config.Games) {
-            normalbot.sendMessage(src, "No server games!", channel);
-            return;
+    if (command == "games") {
+        var nogames = (games.length-1)/2; //formula for getting the right amount of games
+        for (var game = 0; game < games.length; game++) {
+            sys.sendMessage(src, games[game], channel);
         }
-        sys.sendMessage(src, "", channel);
-        Config.Games.forEach(function (msg) {
-            sys.sendMessage(src, msg, channel);
-        });
-        sys.sendMessage(src, "", channel);
+        return;
+    }
+    //initialize messages
+    script.messages  = new MemoryHash(Config.dataDir+"messages.txt");
+    //save message
+    if (command == "sendmessage" || command == "smsg") {
+        var data = commandData.split(':');
+        if (data.length !== 2) {
+        messagebot.sendMessage(src, "You need to specify a target and message!", channel);
         return;
         }
+        var sender = sys.name(src);
+        var receiver = data[0];
+        var message = data[1];
+        if (!sys.dbRegistered(sender)) {
+            messagebot.sendMessage(src, "You need to be registered to use this command!", channel);
+            return;
+        }
+        if (!sys.dbRegistered(receiver)) {
+        messagebot.sendMessage(src, "You can only send mail to registered players!", channel);
+        return;
+        }
+        if (sys.dbIp(receiver) === undefined) {
+            messagebot.sendMessage(src, "No player exists by this name!", channel);
+            return;
+        }
+        if (message.length <= 5) {
+            messagebot.sendMessage(src, "Your message is too short!", channel);
+            return;
+        }
+        if (message.length >=100) {
+            messagebot.sendMessage(src, "Your message is too long!", channel);
+            return;
+        }
+        script.messages.add("" + sender + ":" + message + "", "" + receiver + "");
+        messagebot.sendMessage(src, "You message has been sent!", channel);
+        return;
+    }
+    //read message
+    if (command == "readmessage" || command == "rmsgs") {
+        if (!sys.dbRegistered(sys.name(src))) {
+        messagebot.sendMessage(src, "You need to be registered to use this command!", channel);
+        return;
+        }
+        if (!script.messages.get(sys.name(src))) {
+            messagebot.sendMessage(src, "You have no messages!", channel);
+            return;
+        }
+        var data = script.messages.get(sys.name(src)).split('*');
+        var content = data[0];
+        var sender = data[1];
+        var stuff = content.split(':');
+        var sender = content[0];
+        var message = content[1];
+        sys.sendMessage(src, "", channel);
+        messagebot.sendMessage(src, "Your Messages:", channel);
+        messagebot.sendMessage(src, "" + message + ". From: " + sender +".", channel);
+        sys.sendMessage(src, "", channel);
+        return;
+    }
+    //delete message
+    if (command == "deletemessages" || command == "dmsgs") {
+        if (!sys.dbRegistered(sys.name(src))) {
+            messagebot.sendMessage(src, "You need to be registered to use this command!", channel);
+            return;
+        }
+        if (!script.messages.get(sys.name(src))) {
+            mail.sendMessage(src, "You have no mail!", channel);
+            return;
+        }
+        var stuff = script.messages.get(sys.name(src));
+        var data = stuff.split(':');
+        var receiver = data[1];
+        var message = data[2];
+        var sender = data[3];
+        script.messages.remove("" + receiver + ":" + message + "", "From: " + sender + "");
+        return;
+    }
     return "no command";
 };
 

@@ -21,8 +21,9 @@ var Config = {
     hangbot: "Unown",
     bfbot: "Goomy",
     casinobot: "Chansey",
+    messagebot: "Chatot",
     // suspectvoting.js available, but not in use
-    Plugins: ["mafia.js", "tournaments.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js", "kirby.js", "casino.js", "dice-slider.js", "wallet.js", "pokerace.js"],
+    Plugins: ["mafia.js", "tournaments.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js", "kirby.js", "casino.js", "wallet.js", "pokerace.js"],
     Mafia: {
         bot: "Game",
         norepeat: 5,
@@ -30,17 +31,6 @@ var Config = {
         max_name_length: 16,
         notPlayingMsg: "±Game: The game is in progress. Please type /join to join the next mafia game."
     },
-    Games: [
-        "",
-        "*** SERVER GAMES ***",
-        "Slots: Go to #Casino.",
-        "Pokemon Race: Go to #Pokemon Race.",
-        "Hangman: Go to #Hangman.",
-        "Mafia: Go to #Mafia.",
-        "Trivia: Go to #Trivia.",
-        "Kirby Game: Go to #Kirby Game",
-        ""
-    ],
     DreamWorldTiers: ["No Preview OU", "No Preview Ubers", "DW LC", "DW UU", "DW LU", "Gen 5 1v1 Ubers", "Gen 5 1v1", "Challenge Cup", "CC 1v1", "DW Uber Triples", "No Preview OU Triples", "No Preview Uber Doubles", "No Preview OU Doubles", "Shanai Cup", "Shanai Cup 1.5", "Shanai Cup STAT", "Original Shanai Cup TEST", "Monocolour", "Clear Skies DW"],
     superAdmins: ["Kase", "Neos"],
     canJoinStaffChannel: ["Rose"],
@@ -110,7 +100,7 @@ var updateModule = function updateModule(module_name, callback) {
    }
 };
 
-var channel, contributors, mutes, mbans, smutes, detained, hmutes, mafiaSuperAdmins, hangmanAdmins, hangmanSuperAdmins, staffchannel, channelbot, normalbot, bot, mafiabot, kickbot, capsbot, checkbot, coinbot, countbot, tourneybot, battlebot, commandbot, querybot, rankingbot, hangbot, bfbot, casinobot, scriptChecks, lastMemUpdate, bannedUrls, mafiachan, mafiarev, sachannel, tourchannel, dwpokemons, hapokemons, lcpokemons, bannedGSCSleep, bannedGSCTrap, breedingpokemons, rangebans, proxy_ips, mafiaAdmins, rules, authStats, nameBans, chanNameBans, isSuperAdmin, cmp, key, battlesStopped, lineCount, pokeNatures, pokeAbilities, maxPlayersOnline, pastebin_api_key, pastebin_user_key, getSeconds, getTimeString, sendChanMessage, sendChanAll, sendMainTour, VarsCreated, authChangingTeam, usingBannedWords, repeatingOneself, capsName, CAPSLOCKDAYALLOW, nameWarns, poScript, revchan, triviachan, watchchannel, lcmoves, hangmanchan, ipbans, battlesFought, lastCleared, blackjackchan, casinochan, racechan, namesToWatch, allowedRangeNames, reverseTohjo;
+var channel, contributors, mutes, mbans, smutes, detained, hmutes, mafiaSuperAdmins, hangmanAdmins, hangmanSuperAdmins, staffchannel, channelbot, normalbot, bot, mafiabot, kickbot, capsbot, checkbot, coinbot, countbot, tourneybot, battlebot, commandbot, querybot, rankingbot, hangbot, bfbot, casinobot, messagebot, scriptChecks, lastMemUpdate, bannedUrls, mafiachan, mafiarev, sachannel, tourchannel, dwpokemons, hapokemons, lcpokemons, bannedGSCSleep, bannedGSCTrap, breedingpokemons, rangebans, proxy_ips, mafiaAdmins, rules, authStats, nameBans, chanNameBans, isSuperAdmin, cmp, key, battlesStopped, lineCount, pokeNatures, pokeAbilities, maxPlayersOnline, pastebin_api_key, pastebin_user_key, getSeconds, getTimeString, sendChanMessage, sendChanAll, sendMainTour, VarsCreated, authChangingTeam, usingBannedWords, repeatingOneself, capsName, CAPSLOCKDAYALLOW, nameWarns, poScript, revchan, triviachan, watchchannel, lcmoves, hangmanchan, ipbans, battlesFought, lastCleared, blackjackchan, casinochan, racechan, namesToWatch, allowedRangeNames, reverseTohjo;
 
 var pokeDir = "db/pokes/";
 var moveDir = "db/moves/6G/";
@@ -330,6 +320,7 @@ querybot = new Bot(Config.querybot);
 hangbot = new Bot(Config.hangbot);
 bfbot = new Bot(Config.bfbot);
 casinobot = new Bot(Config.casinobot);
+messagebot = new Bot(Config.messagebot);
 
 /* Start script-object
  *
@@ -486,7 +477,19 @@ init : function() {
     "4. No trolling, flaming, or harassing other players:",
     "- Inciting responses with inflammatory comments, using verbal abuse against other players, or spamming them via chat/PM/challenges will not be tolerated. Harassing other players by constantly aggravating them or revealing personal information will be severely punished. Excessive vulgarity will not be tolerated.",
 	"5. Do not try to evading your mute or ban, doing so can earning you a permanent ban:",
-	"- Ignorance of the rules is not a valid reason for breaking them. If you feel you were wrongly punished, appeal it on the forums."
+	"- Ignorance of the rules is not a valid reason for breaking them. If you feel you were wrongly punished, appeal it on the forums.",
+	""
+    ];
+    games = [ "",
+    "*** 7 Seas Server Games ***",
+    "",
+    "Slots: Go to #Casino.",
+    "Pokemon Race: Go to #Pokemon Race.",
+    "Hangman: Go to #Hangman.",
+    "Mafia: Go to #Mafia.",
+    "Trivia: Go to #Trivia.",
+    "Kirby Game: Go to #Kirby Game",
+    ""
     ];
 
     if (typeof script.authStats == 'undefined')
