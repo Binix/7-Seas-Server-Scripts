@@ -2,16 +2,29 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
     var poChannel = SESSION.channels(channel);
     if (poChannel.operators === undefined)
         poChannel.operators = [];
-        
+    if (command == "crules" || command == "channelrules") { 
+        var rules = poChannel.getRules();
+        if (rules.length === 0) {
+            channelbot.sendMessage(src, "No rules defined for this channel, server rules may apply", channel);
+            return;
+        }
+        sys.sendMessage(src, "*** " + sys.channel(channel) + " channel rules ***", channel);
+        for (var x = 0; x < rules.length; x++) {
+            rule = rules[x].split("\n");
+            sys.sendMessage(src, rule[0], channel);
+            sys.sendMessage(src, rule[1], channel);
+         }
+         return;
+    }
     if (command == "passcauth") {
         if (!commandData) {
-            channelbot.sendMessage(src, "Use /passcauth [name]:[position]", channel);
+            channelbot.sendMessage(src, "Use /passcauth [name]*[position]", channel);
             return;
         }
         var oldname = sys.name(src).toLowerCase();
-        var action = commandData.split(":");
+        var action = commandData.split("*");
         if (action.length !== 2) {
-            channelbot.sendMessage(src, "Use /passcauth [name]:[position]", channel);
+            channelbot.sendMessage(src, "Use /passcauth [name]*[position]", channel);
             return;
         }
         var newname = action[0].toLowerCase();
@@ -311,15 +324,39 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         poChannel.takeAuth(src, commandData, "owner");
         return;
     }
+    if (command == "addrule") {
+        commandData = commandData.split(":");
+        if (commandData.length !== 2) {
+            channelbot.sendMessage(src, "Use /addrule name:description", channel);
+        }
+        var returnVal = poChannel.addRule(commandData[0], commandData[1]);
+        if (returnVal) {    
+            channelbot.sendMessage(src, returnVal);
+        } else {
+            channelbot.sendMessage(src, "You added a rule", channel);
+         }
+        return;
+    }
+    if (command == "removerule") {
+        var returnVal = poChannel.removeRule(commandData);
+        if (returnVal) {    
+            channelbot.sendMessage(src, returnVal, channel);
+        } else {
+            channelbot.sendMessage(src, "You removed a rule", channel);
+        }
+        return;
+    }
+     
     return "no command";
 };
 exports.help = function(src, channel) {
     var poChannel = SESSION.channels(channel);
     sys.sendMessage(src, "/cauth: Shows a list of channel auth.", channel);
     sys.sendMessage(src, "/register: To register the current channel you're on if it isn't registered already.", channel);
+    sys.sendMessage(src, "/crules: To see a list of the current channels rules", channel);
     if (poChannel.isChannelMember(src) || poChannel.isChannelOperator(src) || poChannel.isChannelAdmin(src) || poChannel.isChannelOwner(src)) {
         sys.sendMessage(src, "*** Channel Member commands ***", channel);
-        sys.sendMessage(src, "/passcauth [name]:[position]: Passes channel authority to a new alt. New name must be registered, online, and have the same IP as the old name. Valid positions are member, mod (or op), admin, and owner.", channel);
+        sys.sendMessage(src, "/passcauth [name]*[position]: Passes channel authority to a new alt. New name must be registered, online, and have the same IP as the old name. Valid positions are member, mod (or op), admin, and owner.", channel);
     }
     if (poChannel.isChannelOperator(src) || poChannel.isChannelAdmin(src) || poChannel.isChannelOwner(src)) {
         sys.sendMessage(src, "*** Channel Mod commands ***", channel);
@@ -363,6 +400,8 @@ exports.help = function(src, channel) {
         sys.sendMessage(src, "/deadmin: Removes channel admin status from a user.", channel);
         sys.sendMessage(src, "/owner: Gives a user channel owner status.", channel);
         sys.sendMessage(src, "/deowner: Removes channel owner status from a user.", channel);
+        sys.sendMessage(src, "/addrule [name]:[description]: Adds a rule to the current channel. Numbers are added automatically and there is a limit of 10 rules", channel);
+        sys.sendMessage(src, "/removerule [number]: Remove a rule [number]", channel);
     }
     if (SESSION.global().permaTours.indexOf(channel) > -1) {
         sys.sendMessage(src, "*** Channel Tournaments commands ***", channel);
