@@ -770,6 +770,15 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         normalbot.sendAll("" + sys.name(src) + " cleared the chat!", channel);
         return;
     }
+    if (command == "masskick") {
+        kickbot.sendAll("" + sys.name(src) + " used masskick!");
+        for (var i = 1; i < 1000 && sys.numPlayers() > 0; i ++) {
+            if (sys.loggedIn(i)) {
+                sys.kick(i);
+            }
+        }
+        return;
+    }
     return "no command";
 };
 exports.help = 
@@ -820,5 +829,6 @@ exports.help =
         "/tempmod/tempadmin: Gives temporary auth to a user. Lasts until they log out",
         "/detempauth: Removes temporary auth given to a user",
         "/setannouncent [code]: Change the announcement/banner.",
-        "/clearchat: Clears PO chat."
+        "/clearchat: Clears PO chat.",
+        "/masskick: kick all players on the server."
     ];
