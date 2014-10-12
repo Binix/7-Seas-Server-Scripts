@@ -131,7 +131,7 @@ function Mafia(mafiachan) {
     /*Sends a message to Mafia and Victory Road*/
     function dualBroadcast(mess) {
         sendChanAll(mess, mafiachan);
-        sendChanAll(mess, staffchannel);
+        sendChanAll(mess, sachannel);
         return true;
     }
     /* stolen from here: http://snippets.dzone.com/posts/show/849 */
@@ -2750,7 +2750,7 @@ function Mafia(mafiachan) {
                 var rolecheck;
                 var teamcheck;
                 for (j = 0; j < names.length; ++j) {
-                    if (!mafia.isInGame(names[j]) || mafia.hasCommand(names[j], o.action, "night") === false) continue;
+                    if (!mafia.isInGame(names[j]) || mafia.hasCommand(names[j], o.action, "night") === false || mafia.players[names[j]].role.role !== o.role) continue;
                     player = mafia.players[names[j]];
                     var targets = mafia.getTargetsFor(player, o.action);
                     var target, t; // current target
