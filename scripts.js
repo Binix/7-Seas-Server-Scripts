@@ -478,7 +478,7 @@ init : function() {
     "- Inciting responses with inflammatory comments, using verbal abuse against other players, or spamming them via chat/PM/challenges will not be tolerated. Harassing other players by constantly aggravating them or revealing personal information will be severely punished. Excessive vulgarity will not be tolerated.",
     "5. Do not try to evading your mute or ban, doing so can earning you a permanent ban:",
     "- Ignorance of the rules is not a valid reason for breaking them. If you feel you were wrongly punished, appeal it on the forums.",
-       ""
+    ""
     ];
     games = [ "",
     "*** 7 Seas Server Games ***",
