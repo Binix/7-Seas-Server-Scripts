@@ -476,9 +476,9 @@ init : function() {
     "- By asking, you may have eliminated your chances of becoming one in the future. If you are genuinely interested in becoming a staff member then a good way to get noticed is to become an active member of the community. Offering to help is a good way to get noticed.",
     "4. No trolling, flaming, or harassing other players:",
     "- Inciting responses with inflammatory comments, using verbal abuse against other players, or spamming them via chat/PM/challenges will not be tolerated. Harassing other players by constantly aggravating them or revealing personal information will be severely punished. Excessive vulgarity will not be tolerated.",
-	"5. Do not try to evading your mute or ban, doing so can earning you a permanent ban:",
-	"- Ignorance of the rules is not a valid reason for breaking them. If you feel you were wrongly punished, appeal it on the forums.",
-	""
+    "5. Do not try to evading your mute or ban, doing so can earning you a permanent ban:",
+    "- Ignorance of the rules is not a valid reason for breaking them. If you feel you were wrongly punished, appeal it on the forums.",
+       ""
     ];
     games = [ "",
     "*** 7 Seas Server Games ***",
